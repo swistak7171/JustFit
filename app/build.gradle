@@ -1,0 +1,180 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'androidx.navigation.safeargs.kotlin'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        applicationId "pl.kamilszustak.justfit"
+        minSdkVersion 23
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    viewBinding {
+        enabled = true
+    }
+
+    kotlinOptions {
+        freeCompilerArgs = ["-Xallow-result-return-type"]
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+
+    // AppCompat
+    def app_compat_version = '1.2.0-alpha03'
+    implementation "androidx.appcompat:appcompat:$app_compat_version"
+    implementation "androidx.appcompat:appcompat-resources:$app_compat_version"
+
+    // MaterialComponents
+    implementation 'com.google.android.material:material:1.2.0-alpha05'
+
+    // ConstraintLayout
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta4'
+
+    // Core
+    def core_version = '1.3.0-alpha02'
+    implementation "androidx.core:core:$core_version"
+    implementation "androidx.core:core-ktx:$core_version"
+
+    // Activity
+    def activity_version = '1.2.0-alpha02'
+    implementation "androidx.activity:activity:$activity_version"
+    implementation "androidx.activity:activity-ktx:$activity_version"
+
+    // Fragment
+    def fragment_version = '1.2.3'
+    implementation "androidx.fragment:fragment-ktx:$fragment_version"
+    implementation "androidx.fragment:fragment:$fragment_version"
+
+    // Android Jetpack Navigation
+    def navigation_version = '2.3.0-alpha04'
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
+
+    // Android Jetpack Lifecycle
+    def lifecycle_version = '2.2.0'
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+
+    // SwipeRefreshLayout
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-beta01'
+
+    // Timber
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    // Anko
+    def anko_version = '0.10.8'
+    implementation "org.jetbrains.anko:anko:$anko_version"
+    implementation "org.jetbrains.anko:anko-design:$anko_version"
+    implementation "org.jetbrains.anko:anko-commons:$anko_version"
+
+    // AndroidX Legacy
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    // Room
+    def room_version = '2.2.5'
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+
+    // Retrofit
+    def retrofit_version = '2.7.2'
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+
+    // OkHttp
+    def ok_http_version = '4.4.1'
+    implementation "com.squareup.okhttp3:okhttp:$ok_http_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$ok_http_version"
+
+    // RecyclerView
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+
+    // Dagger
+    def dagger_version = '2.27'
+    implementation "com.google.dagger:dagger-android:$dagger_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger_version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+
+    // LeakCanary
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.2'
+
+    // Moshi
+    def moshi_version = '1.9.2'
+    implementation "com.squareup.moshi:moshi:$moshi_version"
+    implementation "com.squareup.moshi:moshi-adapters:$moshi_version"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
+    implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
+
+    // Material Dialogs
+    def material_dialogs_version = '3.3.0'
+    implementation "com.afollestad.material-dialogs:core:$material_dialogs_version"
+    implementation "com.afollestad.material-dialogs:input:$material_dialogs_version"
+    implementation "com.afollestad.material-dialogs:datetime:$material_dialogs_version"
+    implementation "com.afollestad.material-dialogs:lifecycle:$material_dialogs_version"
+
+    // Glide
+    def glide_version = '4.11.0'
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    kapt "com.github.bumptech.glide:compiler:$glide_version"
+
+    // FastAdapter
+    def fast_adapter_version = '5.0.0'
+    def materialize_version = '1.2.1'
+    implementation "com.mikepenz:fastadapter:$fast_adapter_version"
+    implementation "com.mikepenz:fastadapter-extensions-binding:$fast_adapter_version"
+    implementation "com.mikepenz:fastadapter-extensions-expandable:$fast_adapter_version"
+    implementation "com.mikepenz:materialize:$materialize_version"
+    implementation "com.mikepenz:fastadapter-extensions-diff:$fast_adapter_version"
+    implementation "com.mikepenz:fastadapter-extensions-drag:$fast_adapter_version"
+    implementation "com.mikepenz:fastadapter-extensions-paged:$fast_adapter_version"
+    implementation "com.mikepenz:fastadapter-extensions-scroll:$fast_adapter_version"
+    implementation "com.mikepenz:fastadapter-extensions-swipe:$fast_adapter_version"
+    implementation "com.mikepenz:fastadapter-extensions-ui:$fast_adapter_version"
+    implementation "com.mikepenz:fastadapter-extensions-utils:$fast_adapter_version"
+
+    testImplementation 'junit:junit:4.13'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}
