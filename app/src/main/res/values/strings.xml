@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">JustFit</string>
+    <string name="database_name">justfit_database</string>
+</resources>
