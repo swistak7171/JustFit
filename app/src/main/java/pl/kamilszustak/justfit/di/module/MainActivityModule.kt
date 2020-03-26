@@ -6,7 +6,5 @@ import pl.kamilszustak.justfit.di.scope.FragmentScope
 
 @Module
 abstract class MainActivityModule {
-    // @FragmentScope
-    // @ContributesAndroidInjector
-    // abstract fun contributeProfileFragment(): ProfileFragment
+
 }
