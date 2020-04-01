@@ -63,7 +63,11 @@ abstract class SharedPreferencesRepository<K : SharedPreferencesRepository.Share
     protected fun getStringFromResources(stringResourceId: Int): String =
         application.resources.getString(stringResourceId)
 
-    abstract fun restoreDefaultValues()
+    open fun restoreDefaultValues() {
+        sharedPreferences.edit() {
+            clear()
+        }
+    }
 
     interface SharedPreferencesKey {
         fun getStringResourceId(): Int

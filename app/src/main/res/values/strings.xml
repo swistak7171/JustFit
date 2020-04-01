@@ -4,4 +4,5 @@
     <string name="shared_preferences_user_email">shared_preferences_user_email</string>
     <string name="shared_preferences_user_password">shared_preferences_user_password</string>
     <string name="shared_preferences_user_id">shared_preferences_user_id</string>
+    <string name="shared_preferences_is_user_logged_in">shared_preferences_is_user_logged_in</string>
 </resources>
