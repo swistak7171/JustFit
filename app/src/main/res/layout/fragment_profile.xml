@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:visibleIfNotNull="@{viewModel.userResource.data != null}"
+            app:visibleIfNotNull="@{viewModel.userResource.data}"
             android:padding="@dimen/default_padding">
 
             <TextView
