@@ -14,9 +14,9 @@ class SettingsRepository @Inject constructor(
     "settings_shared_preferences"
 ) {
     enum class SettingsKey : SharedPreferencesKey {
-        IS_USER_LOGGED_IN {
+        IS_USER_AUTHENTICATED {
             override fun getStringResourceId(): Int =
-                R.string.shared_preferences_is_user_logged_in
+                R.string.shared_preferences_is_user_authenticated
 
             override fun <T : Comparable<T>> getDefaultValue(): T =
                 DEFAULT_IS_USER_LOGGED_IN as T

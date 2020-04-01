@@ -1,4 +1,4 @@
-package pl.kamilszustak.justfit.ui.authentication.login
+package pl.kamilszustak.justfit.ui.main.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,36 +7,33 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
-import org.jetbrains.anko.design.snackbar
-import org.jetbrains.anko.support.v4.startActivity
+import org.jetbrains.anko.support.v4.onRefresh
 import pl.kamilszustak.justfit.R
-import pl.kamilszustak.justfit.databinding.FragmentLoginBinding
+import pl.kamilszustak.justfit.databinding.FragmentProfileBinding
 import pl.kamilszustak.justfit.ui.base.BaseFragment
-import pl.kamilszustak.justfit.ui.main.MainActivity
 import javax.inject.Inject
 
-class LoginFragment : BaseFragment(R.layout.fragment_login) {
+class ProfileFragment : BaseFragment() {
     @Inject
     protected lateinit var viewModelFactory: ViewModelProvider.AndroidViewModelFactory
-    private val viewModel: LoginViewModel by viewModels {
+    private val viewModel: ProfileViewModel by viewModels {
         viewModelFactory
     }
 
-    private lateinit var binding: FragmentLoginBinding
+    private lateinit var binding: FragmentProfileBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate<FragmentLoginBinding>(
+        binding = DataBindingUtil.inflate<FragmentProfileBinding>(
             inflater,
-            R.layout.fragment_login,
+            R.layout.fragment_profile,
             container,
             false
         ).apply {
-            this.viewModel = this@LoginFragment.viewModel
+            this.viewModel = this@ProfileFragment.viewModel
             this.lifecycleOwner = viewLifecycleOwner
         }
 
@@ -51,20 +48,12 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
     }
 
     private fun setListeners() {
-        binding.loginButton.setOnClickListener {
-            viewModel.onLoginButtonClick()
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.onRefresh()
         }
     }
 
     private fun observeViewModel() {
-        viewModel.completed.observe(viewLifecycleOwner) {
-            startActivity<MainActivity>()
-            activity?.finish()
-        }
 
-        viewModel.error.observe(viewLifecycleOwner) { messageResource ->
-            val message = getString(messageResource)
-            view?.snackbar(message)
-        }
     }
 }

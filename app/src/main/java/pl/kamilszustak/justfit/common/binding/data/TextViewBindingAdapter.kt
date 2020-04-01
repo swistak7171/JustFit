@@ -2,19 +2,14 @@ package pl.kamilszustak.justfit.common.binding.data
 
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import com.google.android.material.textfield.TextInputLayout
 import pl.kamilszustak.justfit.common.date.DateFormats
 import java.util.Date
 
-object DataBindingAdapter {
-    @BindingAdapter("app:errorText")
-    @JvmStatic
-    fun TextInputLayout.setErrorMessage(errorMessage: String?) {
-        this.error = errorMessage
-    }
+object TextViewBindingAdapter {
+    private const val TEXT_ATTRIBUTE: String = "android:text"
 
+    @BindingAdapter(TEXT_ATTRIBUTE)
     @JvmStatic
-    @BindingAdapter("android:text")
     fun TextView.setDate(date: Date?) {
         this.text = if (date != null) {
             DateFormats.dateFormat.format(date)

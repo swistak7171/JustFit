@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/icon_profile_light"
+        android:title="Profil"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/navigation_schedule"
+        android:icon="@drawable/icon_schedule_light"
+        android:title="Terminarz"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/navigation_equipment"
+        android:icon="@drawable/icon_equipment_light"
+        android:title="Sprzęt"
+        app:showAsAction="always" />
+</menu>

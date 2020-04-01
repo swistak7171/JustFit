@@ -6,6 +6,8 @@ import pl.kamilszustak.justfit.domain.usecase.database.ClearDatabaseUseCase
 import pl.kamilszustak.justfit.domain.usecase.database.ClearDatabaseUseCaseImpl
 import pl.kamilszustak.justfit.domain.usecase.user.GetUserUseCase
 import pl.kamilszustak.justfit.domain.usecase.user.GetUserUseCaseImpl
+import pl.kamilszustak.justfit.domain.usecase.user.IsUserAuthenticated
+import pl.kamilszustak.justfit.domain.usecase.user.IsUserAuthenticatedImpl
 
 @Module
 abstract class UseCaseModule {
@@ -14,4 +16,7 @@ abstract class UseCaseModule {
 
     @Binds
     abstract fun bindClearDatabaseUserCase(clearDatabaseUseCaseImpl: ClearDatabaseUseCaseImpl): ClearDatabaseUseCase
+
+    @Binds
+    abstract fun bindIsUserAuthenticated(isUserAuthenticatedUseCaseImpl: IsUserAuthenticatedImpl): IsUserAuthenticated
 }
