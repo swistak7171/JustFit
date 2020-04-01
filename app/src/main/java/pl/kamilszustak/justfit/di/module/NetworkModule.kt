@@ -6,19 +6,18 @@ import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import pl.kamilszustak.justfit.network.ApiService
-import pl.kamilszustak.justfit.network.ApiServiceHolder
-import pl.kamilszustak.justfit.network.BASE_URL
+import pl.kamilszustak.justfit.di.api.ClientApi
+import pl.kamilszustak.justfit.network.CLIENT_API_BASE_URL
+import pl.kamilszustak.justfit.network.service.ClientApiService
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.create
-import java.util.*
+import java.util.Date
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
 class NetworkModule {
-
     @Provides
     @Singleton
     fun provideMoshi(): Moshi {
@@ -55,12 +54,13 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(
+    @ClientApi
+    fun provideClientApiRetrofit(
         okHttpClient: OkHttpClient,
         moshiConverterFactory: MoshiConverterFactory
     ): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(CLIENT_API_BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(moshiConverterFactory)
             .build()
@@ -68,14 +68,7 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideApiServiceHolder(): ApiServiceHolder =
-        ApiServiceHolder()
-
-    @Provides
-    @Singleton
-    fun provideApiService(retrofit: Retrofit, apiServiceHolder: ApiServiceHolder): ApiService {
-        return retrofit.create<ApiService>().also {
-            apiServiceHolder.service = it
-        }
-    }
+    @ClientApi
+    fun provideClientApiService(@ClientApi retrofit: Retrofit): ClientApiService =
+        retrofit.create()
 }

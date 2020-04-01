@@ -1,7 +1,7 @@
 package pl.kamilszustak.justfit.ui.authentication.login
 
-import androidx.fragment.app.Fragment
 import pl.kamilszustak.justfit.R
+import pl.kamilszustak.justfit.ui.base.BaseFragment
 
-class LoginFragment : Fragment(R.layout.fragment_login) {
+class LoginFragment : BaseFragment(R.layout.fragment_login) {
 }

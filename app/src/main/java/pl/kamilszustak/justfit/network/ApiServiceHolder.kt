@@ -1,5 +1,7 @@
 package pl.kamilszustak.justfit.network
 
+import pl.kamilszustak.justfit.network.service.ClientApiService
+
 class ApiServiceHolder {
-    var service: ApiService? = null
+    var serviceClient: ClientApiService? = null
 }

@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">JustFit</string>
     <string name="database_name">justfit_database</string>
+    <string name="shared_preferences_user_email">shared_preferences_user_email</string>
+    <string name="shared_preferences_user_password">shared_preferences_user_password</string>
+    <string name="shared_preferences_user_id">shared_preferences_user_id</string>
 </resources>

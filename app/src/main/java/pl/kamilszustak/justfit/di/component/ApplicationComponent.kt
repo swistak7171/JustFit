@@ -10,6 +10,7 @@ import pl.kamilszustak.justfit.di.module.ActivityModule
 import pl.kamilszustak.justfit.di.module.ApplicationModule
 import pl.kamilszustak.justfit.di.module.DatabaseModule
 import pl.kamilszustak.justfit.di.module.NetworkModule
+import pl.kamilszustak.justfit.di.module.UseCaseModule
 import pl.kamilszustak.justfit.di.module.ViewModelModule
 import javax.inject.Singleton
 
@@ -21,7 +22,8 @@ import javax.inject.Singleton
         ActivityModule::class,
         ViewModelModule::class,
         DatabaseModule::class,
-        NetworkModule::class
+        NetworkModule::class,
+        UseCaseModule::class
     ]
 )
 interface ApplicationComponent : AndroidInjector<BaseApplication> {

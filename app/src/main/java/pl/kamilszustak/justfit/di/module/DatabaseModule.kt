@@ -3,6 +3,7 @@ package pl.kamilszustak.justfit.di.module
 import android.app.Application
 import dagger.Module
 import dagger.Provides
+import pl.kamilszustak.justfit.data.database.dao.UserDao
 import pl.kamilszustak.justfit.data.database.ApplicationDatabase
 import javax.inject.Singleton
 
@@ -13,8 +14,8 @@ class DatabaseModule {
     fun provideDatabase(application: Application): ApplicationDatabase =
         ApplicationDatabase(application)
 
-    // @Provides
-    // @Singleton
-    // fun provideUserDao(applicationDatabase: ApplicationDatabase): UserDao =
-    //     applicationDatabase.getUserDao()
+    @Provides
+    @Singleton
+    fun provideUserDao(applicationDatabase: ApplicationDatabase): UserDao =
+        applicationDatabase.getUserDao()
 }

@@ -1,3 +1,3 @@
 package pl.kamilszustak.justfit.network
 
-const val BASE_URL: String = ""
+const val CLIENT_API_BASE_URL: String = "http://justfitclient.pythonanywhere.com"
