@@ -5,13 +5,14 @@ import androidx.lifecycle.ViewModelProvider
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
+import pl.kamilszustak.justfit.common.AndroidViewModelFactory
 import pl.kamilszustak.justfit.di.ViewModelKey
 import pl.kamilszustak.justfit.ui.authentication.login.LoginViewModel
 
 @Module
 abstract class ViewModelModule {
     @Binds
-    abstract fun bindAndroidViewModelFactory(factory: ViewModelProvider.AndroidViewModelFactory): ViewModelProvider.AndroidViewModelFactory
+    abstract fun bindAndroidViewModelFactory(factory: AndroidViewModelFactory): ViewModelProvider.AndroidViewModelFactory
 
     @Binds
     @IntoMap

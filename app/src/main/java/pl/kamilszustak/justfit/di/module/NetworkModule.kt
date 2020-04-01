@@ -8,6 +8,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import pl.kamilszustak.justfit.di.api.ClientApi
 import pl.kamilszustak.justfit.network.CLIENT_API_BASE_URL
+import pl.kamilszustak.justfit.network.interceptor.AuthorizationInterceptor
 import pl.kamilszustak.justfit.network.service.ClientApiService
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -43,8 +44,9 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
+    fun provideOkHttpClient(authorizationInterceptor: AuthorizationInterceptor, httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
+            .addInterceptor(authorizationInterceptor)
             .addInterceptor(httpLoggingInterceptor)
             .connectTimeout(10, TimeUnit.SECONDS)
             .writeTimeout(10, TimeUnit.SECONDS)
@@ -68,7 +70,6 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    @ClientApi
     fun provideClientApiService(@ClientApi retrofit: Retrofit): ClientApiService =
         retrofit.create()
 }
