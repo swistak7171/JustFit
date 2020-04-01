@@ -9,10 +9,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import org.jetbrains.anko.design.snackbar
-import org.jetbrains.anko.support.v4.toast
+import org.jetbrains.anko.support.v4.startActivity
 import pl.kamilszustak.justfit.R
 import pl.kamilszustak.justfit.databinding.FragmentLoginBinding
 import pl.kamilszustak.justfit.ui.base.BaseFragment
+import pl.kamilszustak.justfit.ui.main.MainActivity
 import javax.inject.Inject
 
 class LoginFragment : BaseFragment(R.layout.fragment_login) {
@@ -57,7 +58,8 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
 
     private fun observeViewModel() {
         viewModel.completed.observe(viewLifecycleOwner) {
-            toast("Completed")
+            startActivity<MainActivity>()
+            requireActivity().finish()
         }
 
         viewModel.error.observe(viewLifecycleOwner) { messageResource ->

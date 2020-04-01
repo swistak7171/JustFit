@@ -22,4 +22,8 @@ data class User(
 
     @ColumnInfo(name = "phone_number")
     val phoneNumber: String
-) : DatabaseEntity()
+) : DatabaseEntity() {
+
+    val fullName: String
+        get() = "$name $surname"
+}

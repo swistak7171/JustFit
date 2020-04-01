@@ -39,7 +39,7 @@ class AuthenticationManager @Inject constructor(
                     userJsonMapper.onMap(result) { user ->
                         userDao.insert(user)
                         userDetailsRepository.setValue(UserDetailsRepository.UserDetailsKey.USER_ID to user.id)
-                        settingsRepository.setValue(SettingsRepository.SettingsKey.IS_USER_LOGGED_IN to true)
+                        settingsRepository.setValue(SettingsRepository.SettingsKey.IS_USER_AUTHENTICATED to true)
                     }
                 }
             }.callForResponse()
