@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">JustFit</string>
     <string name="database_name">justfit_database</string>
+    <string name="shared_preferences_user_email">shared_preferences_user_email</string>
+    <string name="shared_preferences_user_password">shared_preferences_user_password</string>
+    <string name="shared_preferences_user_id">shared_preferences_user_id</string>
+    <string name="shared_preferences_is_user_logged_in">shared_preferences_is_user_logged_in</string>
+    <string name="empty_user_email_error_message">Nie podano adresu email</string>
+    <string name="empty_user_password_error_message">Nie podano hasła</string>
+    <string name="authentication_error_message">Wystąpił błąd podczas logowania</string>
 </resources>

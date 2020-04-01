@@ -1,6 +1,6 @@
 package pl.kamilszustak.justfit.ui.authentication
 
-import androidx.appcompat.app.AppCompatActivity
+import pl.kamilszustak.justfit.R
+import pl.kamilszustak.justfit.ui.base.BaseActivity
 
-class AuthenticationActivity : AppCompatActivity() {
-}
+class AuthenticationActivity : BaseActivity(R.layout.activity_authentication)

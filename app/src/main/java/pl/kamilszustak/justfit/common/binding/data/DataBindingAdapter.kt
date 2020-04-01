@@ -1,20 +1,12 @@
 package pl.kamilszustak.justfit.common.binding.data
 
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.google.android.material.textfield.TextInputLayout
 import pl.kamilszustak.justfit.common.date.DateFormats
-import pl.kamilszustak.justfit.util.load
-import java.util.*
+import java.util.Date
 
 object DataBindingAdapter {
-    @BindingAdapter("app:profilePhoto")
-    @JvmStatic
-    fun ImageView.setImage(url: String?) {
-        this.load(url)
-    }
-
     @BindingAdapter("app:errorText")
     @JvmStatic
     fun TextInputLayout.setErrorMessage(errorMessage: String?) {
