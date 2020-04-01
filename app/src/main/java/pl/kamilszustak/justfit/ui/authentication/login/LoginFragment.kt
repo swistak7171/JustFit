@@ -59,7 +59,7 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
     private fun observeViewModel() {
         viewModel.completed.observe(viewLifecycleOwner) {
             startActivity<MainActivity>()
-            activity?.finish()
+            requireActivity().finish()
         }
 
         viewModel.error.observe(viewLifecycleOwner) { messageResource ->

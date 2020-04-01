@@ -8,6 +8,8 @@ import pl.kamilszustak.justfit.domain.usecase.user.GetUserUseCase
 import pl.kamilszustak.justfit.domain.usecase.user.GetUserUseCaseImpl
 import pl.kamilszustak.justfit.domain.usecase.user.IsUserAuthenticated
 import pl.kamilszustak.justfit.domain.usecase.user.IsUserAuthenticatedImpl
+import pl.kamilszustak.justfit.domain.usecase.user.LogoutUserUseCase
+import pl.kamilszustak.justfit.domain.usecase.user.LogoutUserUseCaseImpl
 
 @Module
 abstract class UseCaseModule {
@@ -19,4 +21,7 @@ abstract class UseCaseModule {
 
     @Binds
     abstract fun bindIsUserAuthenticated(isUserAuthenticatedUseCaseImpl: IsUserAuthenticatedImpl): IsUserAuthenticated
+
+    @Binds
+    abstract fun logoutUserUseCase(logoutUserUseCaseImpl: LogoutUserUseCaseImpl): LogoutUserUseCase
 }
