@@ -8,4 +8,11 @@
     <string name="empty_user_email_error_message">Nie podano adresu email</string>
     <string name="empty_user_password_error_message">Nie podano hasła</string>
     <string name="authentication_error_message">Wystąpił błąd podczas logowania</string>
+
+    <!-- EquipmentItem -->
+    <string name="equipment_is_available">Dostępne</string>
+    <string name="equipment_is_not_availble">Niedostępne</string>
+
+    <!-- EquipmentFragment -->
+    <string name="set_equipment_as_unavailable_error_message">Wystąpił błąd podczas oznaczania sprzętu jako niedostępny</string>
 </resources>

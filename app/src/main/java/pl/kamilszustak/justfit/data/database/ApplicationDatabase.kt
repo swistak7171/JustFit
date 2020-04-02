@@ -5,13 +5,16 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import pl.kamilszustak.justfit.data.database.dao.UserDao
 import pl.kamilszustak.justfit.R
+import pl.kamilszustak.justfit.data.database.dao.EquipmentDao
+import pl.kamilszustak.justfit.data.database.dao.UserDao
+import pl.kamilszustak.justfit.domain.model.equipment.Equipment
 import pl.kamilszustak.justfit.domain.model.user.User
 
 @Database(
     entities = [
-        User::class
+        User::class,
+        Equipment::class
     ],
     version = 1,
     exportSchema = true
@@ -20,6 +23,7 @@ import pl.kamilszustak.justfit.domain.model.user.User
 abstract class ApplicationDatabase : RoomDatabase() {
 
     abstract fun getUserDao(): UserDao
+    abstract fun getEquipmentDao(): EquipmentDao
 
     companion object {
         private var INSTANCE: ApplicationDatabase? = null
