@@ -2,7 +2,7 @@ package pl.kamilszustak.justfit.domain.model.equipment
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import pl.kamilszustak.justfit.domain.model.UpperIdJsonModel
+import pl.kamilszustak.justfit.domain.model.JsonModel
 
 @JsonClass(generateAdapter = true)
 data class EquipmentJson(
@@ -14,4 +14,4 @@ data class EquipmentJson(
 
     @Json(name = "availability")
     var isAvailable: Boolean
-) : UpperIdJsonModel()
+) : JsonModel()

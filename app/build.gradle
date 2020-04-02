@@ -58,7 +58,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
     // AppCompat
-    def app_compat_version = '1.2.0-alpha03'
+    def app_compat_version = '1.2.0-beta01'
     implementation "androidx.appcompat:appcompat:$app_compat_version"
     implementation "androidx.appcompat:appcompat-resources:$app_compat_version"
 
@@ -69,17 +69,17 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta4'
 
     // Core
-    def core_version = '1.3.0-alpha02'
+    def core_version = '1.3.0-beta01'
     implementation "androidx.core:core:$core_version"
     implementation "androidx.core:core-ktx:$core_version"
 
     // Activity
-    def activity_version = '1.2.0-alpha02'
+    def activity_version = '1.2.0-alpha03'
     implementation "androidx.activity:activity:$activity_version"
     implementation "androidx.activity:activity-ktx:$activity_version"
 
     // Fragment
-    def fragment_version = '1.2.3'
+    def fragment_version = '1.3.0-alpha03'
     implementation "androidx.fragment:fragment-ktx:$fragment_version"
     implementation "androidx.fragment:fragment:$fragment_version"
 

@@ -4,6 +4,10 @@ import dagger.Binds
 import dagger.Module
 import pl.kamilszustak.justfit.domain.usecase.database.ClearDatabaseUseCase
 import pl.kamilszustak.justfit.domain.usecase.database.ClearDatabaseUseCaseImpl
+import pl.kamilszustak.justfit.domain.usecase.equipment.GetAllAvailableEquipmentUseCase
+import pl.kamilszustak.justfit.domain.usecase.equipment.GetAllAvailableEquipmentUseCaseImpl
+import pl.kamilszustak.justfit.domain.usecase.equipment.GetAllEquipmentUseCase
+import pl.kamilszustak.justfit.domain.usecase.equipment.GetAllEquipmentUseCaseImpl
 import pl.kamilszustak.justfit.domain.usecase.user.GetUserUseCase
 import pl.kamilszustak.justfit.domain.usecase.user.GetUserUseCaseImpl
 import pl.kamilszustak.justfit.domain.usecase.user.IsUserAuthenticated
@@ -23,5 +27,11 @@ abstract class UseCaseModule {
     abstract fun bindIsUserAuthenticated(isUserAuthenticatedUseCaseImpl: IsUserAuthenticatedImpl): IsUserAuthenticated
 
     @Binds
-    abstract fun logoutUserUseCase(logoutUserUseCaseImpl: LogoutUserUseCaseImpl): LogoutUserUseCase
+    abstract fun bindLogoutUserUseCase(logoutUserUseCaseImpl: LogoutUserUseCaseImpl): LogoutUserUseCase
+
+    @Binds
+    abstract fun bindGetAllEquipmentUseCase(getAllEquipmentUseCaseImpl: GetAllEquipmentUseCaseImpl): GetAllEquipmentUseCase
+
+    @Binds
+    abstract fun bindGetAllAvailableEquipmentUseCase(getAllAvailableEquipmentUseCaseImpl: GetAllAvailableEquipmentUseCaseImpl): GetAllAvailableEquipmentUseCase
 }

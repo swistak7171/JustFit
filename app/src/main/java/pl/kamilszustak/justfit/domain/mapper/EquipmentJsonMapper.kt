@@ -6,7 +6,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class EquipmentJsonMapper @Inject constructor() : Mapper<EquipmentJson, Equipment>() {
+class EquipmentJsonMapper @Inject constructor() : JsonModelMapper<EquipmentJson, Equipment>() {
     override fun map(model: EquipmentJson): Equipment = Equipment(
         name = model.name,
         specification = model.specification,
