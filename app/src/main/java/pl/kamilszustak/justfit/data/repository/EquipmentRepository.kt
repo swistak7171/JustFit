@@ -2,6 +2,7 @@ package pl.kamilszustak.justfit.data.repository
 
 import kotlinx.coroutines.flow.Flow
 import pl.kamilszustak.justfit.common.data.NetworkBoundResource
+import pl.kamilszustak.justfit.common.data.NetworkCall
 import pl.kamilszustak.justfit.common.data.Resource
 import pl.kamilszustak.justfit.data.database.dao.EquipmentDao
 import pl.kamilszustak.justfit.domain.mapper.EquipmentJsonMapper
@@ -52,5 +53,18 @@ class EquipmentRepository @Inject constructor(
                 }
             }
         }.asFlow()
+    }
+
+    suspend fun updateAvailabilityById(id: Long, isAvailable: Boolean): Result<Unit> {
+        return object : NetworkCall<Unit, Unit>() {
+            override suspend fun makeCall(): Response<Unit> =
+                equipmentApiService.updateAvailabilityById(id, isAvailable)
+
+            override suspend fun mapResponse(response: Unit): Unit = response
+
+            override suspend fun onResponseSuccess() {
+                equipmentDao.updateAvailabilityById(id, isAvailable)
+            }
+        }.call()
     }
 }

@@ -13,5 +13,5 @@ interface EquipmentApiService {
     suspend fun getAllAvailable(): Response<List<EquipmentJson>>
 
     @GET("/equipment/changeAvailability")
-    suspend fun changeAvailabilityById(@Query("id") id: Long, @Query("available") isAvailable: Boolean): Response<Unit>
+    suspend fun updateAvailabilityById(@Query("id") id: Long, @Query("available") isAvailable: Boolean): Response<Unit>
 }

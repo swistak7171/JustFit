@@ -15,7 +15,7 @@ interface EquipmentDao : BaseDao<Equipment> {
     fun getAllAvailable(): Flow<List<Equipment>>
 
     @Query("UPDATE equipment SET is_available = :isAvailable WHERE id = :id")
-    suspend fun changeAvailabilityById(id: Long, isAvailable: Boolean)
+    suspend fun updateAvailabilityById(id: Long, isAvailable: Boolean)
 
     @Transaction
     suspend fun replaceAll(equipment: Collection<Equipment>) {
