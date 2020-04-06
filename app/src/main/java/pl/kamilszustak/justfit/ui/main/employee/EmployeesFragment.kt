@@ -56,6 +56,7 @@ class EmployeesFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initializeRecyclerView()
+        setListeners()
         observeViewModel()
     }
 
@@ -76,6 +77,12 @@ class EmployeesFragment : BaseFragment() {
 
         binding.employeesRecyclerView.apply {
             this.adapter = fastAdapter
+        }
+    }
+
+    private fun setListeners() {
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.onRefresh()
         }
     }
 
