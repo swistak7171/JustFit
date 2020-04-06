@@ -1,13 +1,13 @@
 package pl.kamilszustak.justfit.domain.mapper
 
-import pl.kamilszustak.justfit.domain.model.employee.EmployeeEntity
+import pl.kamilszustak.justfit.domain.model.employee.Employee
 import pl.kamilszustak.justfit.domain.model.employee.EmployeeJson
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class EmployeeJsonMapper @Inject constructor() : JsonModelMapper<EmployeeJson, EmployeeEntity>() {
-    override fun map(model: EmployeeJson): EmployeeEntity = EmployeeEntity(
+class EmployeeJsonMapper @Inject constructor() : JsonModelMapper<EmployeeJson, Employee>() {
+    override fun map(model: EmployeeJson): Employee = Employee(
         name = model.name,
         surname = model.surname,
         email = model.email,

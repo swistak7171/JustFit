@@ -7,7 +7,7 @@ import pl.kamilszustak.justfit.domain.model.DatabaseEntity
 
 @Entity(tableName = "employees")
 @Parcelize
-data class EmployeeEntity(
+data class Employee(
     @ColumnInfo(name = "name")
     val name: String,
 
