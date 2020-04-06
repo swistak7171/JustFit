@@ -25,4 +25,8 @@ data class Employee(
 
     @ColumnInfo(name = "work_hours")
     val workHours: String
-) : DatabaseEntity()
+) : DatabaseEntity() {
+
+    val fullName: String
+        get() = "$name $surname"
+}
