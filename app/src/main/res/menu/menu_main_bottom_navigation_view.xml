@@ -19,4 +19,10 @@
         android:icon="@drawable/icon_equipment_light"
         android:title="Sprzęt"
         app:showAsAction="always" />
+
+    <item
+        android:id="@+id/navigation_employee"
+        android:icon="@drawable/icon_people_light"
+        android:title="Pracownicy"
+        app:showAsAction="always" />
 </menu>

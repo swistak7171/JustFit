@@ -2,14 +2,14 @@ package pl.kamilszustak.justfit.ui.main
 
 import android.os.Bundle
 import androidx.lifecycle.LiveData
-import androidx.navigation.NavController
-import pl.kamilszustak.justfit.databinding.ActivityMainBinding
-import pl.kamilszustak.justfit.ui.base.BaseActivity
-import pl.kamilszustak.justfit.common.binding.view.viewBinding
-import pl.kamilszustak.justfit.util.setupWithNavController
 import androidx.lifecycle.observe
+import androidx.navigation.NavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import pl.kamilszustak.justfit.R
+import pl.kamilszustak.justfit.common.binding.view.viewBinding
+import pl.kamilszustak.justfit.databinding.ActivityMainBinding
+import pl.kamilszustak.justfit.ui.base.BaseActivity
+import pl.kamilszustak.justfit.util.setupWithNavController
 
 class MainActivity : BaseActivity(R.layout.activity_main) {
     private var currentNavController: LiveData<NavController>? = null
@@ -36,7 +36,8 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
         val navGraphIds = listOf(
             R.navigation.navigation_profile,
             R.navigation.navigation_schedule,
-            R.navigation.navigation_equipment
+            R.navigation.navigation_equipment,
+            R.navigation.navigation_employee
         )
 
         val controller = binding.mainBottomNavigationView.setupWithNavController(

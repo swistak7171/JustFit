@@ -4,6 +4,10 @@ import dagger.Binds
 import dagger.Module
 import pl.kamilszustak.justfit.domain.usecase.database.ClearDatabaseUseCase
 import pl.kamilszustak.justfit.domain.usecase.database.ClearDatabaseUseCaseImpl
+import pl.kamilszustak.justfit.domain.usecase.employee.GetAllEmployeesUseCase
+import pl.kamilszustak.justfit.domain.usecase.employee.GetAllEmployeesUseCaseImpl
+import pl.kamilszustak.justfit.domain.usecase.employee.GetEmployeeByIdUseCase
+import pl.kamilszustak.justfit.domain.usecase.employee.GetEmployeeByIdUseCaseImpl
 import pl.kamilszustak.justfit.domain.usecase.equipment.GetAllAvailableEquipmentUseCase
 import pl.kamilszustak.justfit.domain.usecase.equipment.GetAllAvailableEquipmentUseCaseImpl
 import pl.kamilszustak.justfit.domain.usecase.equipment.GetAllEquipmentUseCase
@@ -20,23 +24,29 @@ import pl.kamilszustak.justfit.domain.usecase.user.LogoutUserUseCaseImpl
 @Module
 abstract class UseCaseModule {
     @Binds
-    abstract fun bindGetUserUseCase(getUserUseCaseImpl: GetUserUseCaseImpl): GetUserUseCase
+    abstract fun bindGetUserUseCase(useCaseImpl: GetUserUseCaseImpl): GetUserUseCase
 
     @Binds
-    abstract fun bindClearDatabaseUserCase(clearDatabaseUseCaseImpl: ClearDatabaseUseCaseImpl): ClearDatabaseUseCase
+    abstract fun bindClearDatabaseUserCase(useCaseImpl: ClearDatabaseUseCaseImpl): ClearDatabaseUseCase
 
     @Binds
-    abstract fun bindIsUserAuthenticated(isUserAuthenticatedUseCaseImpl: IsUserAuthenticatedImpl): IsUserAuthenticated
+    abstract fun bindIsUserAuthenticated(useCaseImpl: IsUserAuthenticatedImpl): IsUserAuthenticated
 
     @Binds
-    abstract fun bindLogoutUserUseCase(logoutUserUseCaseImpl: LogoutUserUseCaseImpl): LogoutUserUseCase
+    abstract fun bindLogoutUserUseCase(useCaseImpl: LogoutUserUseCaseImpl): LogoutUserUseCase
 
     @Binds
-    abstract fun bindGetAllEquipmentUseCase(getAllEquipmentUseCaseImpl: GetAllEquipmentUseCaseImpl): GetAllEquipmentUseCase
+    abstract fun bindGetAllEquipmentUseCase(useCaseImpl: GetAllEquipmentUseCaseImpl): GetAllEquipmentUseCase
 
     @Binds
-    abstract fun bindGetAllAvailableEquipmentUseCase(getAllAvailableEquipmentUseCaseImpl: GetAllAvailableEquipmentUseCaseImpl): GetAllAvailableEquipmentUseCase
+    abstract fun bindGetAllAvailableEquipmentUseCase(useCaseImpl: GetAllAvailableEquipmentUseCaseImpl): GetAllAvailableEquipmentUseCase
 
     @Binds
-    abstract fun bindSetEquipmentAsUnavailableUseCase(setEquipmentAsUnavailableUseCaseImpl: SetEquipmentAsUnavailableUseCaseImpl): SetEquipmentAsUnavailableUseCase
+    abstract fun bindSetEquipmentAsUnavailableUseCase(useCaseImpl: SetEquipmentAsUnavailableUseCaseImpl): SetEquipmentAsUnavailableUseCase
+
+    @Binds
+    abstract fun bindGetAllEmployeesUseCase(useCaseImpl: GetAllEmployeesUseCaseImpl): GetAllEmployeesUseCase
+
+    @Binds
+    abstract fun bindGetEmployeeByIdUseCase(useCaseImpl: GetEmployeeByIdUseCaseImpl): GetEmployeeByIdUseCase
 }
