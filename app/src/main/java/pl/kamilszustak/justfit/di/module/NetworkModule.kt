@@ -7,11 +7,14 @@ import dagger.Provides
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import pl.kamilszustak.justfit.di.api.ClientApi
+import pl.kamilszustak.justfit.di.api.EmployeeApi
 import pl.kamilszustak.justfit.di.api.EquipmentApi
 import pl.kamilszustak.justfit.network.CLIENT_API_BASE_URL
+import pl.kamilszustak.justfit.network.EMPLOYEE_API_BASE_URL
 import pl.kamilszustak.justfit.network.EQUIPMENT_API_BASE_URL
 import pl.kamilszustak.justfit.network.interceptor.AuthorizationInterceptor
 import pl.kamilszustak.justfit.network.service.ClientApiService
+import pl.kamilszustak.justfit.network.service.EmployeeApiService
 import pl.kamilszustak.justfit.network.service.EquipmentApiService
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -87,11 +90,30 @@ class NetworkModule {
 
     @Provides
     @Singleton
+    @EmployeeApi
+    fun provideEmployeeApiRetrofit(
+        okHttpClient: OkHttpClient,
+        moshiConverterFactory: MoshiConverterFactory
+    ): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(EMPLOYEE_API_BASE_URL)
+            .client(okHttpClient)
+            .addConverterFactory(moshiConverterFactory)
+            .build()
+    }
+
+    @Provides
+    @Singleton
     fun provideClientApiService(@ClientApi retrofit: Retrofit): ClientApiService =
         retrofit.create()
 
     @Provides
     @Singleton
     fun provideEquipmentApiService(@EquipmentApi retrofit: Retrofit): EquipmentApiService =
+        retrofit.create()
+
+    @Provides
+    @Singleton
+    fun provideEmployeeApiService(@EmployeeApi retrofit: Retrofit): EmployeeApiService =
         retrofit.create()
 }
