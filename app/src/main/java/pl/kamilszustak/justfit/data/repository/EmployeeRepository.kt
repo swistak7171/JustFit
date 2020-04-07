@@ -26,7 +26,7 @@ class EmployeeRepository @Inject constructor(
             override fun shouldFetch(data: List<Employee>?): Boolean = shouldFetch
 
             override suspend fun fetchFromNetwork(): Response<List<EmployeeJson>> =
-                employeeApiService.getAllEmployees()
+                employeeApiService.getAll()
 
             override suspend fun saveFetchResult(result: List<EmployeeJson>) {
                 employeeJsonMapper.onMapAll(result) { employees ->
@@ -44,7 +44,7 @@ class EmployeeRepository @Inject constructor(
             override fun shouldFetch(data: Employee?): Boolean = shouldFetch
 
             override suspend fun fetchFromNetwork(): Response<EmployeeJson> =
-                employeeApiService.getEmployeeById(id)
+                employeeApiService.getById(id)
 
             override suspend fun saveFetchResult(result: EmployeeJson) {
                 employeeJsonMapper.onMap(result) { employee ->
