@@ -17,6 +17,7 @@ import pl.kamilszustak.justfit.databinding.FragmentEmployeesBinding
 import pl.kamilszustak.justfit.domain.item.EmployeeItem
 import pl.kamilszustak.justfit.domain.model.employee.Employee
 import pl.kamilszustak.justfit.ui.base.BaseFragment
+import pl.kamilszustak.justfit.util.navigateTo
 import pl.kamilszustak.justfit.util.updateModels
 import javax.inject.Inject
 
@@ -93,6 +94,7 @@ class EmployeesFragment : BaseFragment() {
     }
 
     private fun navigateToEmployeeDetailsFragment(employeeId: Long) {
-
+        val direction = EmployeesFragmentDirections.actionEmployeesFragmentToEmployeeDetailsFragment(employeeId)
+        navigateTo(direction)
     }
 }

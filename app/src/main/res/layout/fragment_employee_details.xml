@@ -5,14 +5,14 @@
     <data>
         <variable
             name="viewModel"
-            type="pl.kamilszustak.justfit.ui.main.profile.ProfileViewModel" />
+            type="pl.kamilszustak.justfit.ui.main.employee.details.EmployeeDetailsViewModel" />
     </data>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/swipeRefreshLayout"
-        app:refreshing="@{viewModel.userResource.isLoading}">
+        app:refreshing="@{viewModel.employeeResource.isLoading}">
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -22,7 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:visibleIfNotNull="@{viewModel.userResource.data}"
+                app:visibleIfNotNull="@{viewModel.employeeResource.data}"
                 android:padding="@dimen/default_padding">
 
                 <TextView
@@ -35,7 +35,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/fullNameTextView"
-                    android:text="@{viewModel.userResource.data.fullName}"
+                    android:text="@{viewModel.employeeResource.data.fullName}"
                     tools:text="Jan Kowalski"
                     android:textAppearance="?textAppearanceHeadline6" />
 
@@ -50,7 +50,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/emailTextView"
-                    android:text="@{viewModel.userResource.data.email}"
+                    android:text="@{viewModel.employeeResource.data.email}"
                     tools:text="jan.kowalski@gmail.com"
                     android:textAppearance="?textAppearanceHeadline6" />
 
@@ -65,8 +65,38 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/phoneNumberTextView"
-                    android:text="@{viewModel.userResource.data.phoneNumber}"
+                    android:text="@{viewModel.employeeResource.data.phoneNumber}"
                     tools:text="123456789"
+                    android:textAppearance="?textAppearanceHeadline6" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Specjalizacja"
+                    android:textColor="@color/colorAccent"
+                    android:layout_marginTop="@dimen/default_margin" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/specializationTextView"
+                    android:text="@{viewModel.employeeResource.data.specialization}"
+                    tools:text="Trening siłowy"
+                    android:textAppearance="?textAppearanceHeadline6" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Godziny pracy"
+                    android:textColor="@color/colorAccent"
+                    android:layout_marginTop="@dimen/default_margin" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/workHoursTextView"
+                    android:text="@{viewModel.employeeResource.data.workHours}"
+                    tools:text="08:00 - 16:00"
                     android:textAppearance="?textAppearanceHeadline6" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
