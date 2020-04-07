@@ -15,4 +15,8 @@
 
     <!-- EquipmentFragment -->
     <string name="set_equipment_as_unavailable_error_message">Wystąpił błąd podczas oznaczania sprzętu jako niedostępny</string>
+
+    <!-- EventsFragment -->
+    <string name="event_start_date">Start: %1$s</string>
+    <string name="event_end_date">Koniec: %1$s</string>
 </resources>

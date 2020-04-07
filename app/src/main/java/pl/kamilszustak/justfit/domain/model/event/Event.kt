@@ -12,9 +12,6 @@ data class Event(
     @ColumnInfo(name = "employee_id")
     val employeeId: Long,
 
-    @ColumnInfo(name = "clients_ids")
-    val clientsIds: List<Long>,
-
     @ColumnInfo(name = "name")
     val name: String,
 
@@ -22,5 +19,8 @@ data class Event(
     val startDate: Date,
 
     @ColumnInfo(name = "end_date")
-    val endDate: Date
+    val endDate: Date,
+
+    @ColumnInfo(name = "number_of_attendees")
+    val numberOfAttendees: Int
 ) : DatabaseEntity()

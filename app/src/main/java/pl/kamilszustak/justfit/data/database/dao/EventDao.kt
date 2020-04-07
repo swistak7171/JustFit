@@ -22,4 +22,7 @@ interface EventDao : BaseDao<Event> {
 
     @Query("DELETE FROM events")
     suspend fun deleteAll()
+
+    @Query("DELETE FROM events WHERE id = :id")
+    suspend fun deleteById(id: Long)
 }

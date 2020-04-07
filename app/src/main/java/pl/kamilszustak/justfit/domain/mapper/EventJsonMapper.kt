@@ -8,9 +8,9 @@ import javax.inject.Singleton
 class EventJsonMapper : JsonModelMapper<EventJson, Event>() {
     override fun map(model: EventJson): Event = Event(
         employeeId = model.employeeId,
-        clientsIds = model.clientsIds,
         name = model.name,
         startDate = model.startDate,
-        endDate = model.endDate
+        endDate = model.endDate,
+        numberOfAttendees = model.clientsIds.size
     )
 }

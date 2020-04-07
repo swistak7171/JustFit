@@ -35,4 +35,22 @@ class EventRepository @Inject constructor(
             }
         }.asFlow()
     }
+
+    fun getById(id: Long, shouldFetch: Boolean = true): Flow<Resource<Event>> {
+        return object : NetworkBoundResource<EventJson, Event>() {
+            override fun loadFromDatabase(): Flow<Event> =
+                eventDao.getById(id)
+
+            override fun shouldFetch(data: Event?): Boolean = shouldFetch
+
+            override suspend fun fetchFromNetwork(): Response<EventJson> =
+                eventApiService.getById(id)
+
+            override suspend fun saveFetchResult(result: EventJson) {
+                eventJsonMapper.onMap(result) { event ->
+                    eventDao.insert(event)
+                }
+            }
+        }.asFlow()
+    }
 }
