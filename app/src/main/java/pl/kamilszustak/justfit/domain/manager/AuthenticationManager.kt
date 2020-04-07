@@ -31,7 +31,7 @@ class AuthenticationManager @Inject constructor(
         return withIOContext {
             object : NetworkCall<UserJson, Unit>() {
                 override suspend fun makeCall(): Response<UserJson> =
-                    clientApiService.getLoggedInUser()
+                    clientApiService.getLoggedIn()
 
                 override suspend fun mapResponse(response: UserJson): Unit = Unit
 

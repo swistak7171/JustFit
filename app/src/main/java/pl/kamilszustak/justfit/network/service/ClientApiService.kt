@@ -6,5 +6,5 @@ import retrofit2.http.GET
 
 interface ClientApiService {
     @GET("/account/client/properties/")
-    suspend fun getLoggedInUser(): Response<UserJson>
+    suspend fun getLoggedIn(): Response<UserJson>
 }

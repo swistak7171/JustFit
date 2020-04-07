@@ -6,8 +6,8 @@ import retrofit2.http.GET
 
 interface EmployeeApiService {
     @GET("/workers")
-    suspend fun getAllEmployees(): Response<List<EmployeeJson>>
+    suspend fun getAll(): Response<List<EmployeeJson>>
 
     @GET("/getWorkerById/{id}")
-    suspend fun getEmployeeById(id: Long): Response<EmployeeJson>
+    suspend fun getById(id: Long): Response<EmployeeJson>
 }

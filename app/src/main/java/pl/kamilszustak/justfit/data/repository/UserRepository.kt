@@ -29,7 +29,7 @@ class UserRepository @Inject constructor(
             override fun shouldFetch(data: User?): Boolean = shouldFetch
 
             override suspend fun fetchFromNetwork(): Response<UserJson> =
-                clientApiService.getLoggedInUser()
+                clientApiService.getLoggedIn()
 
             override suspend fun saveFetchResult(result: UserJson) {
                 userJsonMapper.onMap(result) { user ->
