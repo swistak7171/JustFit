@@ -11,6 +11,7 @@ import pl.kamilszustak.justfit.ui.authentication.login.LoginViewModel
 import pl.kamilszustak.justfit.ui.main.employee.EmployeesViewModel
 import pl.kamilszustak.justfit.ui.main.employee.details.EmployeeDetailsViewModel
 import pl.kamilszustak.justfit.ui.main.equipment.EquipmentViewModel
+import pl.kamilszustak.justfit.ui.main.event.EventsViewModel
 import pl.kamilszustak.justfit.ui.main.profile.ProfileViewModel
 
 @Module
@@ -42,4 +43,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(EmployeeDetailsViewModel::class)
     abstract fun bindEmployeeDetailsViewModel(employeeDetailsViewModel: EmployeeDetailsViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(EventsViewModel::class)
+    abstract fun bindEventsViewModel(eventsViewModel: EventsViewModel): ViewModel
 }
