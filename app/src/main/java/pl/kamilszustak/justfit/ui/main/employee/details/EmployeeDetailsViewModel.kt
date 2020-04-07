@@ -19,4 +19,8 @@ class EmployeeDetailsViewModel @Inject constructor(
             getEmployeeByIdUseCase(employeeId)
         }
     }
+
+    fun onRefresh() {
+        employeeResource.refresh()
+    }
 }

@@ -52,7 +52,9 @@
                     android:id="@+id/emailTextView"
                     android:text="@{viewModel.employeeResource.data.email}"
                     tools:text="jan.kowalski@gmail.com"
-                    android:textAppearance="?textAppearanceHeadline6" />
+                    android:textAppearance="?textAppearanceHeadline6"
+                    android:autoLink="email"
+                    android:textColorLink="#000000" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -67,7 +69,9 @@
                     android:id="@+id/phoneNumberTextView"
                     android:text="@{viewModel.employeeResource.data.phoneNumber}"
                     tools:text="123456789"
-                    android:textAppearance="?textAppearanceHeadline6" />
+                    android:textAppearance="?textAppearanceHeadline6"
+                    android:autoLink="phone"
+                    android:textColorLink="#000000" />
 
                 <TextView
                     android:layout_width="match_parent"
