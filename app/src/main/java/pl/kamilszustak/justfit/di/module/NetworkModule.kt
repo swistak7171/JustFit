@@ -6,6 +6,7 @@ import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import pl.kamilszustak.justfit.common.moshi.adapter.LocalDateTimeFieldAdapter
 import pl.kamilszustak.justfit.di.api.ClientApi
 import pl.kamilszustak.justfit.di.api.EmployeeApi
 import pl.kamilszustak.justfit.di.api.EquipmentApi
@@ -32,6 +33,7 @@ class NetworkModule {
     @Singleton
     fun provideMoshi(): Moshi {
         return Moshi.Builder()
+            .add(LocalDateTimeFieldAdapter())
             .add(Date::class.java, Rfc3339DateJsonAdapter())
             .build()
     }

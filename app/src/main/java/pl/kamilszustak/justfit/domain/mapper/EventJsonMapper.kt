@@ -13,5 +13,7 @@ class EventJsonMapper @Inject constructor() : JsonModelMapper<EventJson, Event>(
         startDate = model.startDate,
         endDate = model.endDate,
         numberOfAttendees = model.clientsIds.size
-    )
+    ).apply {
+        this.id = model.id
+    }
 }

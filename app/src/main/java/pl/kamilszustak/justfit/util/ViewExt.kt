@@ -60,7 +60,7 @@ fun popupMenu(view: View, initialization: PopupMenu.() -> Unit) {
 }
 
 fun TextView.setFormattedText(@StringRes stringResource: Int, vararg arguments: Any?) {
-    val formattedText = this.context.getString(stringResource, arguments)
+    val formattedText = this.context.getString(stringResource, *arguments)
     this.text = formattedText
 }
 
