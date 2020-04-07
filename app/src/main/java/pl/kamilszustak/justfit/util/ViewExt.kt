@@ -6,6 +6,8 @@ import android.util.SparseArray
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
+import android.widget.TextView
+import androidx.annotation.StringRes
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.util.forEach
 import androidx.core.util.set
@@ -55,6 +57,11 @@ fun popupMenu(context: Context, view: View, initialization: PopupMenu.() -> Unit
 
 fun popupMenu(view: View, initialization: PopupMenu.() -> Unit) {
     popupMenu(view.context, view, initialization)
+}
+
+fun TextView.setFormattedText(@StringRes stringResource: Int, vararg arguments: Any?) {
+    val formattedText = this.context.getString(stringResource, arguments)
+    this.text = formattedText
 }
 
 fun BottomNavigationView.setupWithNavController(

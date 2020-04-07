@@ -19,4 +19,8 @@ class EventsViewModel @Inject constructor(
             getAllEventsUseCase()
         }
     }
+
+    fun onRefresh() {
+        eventsResource.refresh()
+    }
 }

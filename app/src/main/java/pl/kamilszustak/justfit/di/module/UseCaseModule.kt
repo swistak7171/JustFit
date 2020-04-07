@@ -15,6 +15,7 @@ import pl.kamilszustak.justfit.domain.usecase.equipment.GetAllEquipmentUseCaseIm
 import pl.kamilszustak.justfit.domain.usecase.equipment.SetEquipmentAsUnavailableUseCase
 import pl.kamilszustak.justfit.domain.usecase.equipment.SetEquipmentAsUnavailableUseCaseImpl
 import pl.kamilszustak.justfit.domain.usecase.event.GetAllEventsUseCase
+import pl.kamilszustak.justfit.domain.usecase.event.GetAllEventsUseCaseImpl
 import pl.kamilszustak.justfit.domain.usecase.event.GetEventByIdUseCase
 import pl.kamilszustak.justfit.domain.usecase.event.GetEventByIdUseCaseImpl
 import pl.kamilszustak.justfit.domain.usecase.user.GetUserUseCase
@@ -54,7 +55,7 @@ abstract class UseCaseModule {
     abstract fun bindGetEmployeeByIdUseCase(useCaseImpl: GetEmployeeByIdUseCaseImpl): GetEmployeeByIdUseCase
 
     @Binds
-    abstract fun bindGetAllEventsUseCase(useCaseImpl: GetAllEmployeesUseCaseImpl): GetAllEventsUseCase
+    abstract fun bindGetAllEventsUseCase(useCaseImpl: GetAllEventsUseCaseImpl): GetAllEventsUseCase
 
     @Binds
     abstract fun bindGetEventByIdUseCase(useCaseImpl: GetEventByIdUseCaseImpl): GetEventByIdUseCase
