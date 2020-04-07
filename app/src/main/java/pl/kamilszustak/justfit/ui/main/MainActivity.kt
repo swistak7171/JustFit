@@ -35,7 +35,7 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
     private fun setupBottomNavigationBar() {
         val navGraphIds = listOf(
             R.navigation.navigation_profile,
-            R.navigation.navigation_schedule,
+            R.navigation.navigation_event,
             R.navigation.navigation_equipment,
             R.navigation.navigation_employee
         )

@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import retrofit2.HttpException
 import retrofit2.Response
+import timber.log.Timber
 
 abstract class NetworkBoundResource<ResponseType, EntityType> {
 
@@ -32,6 +33,7 @@ abstract class NetworkBoundResource<ResponseType, EntityType> {
                         Resource.success(it)
                     })
                 } catch (throwable: Throwable) {
+                    Timber.i(throwable.message)
                     onFetchFailed(throwable)
                     emitAll(loadFromDatabase().map {
                         Resource.error(throwable.message ?: "", it)

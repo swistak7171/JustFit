@@ -16,6 +16,7 @@ import pl.kamilszustak.justfit.domain.item.EventItem
 import pl.kamilszustak.justfit.domain.model.event.Event
 import pl.kamilszustak.justfit.ui.base.BaseFragment
 import pl.kamilszustak.justfit.util.updateModels
+import timber.log.Timber
 import javax.inject.Inject
 
 class EventsFragment : BaseFragment(R.layout.fragment_events) {
@@ -74,6 +75,7 @@ class EventsFragment : BaseFragment(R.layout.fragment_events) {
 
     private fun observeViewModel() {
         viewModel.eventsResource.data.observe(viewLifecycleOwner) { events ->
+            Timber.i(events.toString())
             modelAdapter.updateModels(events)
         }
     }

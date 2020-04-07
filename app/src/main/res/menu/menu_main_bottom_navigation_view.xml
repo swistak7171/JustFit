@@ -9,9 +9,9 @@
         app:showAsAction="always" />
 
     <item
-        android:id="@+id/navigation_schedule"
-        android:icon="@drawable/icon_schedule_light"
-        android:title="Terminarz"
+        android:id="@+id/navigation_event"
+        android:icon="@drawable/icon_event_light"
+        android:title="Wydarzenia"
         app:showAsAction="always" />
 
     <item

@@ -9,6 +9,7 @@ import pl.kamilszustak.justfit.domain.model.event.Event
 import pl.kamilszustak.justfit.domain.model.event.EventJson
 import pl.kamilszustak.justfit.network.service.EventApiService
 import retrofit2.Response
+import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -26,9 +27,13 @@ class EventRepository @Inject constructor(
             override fun shouldFetch(data: List<Event>?): Boolean = shouldFetch
 
             override suspend fun fetchFromNetwork(): Response<List<EventJson>> =
-                eventApiService.getAll()
+                eventApiService.getAll().also {
+                    Timber.i(it.message())
+                    Timber.i(it.body().toString())
+                }
 
             override suspend fun saveFetchResult(result: List<EventJson>) {
+                Timber.i(result.toString())
                 eventJsonMapper.onMapAll(result) { events ->
                     eventDao.replaceAll(events)
                 }
