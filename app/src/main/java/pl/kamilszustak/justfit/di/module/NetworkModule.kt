@@ -11,15 +11,18 @@ import pl.kamilszustak.justfit.di.api.ClientApi
 import pl.kamilszustak.justfit.di.api.EmployeeApi
 import pl.kamilszustak.justfit.di.api.EquipmentApi
 import pl.kamilszustak.justfit.di.api.EventApi
+import pl.kamilszustak.justfit.di.api.ProductApi
 import pl.kamilszustak.justfit.network.CLIENT_API_BASE_URL
 import pl.kamilszustak.justfit.network.EMPLOYEE_API_BASE_URL
 import pl.kamilszustak.justfit.network.EQUIPMENT_API_BASE_URL
 import pl.kamilszustak.justfit.network.EVENT_API_BASE_URL
+import pl.kamilszustak.justfit.network.PRODUCT_API_BASE_URL
 import pl.kamilszustak.justfit.network.interceptor.AuthorizationInterceptor
 import pl.kamilszustak.justfit.network.service.ClientApiService
 import pl.kamilszustak.justfit.network.service.EmployeeApiService
 import pl.kamilszustak.justfit.network.service.EquipmentApiService
 import pl.kamilszustak.justfit.network.service.EventApiService
+import pl.kamilszustak.justfit.network.service.ProductApiService
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.create
@@ -123,6 +126,20 @@ class NetworkModule {
 
     @Provides
     @Singleton
+    @ProductApi
+    fun provideProductApiRetrofit(
+        okHttpClient: OkHttpClient,
+        moshiConverterFactory: MoshiConverterFactory
+    ): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(PRODUCT_API_BASE_URL)
+            .client(okHttpClient)
+            .addConverterFactory(moshiConverterFactory)
+            .build()
+    }
+
+    @Provides
+    @Singleton
     fun provideClientApiService(@ClientApi retrofit: Retrofit): ClientApiService =
         retrofit.create()
 
@@ -139,5 +156,10 @@ class NetworkModule {
     @Provides
     @Singleton
     fun provideEventApiService(@EventApi retrofit: Retrofit): EventApiService =
+        retrofit.create()
+
+    @Provides
+    @Singleton
+    fun provideProductApiService(@ProductApi retrofit: Retrofit): ProductApiService =
         retrofit.create()
 }
