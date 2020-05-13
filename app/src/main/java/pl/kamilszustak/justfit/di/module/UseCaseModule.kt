@@ -18,6 +18,10 @@ import pl.kamilszustak.justfit.domain.usecase.event.GetAllEventsUseCase
 import pl.kamilszustak.justfit.domain.usecase.event.GetAllEventsUseCaseImpl
 import pl.kamilszustak.justfit.domain.usecase.event.GetEventByIdUseCase
 import pl.kamilszustak.justfit.domain.usecase.event.GetEventByIdUseCaseImpl
+import pl.kamilszustak.justfit.domain.usecase.product.GetAllProductsUseCase
+import pl.kamilszustak.justfit.domain.usecase.product.GetAllProductsUseCaseImpl
+import pl.kamilszustak.justfit.domain.usecase.product.GetProductByIdUseCase
+import pl.kamilszustak.justfit.domain.usecase.product.GetProductByIdUseCaseImpl
 import pl.kamilszustak.justfit.domain.usecase.user.GetUserUseCase
 import pl.kamilszustak.justfit.domain.usecase.user.GetUserUseCaseImpl
 import pl.kamilszustak.justfit.domain.usecase.user.IsUserAuthenticated
@@ -59,4 +63,10 @@ abstract class UseCaseModule {
 
     @Binds
     abstract fun bindGetEventByIdUseCase(useCaseImpl: GetEventByIdUseCaseImpl): GetEventByIdUseCase
+
+    @Binds
+    abstract fun bindGetAllProductsUseCase(useCaseImpl: GetAllProductsUseCaseImpl): GetAllProductsUseCase
+
+    @Binds
+    abstract fun bindGetProductByIdUseCase(useCaseImpl: GetProductByIdUseCaseImpl): GetProductByIdUseCase
 }
