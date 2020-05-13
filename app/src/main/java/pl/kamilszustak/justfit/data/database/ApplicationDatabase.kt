@@ -9,10 +9,12 @@ import pl.kamilszustak.justfit.R
 import pl.kamilszustak.justfit.data.database.dao.EmployeeDao
 import pl.kamilszustak.justfit.data.database.dao.EquipmentDao
 import pl.kamilszustak.justfit.data.database.dao.EventDao
+import pl.kamilszustak.justfit.data.database.dao.ProductDao
 import pl.kamilszustak.justfit.data.database.dao.UserDao
 import pl.kamilszustak.justfit.domain.model.employee.Employee
 import pl.kamilszustak.justfit.domain.model.equipment.Equipment
 import pl.kamilszustak.justfit.domain.model.event.Event
+import pl.kamilszustak.justfit.domain.model.product.ProductEntity
 import pl.kamilszustak.justfit.domain.model.user.User
 
 @Database(
@@ -20,7 +22,8 @@ import pl.kamilszustak.justfit.domain.model.user.User
         User::class,
         Equipment::class,
         Employee::class,
-        Event::class
+        Event::class,
+        ProductEntity::class
     ],
     version = 1,
     exportSchema = true
@@ -32,6 +35,7 @@ abstract class ApplicationDatabase : RoomDatabase() {
     abstract fun getEquipmentDao(): EquipmentDao
     abstract fun getEmployeeDao(): EmployeeDao
     abstract fun getEventDao(): EventDao
+    abstract fun getProductDao(): ProductDao
 
     companion object {
         private var INSTANCE: ApplicationDatabase? = null
