@@ -6,9 +6,9 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface EventApiService {
-    @GET("/getAllEvents")
+    @GET("/events/getAll")
     suspend fun getAll(): Response<List<EventJson>>
 
-    @GET("/getEvent/{id}")
+    @GET("/events/get/{id}")
     suspend fun getById(@Path("id") id: Long): Response<EventJson>
 }

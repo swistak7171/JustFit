@@ -6,12 +6,12 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface EquipmentApiService {
-    @GET("/equipment/getAll")
+    @GET("/justfit/equipment/getAll")
     suspend fun getAll(): Response<List<EquipmentJson>>
 
-    @GET("/equipment/getAllAvailable")
+    @GET("/justfit/equipment/getAllAvailable")
     suspend fun getAllAvailable(): Response<List<EquipmentJson>>
 
-    @GET("/equipment/changeAvailability")
+    @GET("/justfit/equipment/changeAvailability")
     suspend fun updateAvailabilityById(@Query("id") id: Long, @Query("available") isAvailable: Boolean): Response<Unit>
 }
