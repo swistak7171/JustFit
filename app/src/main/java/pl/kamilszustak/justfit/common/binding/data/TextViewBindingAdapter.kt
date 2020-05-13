@@ -17,4 +17,10 @@ object TextViewBindingAdapter {
             ""
         }
     }
+
+    @BindingAdapter(TEXT_ATTRIBUTE)
+    @JvmStatic
+    fun TextView.setNumber(number: Number?) {
+        this.text = number?.toString()
+    }
 }

@@ -47,7 +47,7 @@ class EquipmentViewModel @Inject constructor(
                 else -> throw IllegalStateException("Unknown equipment filter")
             }
 
-            equipmentResource.changeFlowSource {
+            equipmentResource.setFlowSource {
                 equipmentFlow
             }
         }

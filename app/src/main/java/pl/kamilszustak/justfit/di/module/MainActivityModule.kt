@@ -7,6 +7,7 @@ import pl.kamilszustak.justfit.ui.main.employee.EmployeesFragment
 import pl.kamilszustak.justfit.ui.main.employee.details.EmployeeDetailsFragment
 import pl.kamilszustak.justfit.ui.main.equipment.EquipmentFragment
 import pl.kamilszustak.justfit.ui.main.event.EventsFragment
+import pl.kamilszustak.justfit.ui.main.product.ProductsFragment
 import pl.kamilszustak.justfit.ui.main.profile.ProfileFragment
 import pl.kamilszustak.justfit.ui.main.schedule.ScheduleFragment
 
@@ -35,4 +36,8 @@ abstract class MainActivityModule {
     @FragmentScope
     @ContributesAndroidInjector
     abstract fun contributeEventsFragment(): EventsFragment
+
+    @FragmentScope
+    @ContributesAndroidInjector
+    abstract fun contributeProductsFragment(): ProductsFragment
 }

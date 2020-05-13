@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation_product">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_product"
+    app:startDestination="@id/productsFragment">
 
+    <fragment
+        android:id="@+id/productsFragment"
+        android:name="pl.kamilszustak.justfit.ui.main.product.ProductsFragment"
+        android:label="Produkty"
+        tools:layout="@layout/fragment_products" />
 </navigation>

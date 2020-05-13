@@ -21,6 +21,12 @@
         app:showAsAction="always" />
 
     <item
+        android:id="@+id/navigation_product"
+        android:icon="@drawable/icon_shopping_cart_light"
+        android:title="Producty"
+        app:showAsAction="always" />
+
+    <item
         android:id="@+id/navigation_employee"
         android:icon="@drawable/icon_people_light"
         android:title="Pracownicy"
