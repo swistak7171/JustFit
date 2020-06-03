@@ -22,7 +22,7 @@ class ProfileViewModel @Inject constructor(
     val logoutCompleted: LiveData<Unit> = _logoutCompleted
 
     init {
-        userResource.changeFlowSource {
+        userResource.setFlowSource {
             getUserUseCase()
         }
     }

@@ -15,7 +15,7 @@ class EmployeeDetailsViewModel @Inject constructor(
     val employeeResource: ResourceDataSource<Employee> = ResourceDataSource()
 
     fun loadData(employeeId: Long) {
-        employeeResource.changeFlowSource {
+        employeeResource.setFlowSource {
             getEmployeeByIdUseCase(employeeId)
         }
     }

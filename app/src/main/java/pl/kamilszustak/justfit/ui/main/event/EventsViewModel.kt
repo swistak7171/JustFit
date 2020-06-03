@@ -15,7 +15,7 @@ class EventsViewModel @Inject constructor(
     val eventsResource: ResourceDataSource<List<Event>> = ResourceDataSource()
 
     init {
-        eventsResource.changeFlowSource {
+        eventsResource.setFlowSource {
             getAllEventsUseCase()
         }
     }

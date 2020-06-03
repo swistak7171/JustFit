@@ -14,7 +14,7 @@ class EmployeesViewModel @Inject constructor(
     val employeesResource: ResourceDataSource<List<Employee>> = ResourceDataSource()
 
     init {
-        employeesResource.changeFlowSource {
+        employeesResource.setFlowSource {
             getAllEmployeesUseCase()
         }
     }

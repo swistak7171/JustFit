@@ -16,4 +16,9 @@
     <style name="ToolbarStyle" parent="Widget.MaterialComponents.Toolbar.Primary">
         <item name="titleTextColor">@android:color/white</item>
     </style>
+
+    <style name="VerticalDivider" parent="Divider">
+        <item name="android:layout_width">@dimen/divider_height</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
 </resources>

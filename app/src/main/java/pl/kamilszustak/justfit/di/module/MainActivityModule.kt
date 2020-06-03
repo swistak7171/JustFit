@@ -7,32 +7,42 @@ import pl.kamilszustak.justfit.ui.main.employee.EmployeesFragment
 import pl.kamilszustak.justfit.ui.main.employee.details.EmployeeDetailsFragment
 import pl.kamilszustak.justfit.ui.main.equipment.EquipmentFragment
 import pl.kamilszustak.justfit.ui.main.event.EventsFragment
+import pl.kamilszustak.justfit.ui.main.product.ProductsFragment
+import pl.kamilszustak.justfit.ui.main.product.client.ClientProductsFragment
 import pl.kamilszustak.justfit.ui.main.profile.ProfileFragment
 import pl.kamilszustak.justfit.ui.main.schedule.ScheduleFragment
 
 @Module
-abstract class MainActivityModule {
+interface MainActivityModule {
     @FragmentScope
     @ContributesAndroidInjector
-    abstract fun contributeProfileFragment(): ProfileFragment
+    fun contributeProfileFragment(): ProfileFragment
 
     @FragmentScope
     @ContributesAndroidInjector
-    abstract fun contributeScheduleFragment(): ScheduleFragment
+    fun contributeScheduleFragment(): ScheduleFragment
 
     @FragmentScope
     @ContributesAndroidInjector
-    abstract fun contributeEquipmentFragment(): EquipmentFragment
+    fun contributeEquipmentFragment(): EquipmentFragment
 
     @FragmentScope
     @ContributesAndroidInjector
-    abstract fun contributeEmployeesFragment(): EmployeesFragment
+    fun contributeEmployeesFragment(): EmployeesFragment
 
     @FragmentScope
     @ContributesAndroidInjector
-    abstract fun contributeEmployeeDetailsFragment(): EmployeeDetailsFragment
+    fun contributeEmployeeDetailsFragment(): EmployeeDetailsFragment
 
     @FragmentScope
     @ContributesAndroidInjector
-    abstract fun contributeEventsFragment(): EventsFragment
+    fun contributeEventsFragment(): EventsFragment
+
+    @FragmentScope
+    @ContributesAndroidInjector
+    fun contributeProductsFragment(): ProductsFragment
+
+    @FragmentScope
+    @ContributesAndroidInjector
+    fun contributeClientProductsFragment(): ClientProductsFragment
 }

@@ -3,4 +3,6 @@
     <item name="fastadapter_equipment_item" type="id" />
     <item name="fastadapter_employee_item" type="id" />
     <item name="fastadapter_event_item" type="id" />
+    <item name="fastadapter_product_item" type="id" />
+    <item name="fastadapter_client_product_item" type="id" />
 </resources>
