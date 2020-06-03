@@ -27,8 +27,8 @@
         app:showAsAction="always" />
 
     <item
-        android:id="@+id/navigation_employee"
-        android:icon="@drawable/icon_people_light"
-        android:title="Pracownicy"
+        android:id="@+id/navigation_activity"
+        android:icon="@drawable/icon_run_light"
+        android:title="Aktywności"
         app:showAsAction="always" />
 </menu>

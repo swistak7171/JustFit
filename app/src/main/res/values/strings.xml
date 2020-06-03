@@ -27,4 +27,8 @@
     <string name="buying_product_error_message">Wystąpił błąd podczas zakupu produktu</string>
     <string name="product_buy_dialog_title">Zakup produktu</string>
     <string name="product_buy_dialog_message">Czy na pewno chcesz zakupić %1$s (%2$.2f zł)?</string>
+
+    <!-- ActivitiesFragment -->
+    <string name="leader_name">Prowadzący: %1$s</string>
+    <string name="start_time_and_end_time">%1$s - %2$s</string>
 </resources>

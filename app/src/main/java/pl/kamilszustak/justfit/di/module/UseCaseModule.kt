@@ -2,6 +2,10 @@ package pl.kamilszustak.justfit.di.module
 
 import dagger.Binds
 import dagger.Module
+import pl.kamilszustak.justfit.domain.usecase.activity.GetActivityByIdUseCase
+import pl.kamilszustak.justfit.domain.usecase.activity.GetActivityByIdUseCaseImpl
+import pl.kamilszustak.justfit.domain.usecase.activity.GetAllActivitiesUseCase
+import pl.kamilszustak.justfit.domain.usecase.activity.GetAllActivitiesUseCaseImpl
 import pl.kamilszustak.justfit.domain.usecase.database.ClearDatabaseUseCase
 import pl.kamilszustak.justfit.domain.usecase.database.ClearDatabaseUseCaseImpl
 import pl.kamilszustak.justfit.domain.usecase.employee.GetAllEmployeesUseCase
@@ -79,4 +83,10 @@ interface UseCaseModule {
 
     @Binds
     fun bindGetAllClientProductsUseCase(useCaseImpl: GetAllClientProductsUseCaseImpl): GetAllClientProductsUseCase
+
+    @Binds
+    fun bindGetAllActivitiesUseCase(useCaseImpl: GetAllActivitiesUseCaseImpl): GetAllActivitiesUseCase
+
+    @Binds
+    fun bindGetActivityByIdUseCase(useCaseImpl: GetActivityByIdUseCaseImpl): GetActivityByIdUseCase
 }

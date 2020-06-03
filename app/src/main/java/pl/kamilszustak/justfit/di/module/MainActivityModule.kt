@@ -3,6 +3,7 @@ package pl.kamilszustak.justfit.di.module
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import pl.kamilszustak.justfit.di.scope.FragmentScope
+import pl.kamilszustak.justfit.ui.main.activity.ActivitiesFragment
 import pl.kamilszustak.justfit.ui.main.employee.EmployeesFragment
 import pl.kamilszustak.justfit.ui.main.employee.details.EmployeeDetailsFragment
 import pl.kamilszustak.justfit.ui.main.equipment.EquipmentFragment
@@ -45,4 +46,8 @@ interface MainActivityModule {
     @FragmentScope
     @ContributesAndroidInjector
     fun contributeClientProductsFragment(): ClientProductsFragment
+
+    @FragmentScope
+    @ContributesAndroidInjector
+    fun contributeActivitiesFragment(): ActivitiesFragment
 }

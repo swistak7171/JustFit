@@ -8,6 +8,7 @@ import dagger.multibindings.IntoMap
 import pl.kamilszustak.justfit.common.AndroidViewModelFactory
 import pl.kamilszustak.justfit.di.ViewModelKey
 import pl.kamilszustak.justfit.ui.authentication.login.LoginViewModel
+import pl.kamilszustak.justfit.ui.main.activity.ActivitiesViewModel
 import pl.kamilszustak.justfit.ui.main.employee.EmployeesViewModel
 import pl.kamilszustak.justfit.ui.main.employee.details.EmployeeDetailsViewModel
 import pl.kamilszustak.justfit.ui.main.equipment.EquipmentViewModel
@@ -60,4 +61,9 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(ClientProductsViewModel::class)
     fun bindClientProductsViewModel(clientProductsViewModel: ClientProductsViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ActivitiesViewModel::class)
+    fun bindActivitesViewModel(activitiesViewModel: ActivitiesViewModel): ViewModel
 }

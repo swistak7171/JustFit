@@ -6,12 +6,15 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import pl.kamilszustak.justfit.R
+import pl.kamilszustak.justfit.data.database.dao.ActivityDao
 import pl.kamilszustak.justfit.data.database.dao.ClientProductDao
 import pl.kamilszustak.justfit.data.database.dao.EmployeeDao
 import pl.kamilszustak.justfit.data.database.dao.EquipmentDao
 import pl.kamilszustak.justfit.data.database.dao.EventDao
 import pl.kamilszustak.justfit.data.database.dao.ProductDao
 import pl.kamilszustak.justfit.data.database.dao.UserDao
+import pl.kamilszustak.justfit.domain.model.activity.ActivityEntity
+import pl.kamilszustak.justfit.domain.model.activity.ActivityEquipmentCrossReference
 import pl.kamilszustak.justfit.domain.model.employee.Employee
 import pl.kamilszustak.justfit.domain.model.equipment.Equipment
 import pl.kamilszustak.justfit.domain.model.event.Event
@@ -26,7 +29,9 @@ import pl.kamilszustak.justfit.domain.model.user.User
         Employee::class,
         Event::class,
         ProductEntity::class,
-        ClientProductEntity::class
+        ClientProductEntity::class,
+        ActivityEntity::class,
+        ActivityEquipmentCrossReference::class
     ],
     version = 1,
     exportSchema = true
@@ -40,6 +45,7 @@ abstract class ApplicationDatabase : RoomDatabase() {
     abstract fun getEventDao(): EventDao
     abstract fun getProductDao(): ProductDao
     abstract fun getClientProductDao(): ClientProductDao
+    abstract fun getActivityDao(): ActivityDao
 
     companion object {
         private var INSTANCE: ApplicationDatabase? = null

@@ -76,6 +76,13 @@
                     android:text="Moje produkty"
                     style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_marginTop="@dimen/default_margin" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/employeesButton"
+                    android:text="Pracownicy"
+                    style="@style/Widget.MaterialComponents.Button.TextButton" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
