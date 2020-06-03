@@ -16,11 +16,41 @@
             app:enterAnim="@anim/slide_in_left"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_right"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_profileFragment_to_employeesFragment"
+            app:destination="@id/employeesFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/clientProductsFragment"
         android:name="pl.kamilszustak.justfit.ui.main.product.client.ClientProductsFragment"
         android:label="Moje produkty"
         tools:layout="@layout/fragment_client_products" />
+
+    <fragment
+        android:id="@+id/employeesFragment"
+        android:name="pl.kamilszustak.justfit.ui.main.employee.EmployeesFragment"
+        android:label="Pracownicy"
+        tools:layout="@layout/fragment_employees" >
+        <action
+            android:id="@+id/action_employeesFragment_to_employeeDetailsFragment"
+            app:destination="@id/employeeDetailsFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/employeeDetailsFragment"
+        android:name="pl.kamilszustak.justfit.ui.main.employee.details.EmployeeDetailsFragment"
+        android:label="Dane pracownika"
+        tools:layout="@layout/fragment_employee_details" >
+        <argument
+            android:name="employeeId"
+            app:argType="long" />
+    </fragment>
 </navigation>

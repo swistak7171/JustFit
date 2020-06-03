@@ -80,6 +80,10 @@ class ProfileFragment : BaseFragment() {
         binding.clientProductsButton.setOnClickListener {
             navigateToClientProductsFragment()
         }
+
+        binding.employeesButton.setOnClickListener {
+            navigateToEmployeesFragment()
+        }
     }
 
     private fun observeViewModel() {
@@ -91,6 +95,11 @@ class ProfileFragment : BaseFragment() {
 
     private fun navigateToClientProductsFragment() {
         val direction = ProfileFragmentDirections.actionProfileFragmentToClientProductsFragment()
+        navigateTo(direction)
+    }
+
+    private fun navigateToEmployeesFragment() {
+        val direction = ProfileFragmentDirections.actionProfileFragmentToEmployeesFragment()
         navigateTo(direction)
     }
 }

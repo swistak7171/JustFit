@@ -38,7 +38,7 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
             R.navigation.navigation_event,
             R.navigation.navigation_equipment,
             R.navigation.navigation_product,
-            R.navigation.navigation_employee
+            R.navigation.navigation_activity
         )
 
         val controller = binding.mainBottomNavigationView.setupWithNavController(
