@@ -7,17 +7,20 @@ import dagger.Provides
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import pl.kamilszustak.justfit.common.moshi.adapter.LocalDateTimeFieldAdapter
+import pl.kamilszustak.justfit.di.api.ActivityApi
 import pl.kamilszustak.justfit.di.api.ClientApi
 import pl.kamilszustak.justfit.di.api.EmployeeApi
 import pl.kamilszustak.justfit.di.api.EquipmentApi
 import pl.kamilszustak.justfit.di.api.EventApi
 import pl.kamilszustak.justfit.di.api.ProductApi
+import pl.kamilszustak.justfit.network.ACTIVITY_API_BASE_URL
 import pl.kamilszustak.justfit.network.CLIENT_API_BASE_URL
 import pl.kamilszustak.justfit.network.EMPLOYEE_API_BASE_URL
 import pl.kamilszustak.justfit.network.EQUIPMENT_API_BASE_URL
 import pl.kamilszustak.justfit.network.EVENT_API_BASE_URL
 import pl.kamilszustak.justfit.network.PRODUCT_API_BASE_URL
 import pl.kamilszustak.justfit.network.interceptor.AuthorizationInterceptor
+import pl.kamilszustak.justfit.network.service.ActivityApiService
 import pl.kamilszustak.justfit.network.service.ClientApiService
 import pl.kamilszustak.justfit.network.service.EmployeeApiService
 import pl.kamilszustak.justfit.network.service.EquipmentApiService
@@ -140,6 +143,20 @@ class NetworkModule {
 
     @Provides
     @Singleton
+    @ActivityApi
+    fun provideActivityApiRetrofit(
+        okHttpClient: OkHttpClient,
+        moshiConverterFactory: MoshiConverterFactory
+    ): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(ACTIVITY_API_BASE_URL)
+            .client(okHttpClient)
+            .addConverterFactory(moshiConverterFactory)
+            .build()
+    }
+
+    @Provides
+    @Singleton
     fun provideClientApiService(@ClientApi retrofit: Retrofit): ClientApiService =
         retrofit.create()
 
@@ -161,5 +178,10 @@ class NetworkModule {
     @Provides
     @Singleton
     fun provideProductApiService(@ProductApi retrofit: Retrofit): ProductApiService =
+        retrofit.create()
+
+    @Provides
+    @Singleton
+    fun provideActivityApiService(@ActivityApi retrofit: Retrofit): ActivityApiService =
         retrofit.create()
 }

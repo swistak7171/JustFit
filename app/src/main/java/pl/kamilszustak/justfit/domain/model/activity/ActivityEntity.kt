@@ -6,7 +6,7 @@ import kotlinx.android.parcel.Parcelize
 import pl.kamilszustak.justfit.domain.model.DatabaseEntity
 import java.util.Date
 
-@Entity(tableName = "activites")
+@Entity(tableName = "activities")
 @Parcelize
 data class ActivityEntity(
     @ColumnInfo(name = "name")
