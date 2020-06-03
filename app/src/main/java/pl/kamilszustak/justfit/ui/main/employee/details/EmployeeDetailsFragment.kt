@@ -45,6 +45,7 @@ class EmployeeDetailsFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setListeners()
+        viewModel.loadData(args.employeeId)
     }
 
     private fun setListeners() {

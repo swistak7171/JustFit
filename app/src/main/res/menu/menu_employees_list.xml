@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/callItem"
+        android:title="Zadzwoń"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/sendMessageItem"
+        android:title="Wyślij SMS"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/sendEmail"
+        android:title="Wyślij email"
+        app:showAsAction="always" />
+</menu>
