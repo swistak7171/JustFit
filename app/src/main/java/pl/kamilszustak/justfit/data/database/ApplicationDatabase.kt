@@ -14,6 +14,7 @@ import pl.kamilszustak.justfit.data.database.dao.EventDao
 import pl.kamilszustak.justfit.data.database.dao.ProductDao
 import pl.kamilszustak.justfit.data.database.dao.UserDao
 import pl.kamilszustak.justfit.domain.model.activity.ActivityEntity
+import pl.kamilszustak.justfit.domain.model.activity.ActivityEquipmentCrossReference
 import pl.kamilszustak.justfit.domain.model.employee.Employee
 import pl.kamilszustak.justfit.domain.model.equipment.Equipment
 import pl.kamilszustak.justfit.domain.model.event.Event
@@ -29,7 +30,8 @@ import pl.kamilszustak.justfit.domain.model.user.User
         Event::class,
         ProductEntity::class,
         ClientProductEntity::class,
-        ActivityEntity::class
+        ActivityEntity::class,
+        ActivityEquipmentCrossReference::class
     ],
     version = 1,
     exportSchema = true

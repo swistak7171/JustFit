@@ -19,4 +19,8 @@ class ActivitiesViewModel @Inject constructor(
             getAllActivities()
         }
     }
+
+    fun onRefresh() {
+        activitiesResource.refresh()
+    }
 }

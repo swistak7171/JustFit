@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "d05360eadeb5a630e5147e70e9a81372",
+    "identityHash": "e944d62cb56d0c2132811ef790ba5d03",
     "entities": [
       {
         "tableName": "users",
@@ -269,7 +269,7 @@
         "foreignKeys": []
       },
       {
-        "tableName": "activites",
+        "tableName": "activities",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`name` TEXT NOT NULL, `leader_name` TEXT NOT NULL, `type` TEXT NOT NULL, `start_date` INTEGER NOT NULL, `end_date` INTEGER NOT NULL, `is_cancelled` INTEGER NOT NULL, `id` INTEGER NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
@@ -323,12 +323,39 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "activity_equipment_cross_reference",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`activity_id` INTEGER NOT NULL, `equipment_id` INTEGER NOT NULL, PRIMARY KEY(`activity_id`, `equipment_id`))",
+        "fields": [
+          {
+            "fieldPath": "activityId",
+            "columnName": "activity_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "equipmentId",
+            "columnName": "equipment_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "activity_id",
+            "equipment_id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd05360eadeb5a630e5147e70e9a81372')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e944d62cb56d0c2132811ef790ba5d03')"
     ]
   }
 }

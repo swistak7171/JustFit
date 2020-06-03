@@ -11,4 +11,19 @@ object DateFormats {
         "yyyy-MM-dd HH:mm",
         locale
     )
+
+    val europeanDateFormat: SimpleDateFormat = SimpleDateFormat(
+        "dd.MM.yyyy HH:mm",
+        locale
+    )
+
+    val simpleDateFormat: SimpleDateFormat = SimpleDateFormat(
+        "yyyy-MM-dd",
+        locale
+    )
+
+    val simpleHourFormat: SimpleDateFormat = SimpleDateFormat(
+        "HH:mm",
+        locale
+    )
 }

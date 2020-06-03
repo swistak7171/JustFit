@@ -20,7 +20,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/nameTextView"
             tools:text="Bieganie w tę i nazad"
-            android:textAppearance="?textAppearanceHeadline6" />
+            android:textAppearance="?textAppearanceHeadline6"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:layout_width="match_parent"

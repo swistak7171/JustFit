@@ -10,9 +10,14 @@ data class ActivityWithEquipment(
     val activity: ActivityEntity,
 
     @Relation(
-        parentColumn = "activity_id",
-        entityColumn = "equipment_id",
-        associateBy = Junction(ActivityEquipmentCrossReference::class)
+        entity = Equipment::class,
+        parentColumn = "id",
+        entityColumn = "id",
+        associateBy = Junction(
+            value = ActivityEquipmentCrossReference::class,
+            parentColumn = "activity_id",
+            entityColumn = "equipment_id"
+        )
     )
     val usedEquipment: List<Equipment>
 )

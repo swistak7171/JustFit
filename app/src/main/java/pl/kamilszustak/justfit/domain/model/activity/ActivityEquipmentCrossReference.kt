@@ -1,5 +1,6 @@
 package pl.kamilszustak.justfit.domain.model.activity
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 
 @Entity(
@@ -10,6 +11,9 @@ import androidx.room.Entity
     ]
 )
 data class ActivityEquipmentCrossReference(
+    @ColumnInfo(name = "activity_id")
     val activityId: Long,
+
+    @ColumnInfo(name = "equipment_id")
     val equipmentId: Long
 )
