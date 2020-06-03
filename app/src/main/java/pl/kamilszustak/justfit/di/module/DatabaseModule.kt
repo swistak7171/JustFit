@@ -4,6 +4,7 @@ import android.app.Application
 import dagger.Module
 import dagger.Provides
 import pl.kamilszustak.justfit.data.database.ApplicationDatabase
+import pl.kamilszustak.justfit.data.database.dao.ActivityDao
 import pl.kamilszustak.justfit.data.database.dao.ClientProductDao
 import pl.kamilszustak.justfit.data.database.dao.EmployeeDao
 import pl.kamilszustak.justfit.data.database.dao.EquipmentDao
@@ -48,4 +49,9 @@ class DatabaseModule {
     @Singleton
     fun provideClientProductDao(applicationDatabase: ApplicationDatabase): ClientProductDao =
         applicationDatabase.getClientProductDao()
+
+    @Provides
+    @Singleton
+    fun provideActivityDao(applicationDatabase: ApplicationDatabase): ActivityDao =
+        applicationDatabase.getActivityDao()
 }
