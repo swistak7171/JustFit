@@ -2,6 +2,9 @@ package pl.kamilszustak.justfit.ui.main.product
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -18,6 +21,7 @@ import pl.kamilszustak.justfit.domain.item.ProductItem
 import pl.kamilszustak.justfit.domain.model.product.Product
 import pl.kamilszustak.justfit.ui.base.BaseFragment
 import pl.kamilszustak.justfit.util.dialog
+import pl.kamilszustak.justfit.util.navigateTo
 import pl.kamilszustak.justfit.util.updateModels
 import javax.inject.Inject
 
@@ -53,9 +57,26 @@ class ProductsFragment : BaseFragment() {
         return binding.root
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_products_fragment, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.clientProductsItem -> {
+                navigateToClientProductsFragment()
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setHasOptionsMenu(true)
         initializeRecyclerView()
         setListeners()
         observeViewModel()
@@ -103,5 +124,10 @@ class ProductsFragment : BaseFragment() {
                 negativeButton(R.string.no) { it.dismiss() }
             }
         }
+    }
+
+    private fun navigateToClientProductsFragment() {
+        val direction = ProductsFragmentDirections.actionProductsFragmentToClientProductsFragment()
+        navigateTo(direction)
     }
 }

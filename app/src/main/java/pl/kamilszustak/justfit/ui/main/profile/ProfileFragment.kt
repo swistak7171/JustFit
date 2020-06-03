@@ -10,12 +10,13 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import org.jetbrains.anko.support.v4.startActivity
 import pl.kamilszustak.justfit.R
 import pl.kamilszustak.justfit.databinding.FragmentProfileBinding
 import pl.kamilszustak.justfit.ui.authentication.AuthenticationActivity
 import pl.kamilszustak.justfit.ui.base.BaseFragment
-import androidx.lifecycle.observe
+import pl.kamilszustak.justfit.util.navigateTo
 import javax.inject.Inject
 
 class ProfileFragment : BaseFragment() {
@@ -75,6 +76,10 @@ class ProfileFragment : BaseFragment() {
         binding.swipeRefreshLayout.setOnRefreshListener {
             viewModel.onRefresh()
         }
+
+        binding.clientProductsButton.setOnClickListener {
+            navigateToClientProductsFragment()
+        }
     }
 
     private fun observeViewModel() {
@@ -82,5 +87,10 @@ class ProfileFragment : BaseFragment() {
             startActivity<AuthenticationActivity>()
             requireActivity().finish()
         }
+    }
+
+    private fun navigateToClientProductsFragment() {
+        val direction = ProfileFragmentDirections.actionProfileFragmentToClientProductsFragment()
+        navigateTo(direction)
     }
 }

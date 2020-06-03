@@ -4,27 +4,27 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.mikepenz.fastadapter.binding.ModelAbstractBindingItem
 import pl.kamilszustak.justfit.R
-import pl.kamilszustak.justfit.databinding.ItemProductsListBinding
+import pl.kamilszustak.justfit.databinding.ItemClientProductsListBinding
 import pl.kamilszustak.justfit.domain.model.product.Product
 
-open class ProductItem(product: Product) : ModelAbstractBindingItem<Product, ItemProductsListBinding>(product) {
+class ClientProductItem(product: Product) : ModelAbstractBindingItem<Product, ItemClientProductsListBinding>(product) {
     override var identifier: Long
         get() = this.model.id
         set(value) {}
 
-    override val type: Int = R.id.fastadapter_product_item
+    override val type: Int = R.id.fastadapter_client_product_item
 
     override fun createBinding(
         inflater: LayoutInflater,
         parent: ViewGroup?
-    ): ItemProductsListBinding =
-        ItemProductsListBinding.inflate(inflater, parent, false)
+    ): ItemClientProductsListBinding =
+        ItemClientProductsListBinding.inflate(inflater, parent, false)
 
-    override fun bindView(binding: ItemProductsListBinding, payloads: List<Any>) {
+    override fun bindView(binding: ItemClientProductsListBinding, payloads: List<Any>) {
         binding.product = this.model
     }
 
-    override fun unbindView(binding: ItemProductsListBinding) {
+    override fun unbindView(binding: ItemClientProductsListBinding) {
         with(binding) {
             this.product = null
             this.executePendingBindings()

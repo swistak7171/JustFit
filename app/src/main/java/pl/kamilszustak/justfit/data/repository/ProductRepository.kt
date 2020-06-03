@@ -1,7 +1,6 @@
 package pl.kamilszustak.justfit.data.repository
 
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import pl.kamilszustak.justfit.common.data.NetworkBoundResource
 import pl.kamilszustak.justfit.common.data.NetworkCall
@@ -17,7 +16,6 @@ import pl.kamilszustak.justfit.network.model.ClientProductJson
 import pl.kamilszustak.justfit.network.service.ClientApiService
 import pl.kamilszustak.justfit.network.service.ProductApiService
 import retrofit2.Response
-import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -70,6 +68,7 @@ class ProductRepository @Inject constructor(
     @OptIn(ExperimentalStdlibApi::class)
     fun getAllBoughtByClient(shouldFetch: Boolean): Flow<Resource<List<ProductEntity>>> {
         return flow {
+            emit(Resource.loading(null))
             val response = clientApiService.getAllClientProducts()
             val body = response.body()
             if (!response.isSuccessful || body == null) {
@@ -94,7 +93,7 @@ class ProductRepository @Inject constructor(
             }
 
             emit(Resource.success(products))
-        }.catch { Timber.e(it) }
+        }
     }
 
     suspend fun buyById(productId: Long): Result<Unit> {

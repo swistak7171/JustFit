@@ -39,8 +39,6 @@
                 android:id="@+id/descriptionTextView"
                 android:text="@{product.description}"
                 tools:text="@tools:sample/lorem/random"
-                android:maxLines="3"
-                android:ellipsize="end"
                 app:layout_constraintStart_toStartOf="@id/nameTextView"
                 app:layout_constraintEnd_toEndOf="@id/nameTextView"
                 app:layout_constraintTop_toBottomOf="@id/nameTextView"
