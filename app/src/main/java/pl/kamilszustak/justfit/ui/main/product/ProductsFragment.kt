@@ -8,13 +8,16 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
+import com.mikepenz.fastadapter.ClickListener
 import com.mikepenz.fastadapter.FastAdapter
+import com.mikepenz.fastadapter.IAdapter
 import com.mikepenz.fastadapter.adapters.ModelAdapter
 import pl.kamilszustak.justfit.R
 import pl.kamilszustak.justfit.databinding.FragmentProductsBinding
 import pl.kamilszustak.justfit.domain.item.ProductItem
 import pl.kamilszustak.justfit.domain.model.product.Product
 import pl.kamilszustak.justfit.ui.base.BaseFragment
+import pl.kamilszustak.justfit.util.dialog
 import pl.kamilszustak.justfit.util.updateModels
 import javax.inject.Inject
 
@@ -60,6 +63,19 @@ class ProductsFragment : BaseFragment() {
 
     private fun initializeRecyclerView() {
         val fastAdapter = FastAdapter.with(modelAdapter)
+            .apply {
+                this.onClickListener = object : ClickListener<ProductItem> {
+                    override fun invoke(
+                        v: View?,
+                        adapter: IAdapter<ProductItem>,
+                        item: ProductItem,
+                        position: Int
+                    ): Boolean {
+                        viewModel.onProductClicked(item.model.id)
+                        return true
+                    }
+                }
+            }
 
         binding.productsRecyclerView.apply {
             this.adapter = fastAdapter
@@ -75,6 +91,17 @@ class ProductsFragment : BaseFragment() {
     private fun observeViewModel() {
         viewModel.productsResource.data.observe(viewLifecycleOwner) { products ->
             modelAdapter.updateModels(products)
+        }
+
+        viewModel.showBuyDialog.observe(viewLifecycleOwner) { product ->
+            val message = getString(R.string.product_buy_dialog_message, product.name, product.price)
+
+            dialog {
+                title(R.string.product_buy_dialog_title)
+                message(text = message)
+                positiveButton(R.string.yes) { viewModel.onBuyConfirmationClicked(product.id) }
+                negativeButton(R.string.no) { it.dismiss() }
+            }
         }
     }
 }

@@ -18,6 +18,8 @@ import pl.kamilszustak.justfit.domain.usecase.event.GetAllEventsUseCase
 import pl.kamilszustak.justfit.domain.usecase.event.GetAllEventsUseCaseImpl
 import pl.kamilszustak.justfit.domain.usecase.event.GetEventByIdUseCase
 import pl.kamilszustak.justfit.domain.usecase.event.GetEventByIdUseCaseImpl
+import pl.kamilszustak.justfit.domain.usecase.product.BuyProductUseCase
+import pl.kamilszustak.justfit.domain.usecase.product.BuyProductUseCaseImpl
 import pl.kamilszustak.justfit.domain.usecase.product.GetAllProductsUseCase
 import pl.kamilszustak.justfit.domain.usecase.product.GetAllProductsUseCaseImpl
 import pl.kamilszustak.justfit.domain.usecase.product.GetProductByIdUseCase
@@ -30,43 +32,46 @@ import pl.kamilszustak.justfit.domain.usecase.user.LogoutUserUseCase
 import pl.kamilszustak.justfit.domain.usecase.user.LogoutUserUseCaseImpl
 
 @Module
-abstract class UseCaseModule {
+interface UseCaseModule {
     @Binds
-    abstract fun bindGetUserUseCase(useCaseImpl: GetUserUseCaseImpl): GetUserUseCase
+    fun bindGetUserUseCase(useCaseImpl: GetUserUseCaseImpl): GetUserUseCase
 
     @Binds
-    abstract fun bindClearDatabaseUserCase(useCaseImpl: ClearDatabaseUseCaseImpl): ClearDatabaseUseCase
+    fun bindClearDatabaseUserCase(useCaseImpl: ClearDatabaseUseCaseImpl): ClearDatabaseUseCase
 
     @Binds
-    abstract fun bindIsUserAuthenticated(useCaseImpl: IsUserAuthenticatedImpl): IsUserAuthenticated
+    fun bindIsUserAuthenticated(useCaseImpl: IsUserAuthenticatedImpl): IsUserAuthenticated
 
     @Binds
-    abstract fun bindLogoutUserUseCase(useCaseImpl: LogoutUserUseCaseImpl): LogoutUserUseCase
+    fun bindLogoutUserUseCase(useCaseImpl: LogoutUserUseCaseImpl): LogoutUserUseCase
 
     @Binds
-    abstract fun bindGetAllEquipmentUseCase(useCaseImpl: GetAllEquipmentUseCaseImpl): GetAllEquipmentUseCase
+    fun bindGetAllEquipmentUseCase(useCaseImpl: GetAllEquipmentUseCaseImpl): GetAllEquipmentUseCase
 
     @Binds
-    abstract fun bindGetAllAvailableEquipmentUseCase(useCaseImpl: GetAllAvailableEquipmentUseCaseImpl): GetAllAvailableEquipmentUseCase
+    fun bindGetAllAvailableEquipmentUseCase(useCaseImpl: GetAllAvailableEquipmentUseCaseImpl): GetAllAvailableEquipmentUseCase
 
     @Binds
-    abstract fun bindSetEquipmentAsUnavailableUseCase(useCaseImpl: SetEquipmentAsUnavailableUseCaseImpl): SetEquipmentAsUnavailableUseCase
+    fun bindSetEquipmentAsUnavailableUseCase(useCaseImpl: SetEquipmentAsUnavailableUseCaseImpl): SetEquipmentAsUnavailableUseCase
 
     @Binds
-    abstract fun bindGetAllEmployeesUseCase(useCaseImpl: GetAllEmployeesUseCaseImpl): GetAllEmployeesUseCase
+    fun bindGetAllEmployeesUseCase(useCaseImpl: GetAllEmployeesUseCaseImpl): GetAllEmployeesUseCase
 
     @Binds
-    abstract fun bindGetEmployeeByIdUseCase(useCaseImpl: GetEmployeeByIdUseCaseImpl): GetEmployeeByIdUseCase
+    fun bindGetEmployeeByIdUseCase(useCaseImpl: GetEmployeeByIdUseCaseImpl): GetEmployeeByIdUseCase
 
     @Binds
-    abstract fun bindGetAllEventsUseCase(useCaseImpl: GetAllEventsUseCaseImpl): GetAllEventsUseCase
+    fun bindGetAllEventsUseCase(useCaseImpl: GetAllEventsUseCaseImpl): GetAllEventsUseCase
 
     @Binds
-    abstract fun bindGetEventByIdUseCase(useCaseImpl: GetEventByIdUseCaseImpl): GetEventByIdUseCase
+    fun bindGetEventByIdUseCase(useCaseImpl: GetEventByIdUseCaseImpl): GetEventByIdUseCase
 
     @Binds
-    abstract fun bindGetAllProductsUseCase(useCaseImpl: GetAllProductsUseCaseImpl): GetAllProductsUseCase
+    fun bindGetAllProductsUseCase(useCaseImpl: GetAllProductsUseCaseImpl): GetAllProductsUseCase
 
     @Binds
-    abstract fun bindGetProductByIdUseCase(useCaseImpl: GetProductByIdUseCaseImpl): GetProductByIdUseCase
+    fun bindGetProductByIdUseCase(useCaseImpl: GetProductByIdUseCaseImpl): GetProductByIdUseCase
+
+    @Binds
+    fun bindBuyProductUseCase(useCaseImpl: BuyProductUseCaseImpl): BuyProductUseCase
 }

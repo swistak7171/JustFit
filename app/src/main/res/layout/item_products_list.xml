@@ -2,6 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
         <variable
             name="product"
@@ -13,6 +14,7 @@
         android:layout_height="wrap_content"
         app:cardUseCompatPadding="true"
         tools:cardUseCompatPadding="false"
+        app:cardElevation="@dimen/default_half_elevation"
         app:contentPadding="@dimen/default_padding">
 
         <androidx.constraintlayout.widget.ConstraintLayout

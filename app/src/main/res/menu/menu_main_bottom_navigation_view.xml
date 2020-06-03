@@ -23,7 +23,7 @@
     <item
         android:id="@+id/navigation_product"
         android:icon="@drawable/icon_shopping_cart_light"
-        android:title="Producty"
+        android:title="Produkty"
         app:showAsAction="always" />
 
     <item
