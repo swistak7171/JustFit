@@ -9,5 +9,5 @@
         android:id="@+id/activitiesFragment"
         android:name="pl.kamilszustak.justfit.ui.main.activity.ActivitiesFragment"
         android:label="ActivitiesFragment"
-        tools:layout="@layout/fragment_activity"/>
+        tools:layout="@layout/fragment_activities"/>
 </navigation>
