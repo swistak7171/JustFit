@@ -21,7 +21,7 @@
     <fragment
         android:id="@+id/employeeDetailsFragment"
         android:name="pl.kamilszustak.justfit.ui.main.employee.details.EmployeeDetailsFragment"
-        android:label="EmployeeDetailsFragment"
+        android:label="Dane pracownika"
         tools:layout="@layout/fragment_employee_details" >
         <argument
             android:name="employeeId"

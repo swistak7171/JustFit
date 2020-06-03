@@ -11,13 +11,18 @@ import androidx.lifecycle.observe
 import com.mikepenz.fastadapter.ClickListener
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.IAdapter
+import com.mikepenz.fastadapter.LongClickListener
 import com.mikepenz.fastadapter.adapters.ModelAdapter
+import org.jetbrains.anko.support.v4.email
+import org.jetbrains.anko.support.v4.sendSMS
 import pl.kamilszustak.justfit.R
 import pl.kamilszustak.justfit.databinding.FragmentEmployeesBinding
 import pl.kamilszustak.justfit.domain.item.EmployeeItem
 import pl.kamilszustak.justfit.domain.model.employee.Employee
 import pl.kamilszustak.justfit.ui.base.BaseFragment
+import pl.kamilszustak.justfit.util.dial
 import pl.kamilszustak.justfit.util.navigateTo
+import pl.kamilszustak.justfit.util.popupMenu
 import pl.kamilszustak.justfit.util.updateModels
 import javax.inject.Inject
 
@@ -71,6 +76,41 @@ class EmployeesFragment : BaseFragment() {
                     position: Int
                 ): Boolean {
                     navigateToEmployeeDetailsFragment(item.model.id)
+                    return true
+                }
+            }
+
+            this.onLongClickListener = object : LongClickListener<EmployeeItem> {
+                override fun invoke(
+                    v: View,
+                    adapter: IAdapter<EmployeeItem>,
+                    item: EmployeeItem,
+                    position: Int
+                ): Boolean {
+                    popupMenu(v) {
+                        inflate(R.menu.menu_employees_list)
+                        setOnMenuItemClickListener { menuItem ->
+                            when (menuItem.itemId) {
+                                R.id.callItem -> {
+                                    dial(item.model.phoneNumber)
+                                    true
+                                }
+
+                                R.id.sendMessageItem -> {
+                                    sendSMS(item.model.phoneNumber)
+                                    true
+                                }
+
+                                R.id.sendEmail -> {
+                                    email(item.model.email)
+                                    true
+                                }
+
+                                else -> false
+                            }
+                        }
+                    }
+
                     return true
                 }
             }
