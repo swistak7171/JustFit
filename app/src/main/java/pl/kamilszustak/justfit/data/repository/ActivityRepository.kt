@@ -47,4 +47,27 @@ class ActivityRepository @Inject constructor(
             }
         }.asFlow()
     }
+
+    fun getById(id: Long, shouldFetch: Boolean): Flow<Resource<ActivityWithEquipment>> {
+        return object : NetworkBoundResource<ActivityJson, ActivityWithEquipment>() {
+            override fun loadFromDatabase(): Flow<ActivityWithEquipment> =
+                activityDao.getById(id)
+
+            override fun shouldFetch(data: ActivityWithEquipment?): Boolean =
+                shouldFetch
+
+            override suspend fun fetchFromNetwork(): Response<ActivityJson> =
+                activityApiService.getById(id)
+
+            override suspend fun saveFetchResult(result: ActivityJson) {
+                activityJsonMapper.onMap(result) { activity ->
+                    activityDao.insert(activity)
+                }
+
+                equipmentJsonMapper.onMapAll(result.usedEquipment) { equipment ->
+                    equipmentDao.insertAll(equipment)
+                }
+            }
+        }.asFlow()
+    }
 }

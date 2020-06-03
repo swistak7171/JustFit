@@ -22,6 +22,8 @@ class ActivityJsonMapper @Inject constructor() : JsonModelMapper<ActivityJson, A
             startDate = startDate,
             endDate = endDate,
             isCancelled = model.isCancelled
-        )
+        ).apply {
+            this.id = model.id
+        }
     }
 }

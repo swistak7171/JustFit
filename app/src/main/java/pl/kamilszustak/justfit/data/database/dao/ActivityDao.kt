@@ -13,6 +13,10 @@ interface ActivityDao : BaseDao<ActivityEntity> {
     @Transaction
     fun getAll(): Flow<List<ActivityWithEquipment>>
 
+    @Query("SELECT * FROM activities WHERE id = :id")
+    @Transaction
+    fun getById(id: Long): Flow<ActivityWithEquipment>
+
     @Transaction
     suspend fun replaceAll(activities: Collection<ActivityEntity>) {
         deleteAll()
