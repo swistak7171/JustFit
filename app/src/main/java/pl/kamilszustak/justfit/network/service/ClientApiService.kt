@@ -16,5 +16,5 @@ interface ClientApiService {
     suspend fun buyProduct(@Body requestBody: BuyProductRequestBody): Response<Unit>
 
     @GET("/api/product")
-    suspend fun getAllClientProducts(userId: Long): Response<List<ClientProductJson>>
+    suspend fun getAllClientProducts(): Response<List<ClientProductJson>>
 }
