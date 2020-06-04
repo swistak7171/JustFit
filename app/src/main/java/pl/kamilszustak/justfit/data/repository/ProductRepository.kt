@@ -77,8 +77,14 @@ class ProductRepository @Inject constructor(
             }
 
             val productsIds = body.map(ClientProductJson::productId)
-            val products = buildList {
+            val products = buildList<ProductEntity> {
                 productsIds.forEach { id ->
+                    val alreadyFetchedProduct = this.find { it.id == id }
+                    if (alreadyFetchedProduct != null) {
+                        this.add(alreadyFetchedProduct)
+                        return@forEach
+                    }
+
                     val response = productApiService.getById(id)
                     val body = response.body()
                     if (!response.isSuccessful || body == null) {
