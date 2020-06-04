@@ -13,6 +13,7 @@ import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.IAdapter
 import com.mikepenz.fastadapter.LongClickListener
 import com.mikepenz.fastadapter.adapters.ModelAdapter
+import org.jetbrains.anko.support.v4.toast
 import pl.kamilszustak.justfit.R
 import pl.kamilszustak.justfit.databinding.FragmentActivitiesBinding
 import pl.kamilszustak.justfit.domain.item.ActivityItem
@@ -91,6 +92,7 @@ class ActivitiesFragment : BaseFragment() {
                             this.setOnMenuItemClickListener { menuItem ->
                                 when (menuItem.itemId) {
                                     R.id.joinInActivityItem -> {
+                                        viewModel.onJoinInButtonClick(item.model.id)
                                         true
                                     }
 
@@ -120,6 +122,10 @@ class ActivitiesFragment : BaseFragment() {
         viewModel.activitiesResource.data.observe(viewLifecycleOwner) { activities ->
             modelAdapter.updateModels(activities)
             Timber.i(activities.toString())
+        }
+
+        viewModel.actionCompletedEvent.observe(viewLifecycleOwner) {
+            toast("Dołączono do aktywności")
         }
     }
 
