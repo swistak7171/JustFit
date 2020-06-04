@@ -7,9 +7,15 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
+import com.mikepenz.fastadapter.FastAdapter
+import com.mikepenz.fastadapter.adapters.ModelAdapter
 import pl.kamilszustak.justfit.R
 import pl.kamilszustak.justfit.databinding.FragmentClientActivitiesBinding
+import pl.kamilszustak.justfit.domain.item.ActivityItem
+import pl.kamilszustak.justfit.domain.model.activity.Activity
 import pl.kamilszustak.justfit.ui.base.BaseFragment
+import pl.kamilszustak.justfit.util.updateModels
 import javax.inject.Inject
 
 class ClientActivitiesFragment : BaseFragment() {
@@ -20,11 +26,11 @@ class ClientActivitiesFragment : BaseFragment() {
     }
 
     private lateinit var binding: FragmentClientActivitiesBinding
-    // private val modelAdapter: ModelAdapter<Product, ClientProductItem> by lazy {
-    //     ModelAdapter<Product, ClientProductItem> { product ->
-    //         ClientProductItem(product)
-    //     }
-    // }
+    private val modelAdapter: ModelAdapter<Activity, ActivityItem> by lazy {
+        ModelAdapter<Activity, ActivityItem> { activity ->
+            ActivityItem(activity)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,14 +59,22 @@ class ClientActivitiesFragment : BaseFragment() {
     }
 
     private fun initializeRecyclerView() {
+        val fastAdapter = FastAdapter.with(modelAdapter)
 
+        binding.activitiesRecyclerView.apply {
+            this.adapter = fastAdapter
+        }
     }
 
     private fun setListeners() {
-
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.onRefresh()
+        }
     }
 
     private fun observeViewModel() {
-
+        viewModel.activitiesResource.data.observe(viewLifecycleOwner) { activities ->
+            modelAdapter.updateModels(activities)
+        }
     }
 }

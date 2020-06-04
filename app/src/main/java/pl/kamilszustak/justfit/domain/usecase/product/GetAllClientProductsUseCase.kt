@@ -5,5 +5,5 @@ import pl.kamilszustak.justfit.common.data.Resource
 import pl.kamilszustak.justfit.domain.model.product.Product
 
 interface GetAllClientProductsUseCase {
-    operator fun invoke(shouldFetch: Boolean = true): Flow<Resource<List<Product>>>
+    operator fun invoke(): Flow<Resource<List<Product>>>
 }
