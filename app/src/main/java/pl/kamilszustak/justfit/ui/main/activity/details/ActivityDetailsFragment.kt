@@ -7,13 +7,17 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.navArgs
+import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.adapters.ModelAdapter
 import pl.kamilszustak.justfit.R
 import pl.kamilszustak.justfit.databinding.FragmentActivityDetailsBinding
-import pl.kamilszustak.justfit.domain.item.ActivityItem
-import pl.kamilszustak.justfit.domain.model.activity.Activity
+import pl.kamilszustak.justfit.domain.item.ActivityEquipmentItem
+import pl.kamilszustak.justfit.domain.model.equipment.Equipment
 import pl.kamilszustak.justfit.ui.base.BaseFragment
+import pl.kamilszustak.justfit.util.updateModels
+import timber.log.Timber
 import javax.inject.Inject
 
 class ActivityDetailsFragment : BaseFragment() {
@@ -25,9 +29,9 @@ class ActivityDetailsFragment : BaseFragment() {
 
     private lateinit var binding: FragmentActivityDetailsBinding
     private val args: ActivityDetailsFragmentArgs by navArgs()
-    private val modelAdapter: ModelAdapter<Activity, ActivityItem> by lazy {
-        ModelAdapter<Activity, ActivityItem> { activity ->
-            ActivityItem(activity)
+    private val modelAdapter: ModelAdapter<Equipment, ActivityEquipmentItem> by lazy {
+        ModelAdapter<Equipment, ActivityEquipmentItem> { equipment ->
+            ActivityEquipmentItem(equipment)
         }
     }
 
@@ -52,13 +56,30 @@ class ActivityDetailsFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initializeRecyclerView()
         setListeners()
+        observeViewModel()
         viewModel.loadData(args.activityId)
+    }
+
+    private fun initializeRecyclerView() {
+        val fastAdapter = FastAdapter.with(modelAdapter)
+
+        binding.equipmentRecyclerView.apply {
+            this.adapter = fastAdapter
+        }
     }
 
     private fun setListeners() {
         binding.swipeRefreshLayout.setOnRefreshListener {
             viewModel.onRefresh()
+        }
+    }
+
+    private fun observeViewModel() {
+        viewModel.activityResource.data.observe(viewLifecycleOwner) { activity ->
+            modelAdapter.updateModels(activity.usedEquipment)
+            Timber.i(activity.usedEquipment.toString())
         }
     }
 }
