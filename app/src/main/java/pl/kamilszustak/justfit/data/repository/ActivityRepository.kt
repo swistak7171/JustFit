@@ -4,9 +4,11 @@ import kotlinx.coroutines.flow.Flow
 import pl.kamilszustak.justfit.common.data.NetworkBoundResource
 import pl.kamilszustak.justfit.common.data.Resource
 import pl.kamilszustak.justfit.data.database.dao.ActivityDao
+import pl.kamilszustak.justfit.data.database.dao.ActivityEquipmentDao
 import pl.kamilszustak.justfit.data.database.dao.EquipmentDao
 import pl.kamilszustak.justfit.domain.mapper.EquipmentJsonMapper
 import pl.kamilszustak.justfit.domain.mapper.activity.ActivityJsonMapper
+import pl.kamilszustak.justfit.domain.model.activity.ActivityEquipmentCrossReference
 import pl.kamilszustak.justfit.domain.model.activity.ActivityJson
 import pl.kamilszustak.justfit.domain.model.activity.ActivityWithEquipment
 import pl.kamilszustak.justfit.network.service.ActivityApiService
@@ -18,6 +20,7 @@ import javax.inject.Singleton
 class ActivityRepository @Inject constructor(
     private val activityDao: ActivityDao,
     private val equipmentDao: EquipmentDao,
+    private val activityEquipmentDao: ActivityEquipmentDao,
     private val activityApiService: ActivityApiService,
     private val activityJsonMapper: ActivityJsonMapper,
     private val equipmentJsonMapper: EquipmentJsonMapper
@@ -34,15 +37,23 @@ class ActivityRepository @Inject constructor(
                 activityApiService.getAll()
 
             override suspend fun saveFetchResult(result: List<ActivityJson>) {
-                activityJsonMapper.onMapAll(result) { activities ->
-                    activityDao.replaceAll(activities)
+                result.forEach { activity ->
+                    equipmentJsonMapper.onMapAll(activity.usedEquipment) { equipment ->
+                        equipmentDao.insertAll(equipment)
+                    }
+
+                    val activityEquipment = activity.usedEquipment.map { equipment ->
+                        ActivityEquipmentCrossReference(
+                            activityId = activity.id,
+                            equipmentId = equipment.id
+                        )
+                    }
+
+                    activityEquipmentDao.replaceAllByActivityId(activityEquipment)
                 }
 
-                val equipment = result.map(ActivityJson::usedEquipment)
-                    .flatten()
-
-                equipmentJsonMapper.onMapAll(equipment) { entities ->
-                    equipmentDao.insertAll(entities)
+                activityJsonMapper.onMapAll(result) { activities ->
+                    activityDao.replaceAll(activities)
                 }
             }
         }.asFlow()
@@ -60,12 +71,21 @@ class ActivityRepository @Inject constructor(
                 activityApiService.getById(id)
 
             override suspend fun saveFetchResult(result: ActivityJson) {
-                activityJsonMapper.onMap(result) { activity ->
-                    activityDao.insert(activity)
-                }
-
                 equipmentJsonMapper.onMapAll(result.usedEquipment) { equipment ->
                     equipmentDao.insertAll(equipment)
+                }
+
+                val activityEquipment = result.usedEquipment.map { equipment ->
+                    ActivityEquipmentCrossReference(
+                        activityId = result.id,
+                        equipmentId = equipment.id
+                    )
+                }
+
+                activityEquipmentDao.replaceAllByActivityId(activityEquipment)
+
+                activityJsonMapper.onMap(result) { activity ->
+                    activityDao.insert(activity)
                 }
             }
         }.asFlow()

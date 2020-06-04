@@ -1,4 +1,4 @@
-package pl.kamilszustak.justfit.domain.model
+package pl.kamilszustak.justfit.domain.model.json
 
 import com.squareup.moshi.Json
 

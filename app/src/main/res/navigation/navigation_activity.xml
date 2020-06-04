@@ -9,5 +9,22 @@
         android:id="@+id/activitiesFragment"
         android:name="pl.kamilszustak.justfit.ui.main.activity.ActivitiesFragment"
         android:label="Aktywności"
-        tools:layout="@layout/fragment_activities"/>
+        tools:layout="@layout/fragment_activities">
+        <action
+            android:id="@+id/action_activitiesFragment_to_activityDetailsFragment"
+            app:destination="@id/activityDetailsFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/activityDetailsFragment"
+        android:name="pl.kamilszustak.justfit.ui.main.activity.details.ActivityDetailsFragment"
+        android:label="Szczegóły aktywności"
+        tools:layout="@layout/fragment_activity_details">
+        <argument
+            android:name="activityId"
+            app:argType="long" />
+    </fragment>
 </navigation>

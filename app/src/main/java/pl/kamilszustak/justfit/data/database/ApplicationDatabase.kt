@@ -7,6 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import pl.kamilszustak.justfit.R
 import pl.kamilszustak.justfit.data.database.dao.ActivityDao
+import pl.kamilszustak.justfit.data.database.dao.ActivityEquipmentDao
 import pl.kamilszustak.justfit.data.database.dao.ClientProductDao
 import pl.kamilszustak.justfit.data.database.dao.EmployeeDao
 import pl.kamilszustak.justfit.data.database.dao.EquipmentDao
@@ -46,6 +47,7 @@ abstract class ApplicationDatabase : RoomDatabase() {
     abstract fun getProductDao(): ProductDao
     abstract fun getClientProductDao(): ClientProductDao
     abstract fun getActivityDao(): ActivityDao
+    abstract fun getActivityEquipmentDao(): ActivityEquipmentDao
 
     companion object {
         private var INSTANCE: ApplicationDatabase? = null

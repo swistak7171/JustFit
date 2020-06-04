@@ -4,9 +4,9 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Update
-import pl.kamilszustak.justfit.domain.model.DatabaseEntity
+import pl.kamilszustak.justfit.domain.model.entity.Entity
 
-interface BaseDao<E : DatabaseEntity> {
+interface BaseDao<E : Entity> {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(entity: E): Long
 

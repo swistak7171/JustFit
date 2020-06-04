@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/specificationTextView"
             tools:text="Do ćwiczeń ramion"
-            android:textAppearance="?textAppearanceSubtitle1" />
+            android:textAppearance="?textAppearanceOverline" />
 
         <TextView
             android:layout_width="match_parent"

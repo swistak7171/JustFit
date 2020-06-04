@@ -2,7 +2,7 @@ package pl.kamilszustak.justfit.domain.model.user
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import pl.kamilszustak.justfit.domain.model.JsonModel
+import pl.kamilszustak.justfit.domain.model.json.JsonModel
 
 @JsonClass(generateAdapter = true)
 data class UserJson(
