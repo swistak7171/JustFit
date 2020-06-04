@@ -114,7 +114,6 @@ class ActivityRepository @Inject constructor(
                 activitiesIds.forEach { id ->
                     val alreadyFetchedActivity = this.find { it.activity.id == id }
                     if (alreadyFetchedActivity != null) {
-                        this.add(alreadyFetchedActivity)
                         return@forEach
                     }
 
