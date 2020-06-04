@@ -80,6 +80,13 @@
                 <com.google.android.material.button.MaterialButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/clientActivitiesButton"
+                    android:text="Moje aktywności"
+                    style="@style/Widget.MaterialComponents.Button.TextButton" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:id="@+id/employeesButton"
                     android:text="Pracownicy"
                     style="@style/Widget.MaterialComponents.Button.TextButton" />

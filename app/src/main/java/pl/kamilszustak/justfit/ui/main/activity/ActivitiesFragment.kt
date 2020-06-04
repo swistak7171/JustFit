@@ -2,6 +2,9 @@ package pl.kamilszustak.justfit.ui.main.activity
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -36,6 +39,24 @@ class ActivitiesFragment : BaseFragment() {
     private val modelAdapter: ModelAdapter<Activity, ActivityItem> by lazy {
         ModelAdapter<Activity, ActivityItem> { activity ->
             ActivityItem(activity)
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_activities_fragment, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.clientActivitiesItem -> {
+                navigateToClientActivitiesFragment()
+                true
+            }
+
+            else -> {
+                super.onOptionsItemSelected(item)
+            }
         }
     }
 
@@ -131,6 +152,11 @@ class ActivitiesFragment : BaseFragment() {
 
     private fun navigateToActivityDetailsFragment(activityId: Long) {
         val direction = ActivitiesFragmentDirections.actionActivitiesFragmentToActivityDetailsFragment(activityId)
+        navigateTo(direction)
+    }
+
+    private fun navigateToClientActivitiesFragment() {
+        val direction = ActivitiesFragmentDirections.actionActivitiesFragmentToClientActivitiesFragment()
         navigateTo(direction)
     }
 }
