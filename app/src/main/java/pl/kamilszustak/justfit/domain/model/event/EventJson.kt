@@ -3,7 +3,7 @@ package pl.kamilszustak.justfit.domain.model.event
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import pl.kamilszustak.justfit.common.moshi.annotation.LocalDateTimeField
-import pl.kamilszustak.justfit.domain.model.JsonModel
+import pl.kamilszustak.justfit.domain.model.json.JsonModel
 import java.util.Date
 
 @JsonClass(generateAdapter = true)

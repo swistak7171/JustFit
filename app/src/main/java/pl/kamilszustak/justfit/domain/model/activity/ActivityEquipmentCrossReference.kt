@@ -2,6 +2,7 @@ package pl.kamilszustak.justfit.domain.model.activity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import pl.kamilszustak.justfit.domain.model.entity.LocalDatabaseEntity
 
 @Entity(
     tableName = "activity_equipment_cross_reference",
@@ -16,4 +17,4 @@ data class ActivityEquipmentCrossReference(
 
     @ColumnInfo(name = "equipment_id")
     val equipmentId: Long
-)
+) : LocalDatabaseEntity()
