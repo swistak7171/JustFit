@@ -2,6 +2,7 @@ package pl.kamilszustak.justfit.data.repository
 
 import kotlinx.coroutines.flow.Flow
 import pl.kamilszustak.justfit.common.data.NetworkBoundResource
+import pl.kamilszustak.justfit.common.data.NetworkCall
 import pl.kamilszustak.justfit.common.data.Resource
 import pl.kamilszustak.justfit.data.database.dao.ActivityDao
 import pl.kamilszustak.justfit.data.database.dao.ActivityEquipmentDao
@@ -11,7 +12,10 @@ import pl.kamilszustak.justfit.domain.mapper.activity.ActivityJsonMapper
 import pl.kamilszustak.justfit.domain.model.activity.ActivityEquipmentCrossReference
 import pl.kamilszustak.justfit.domain.model.activity.ActivityJson
 import pl.kamilszustak.justfit.domain.model.activity.ActivityWithEquipment
+import pl.kamilszustak.justfit.network.model.ClientActivityJson
+import pl.kamilszustak.justfit.network.model.JoinInActivityRequestBody
 import pl.kamilszustak.justfit.network.service.ActivityApiService
+import pl.kamilszustak.justfit.network.service.ClientApiService
 import retrofit2.Response
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -20,8 +24,10 @@ import javax.inject.Singleton
 class ActivityRepository @Inject constructor(
     private val activityDao: ActivityDao,
     private val equipmentDao: EquipmentDao,
+    private val userDetailsRepository: UserDetailsRepository,
     private val activityEquipmentDao: ActivityEquipmentDao,
     private val activityApiService: ActivityApiService,
+    private val clientApiService: ClientApiService,
     private val activityJsonMapper: ActivityJsonMapper,
     private val equipmentJsonMapper: EquipmentJsonMapper
 ) {
@@ -90,4 +96,25 @@ class ActivityRepository @Inject constructor(
             }
         }.asFlow()
     }
+
+    suspend fun joinInById(id: Long): Result<Unit> {
+        val requestBody = JoinInActivityRequestBody(
+            userId = getUserId(),
+            activityId = id
+        )
+
+        return object : NetworkCall<ClientActivityJson, Unit>() {
+            override suspend fun makeCall(): Response<ClientActivityJson> =
+                clientApiService.joinInActivity(requestBody)
+
+            override suspend fun mapResponse(response: ClientActivityJson) = Unit
+
+            override suspend fun saveCallResult(result: ClientActivityJson) {
+                super.saveCallResult(result)
+            }
+        }.callForResponse()
+    }
+
+    private fun getUserId(): Long =
+        userDetailsRepository.getValue(UserDetailsRepository.UserDetailsKey.USER_ID)
 }

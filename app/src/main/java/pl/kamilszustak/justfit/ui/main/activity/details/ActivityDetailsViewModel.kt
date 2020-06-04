@@ -7,13 +7,13 @@ import pl.kamilszustak.justfit.common.date.DateFormats
 import pl.kamilszustak.justfit.common.livedata.ResourceDataSource
 import pl.kamilszustak.justfit.domain.model.activity.Activity
 import pl.kamilszustak.justfit.domain.usecase.activity.GetActivityByIdUseCase
-import pl.kamilszustak.justfit.ui.base.BaseViewModel
+import pl.kamilszustak.justfit.ui.base.StateViewModel
 import javax.inject.Inject
 
 class ActivityDetailsViewModel @Inject constructor(
     application: Application,
     private val getActivityById: GetActivityByIdUseCase
-) : BaseViewModel(application) {
+) : StateViewModel(application) {
 
     val activityResource: ResourceDataSource<Activity> = ResourceDataSource()
     val dateText: LiveData<String> = activityResource.data.map { activity ->

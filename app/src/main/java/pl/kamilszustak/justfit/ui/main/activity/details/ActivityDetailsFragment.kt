@@ -2,6 +2,8 @@ package pl.kamilszustak.justfit.ui.main.activity.details
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -53,9 +55,15 @@ class ActivityDetailsFragment : BaseFragment() {
         return binding.root
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_activity, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setHasOptionsMenu(true)
         initializeRecyclerView()
         setListeners()
         observeViewModel()
