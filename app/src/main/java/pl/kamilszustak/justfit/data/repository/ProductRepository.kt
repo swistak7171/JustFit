@@ -66,7 +66,7 @@ class ProductRepository @Inject constructor(
     }
 
     @OptIn(ExperimentalStdlibApi::class)
-    fun getAllBoughtByClient(shouldFetch: Boolean): Flow<Resource<List<ProductEntity>>> {
+    fun getAllBoughtByClient(): Flow<Resource<List<ProductEntity>>> {
         return flow {
             emit(Resource.loading(null))
             val response = clientApiService.getAllClientProducts()

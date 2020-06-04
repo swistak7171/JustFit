@@ -6,6 +6,8 @@ import pl.kamilszustak.justfit.domain.usecase.activity.GetActivityByIdUseCase
 import pl.kamilszustak.justfit.domain.usecase.activity.GetActivityByIdUseCaseImpl
 import pl.kamilszustak.justfit.domain.usecase.activity.GetAllActivitiesUseCase
 import pl.kamilszustak.justfit.domain.usecase.activity.GetAllActivitiesUseCaseImpl
+import pl.kamilszustak.justfit.domain.usecase.activity.GetAllClientActivitiesUseCase
+import pl.kamilszustak.justfit.domain.usecase.activity.GetAllClientActivitiesUseCaseImpl
 import pl.kamilszustak.justfit.domain.usecase.activity.JoinInActivityUseCase
 import pl.kamilszustak.justfit.domain.usecase.activity.JoinInActivityUseCaseImpl
 import pl.kamilszustak.justfit.domain.usecase.database.ClearDatabaseUseCase
@@ -94,4 +96,7 @@ interface UseCaseModule {
 
     @Binds
     fun bindJoinInActivityUseCase(useCaseImpl: JoinInActivityUseCaseImpl): JoinInActivityUseCase
+
+    @Binds
+    fun bindGetAllClientActivitiesUseCase(useCaseImpl: GetAllClientActivitiesUseCaseImpl): GetAllClientActivitiesUseCase
 }

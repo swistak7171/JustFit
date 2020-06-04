@@ -1,6 +1,7 @@
 package pl.kamilszustak.justfit.data.repository
 
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import pl.kamilszustak.justfit.common.data.NetworkBoundResource
 import pl.kamilszustak.justfit.common.data.NetworkCall
 import pl.kamilszustak.justfit.common.data.Resource
@@ -95,6 +96,49 @@ class ActivityRepository @Inject constructor(
                 }
             }
         }.asFlow()
+    }
+
+    @OptIn(ExperimentalStdlibApi::class)
+    fun getAllJoinedInByClient(): Flow<Resource<List<ActivityWithEquipment>>> {
+        return flow {
+            emit(Resource.loading(null))
+            val response = clientApiService.getAllClientActivities()
+            val body = response.body()
+            if (!response.isSuccessful || body == null) {
+                emit(Resource.error("Unsuccessful API request", null))
+                return@flow
+            }
+
+            val activitiesIds = body.map(ClientActivityJson::activityId)
+            val activities = buildList<ActivityWithEquipment> {
+                activitiesIds.forEach { id ->
+                    val alreadyFetchedActivity = this.find { it.activity.id == id }
+                    if (alreadyFetchedActivity != null) {
+                        this.add(alreadyFetchedActivity)
+                        return@forEach
+                    }
+
+                    val response = activityApiService.getById(id)
+                    val body = response.body()
+                    if (!response.isSuccessful || body == null) {
+                        emit(Resource.error("Unsuccessful API request", null))
+                        return@flow
+                    }
+
+                    activityJsonMapper.onMap(body) { activity ->
+                        val equipment = equipmentJsonMapper.mapAll(body.usedEquipment)
+                        val activityWithEquipment = ActivityWithEquipment(
+                            activity = activity,
+                            usedEquipment = equipment
+                        )
+
+                        this.add(activityWithEquipment)
+                    }
+                }
+            }
+
+            emit(Resource.success(activities))
+        }
     }
 
     suspend fun joinInById(id: Long): Result<Unit> {
