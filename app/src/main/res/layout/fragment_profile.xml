@@ -69,6 +69,10 @@
                     tools:text="123456789"
                     android:textAppearance="?textAppearanceHeadline6" />
 
+                <View
+                    style="@style/Divider"
+                    android:layout_marginTop="@dimen/default_margin" />
+
                 <com.google.android.material.button.MaterialButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -76,6 +80,13 @@
                     android:text="Moje produkty"
                     style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_marginTop="@dimen/default_margin" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/clientActivitiesButton"
+                    android:text="Moje aktywności"
+                    style="@style/Widget.MaterialComponents.Button.TextButton" />
 
                 <com.google.android.material.button.MaterialButton
                     android:layout_width="wrap_content"

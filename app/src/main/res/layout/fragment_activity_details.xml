@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/swipeRefreshLayout"
-        app:refreshing="@{viewModel.activityResource.isLoading}">
+        app:refreshing="@{viewModel.activityResource.isLoading || viewModel.isLoading}">
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"

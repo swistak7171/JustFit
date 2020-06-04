@@ -66,7 +66,7 @@ class ProductRepository @Inject constructor(
     }
 
     @OptIn(ExperimentalStdlibApi::class)
-    fun getAllBoughtByClient(shouldFetch: Boolean): Flow<Resource<List<ProductEntity>>> {
+    fun getAllBoughtByClient(): Flow<Resource<List<ProductEntity>>> {
         return flow {
             emit(Resource.loading(null))
             val response = clientApiService.getAllClientProducts()
@@ -77,8 +77,14 @@ class ProductRepository @Inject constructor(
             }
 
             val productsIds = body.map(ClientProductJson::productId)
-            val products = buildList {
+            val products = buildList<ProductEntity> {
                 productsIds.forEach { id ->
+                    val alreadyFetchedProduct = this.find { it.id == id }
+                    if (alreadyFetchedProduct != null) {
+                        this.add(alreadyFetchedProduct)
+                        return@forEach
+                    }
+
                     val response = productApiService.getById(id)
                     val body = response.body()
                     if (!response.isSuccessful || body == null) {
@@ -96,24 +102,24 @@ class ProductRepository @Inject constructor(
         }
     }
 
-    suspend fun buyById(productId: Long): Result<Unit> {
+    suspend fun buyById(id: Long): Result<Unit> {
         val requestBody = BuyProductRequestBody(
             userId = getUserId(),
-            productId = productId
+            productId = id
         )
 
-        return object : NetworkCall<Unit, Unit>() {
-            override suspend fun makeCall(): Response<Unit> =
+        return object : NetworkCall<ClientProductJson, Unit>() {
+            override suspend fun makeCall(): Response<ClientProductJson> =
                 clientApiService.buyProduct(requestBody)
 
-            override suspend fun mapResponse(response: Unit) = Unit
+            override suspend fun mapResponse(response: ClientProductJson) = Unit
 
-            override suspend fun saveCallResult(result: Unit) {
+            override suspend fun saveCallResult(result: ClientProductJson) {
                 super.saveCallResult(result)
             }
         }.callForResponse()
     }
 
     private fun getUserId(): Long =
-        userDetailsRepository.getValue<Long>(UserDetailsRepository.UserDetailsKey.USER_ID)
+        userDetailsRepository.getValue(UserDetailsRepository.UserDetailsKey.USER_ID)
 }

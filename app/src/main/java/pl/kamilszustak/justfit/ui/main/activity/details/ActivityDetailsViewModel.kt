@@ -3,17 +3,20 @@ package pl.kamilszustak.justfit.ui.main.activity.details
 import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
+import pl.kamilszustak.justfit.R
 import pl.kamilszustak.justfit.common.date.DateFormats
 import pl.kamilszustak.justfit.common.livedata.ResourceDataSource
 import pl.kamilszustak.justfit.domain.model.activity.Activity
 import pl.kamilszustak.justfit.domain.usecase.activity.GetActivityByIdUseCase
-import pl.kamilszustak.justfit.ui.base.BaseViewModel
+import pl.kamilszustak.justfit.domain.usecase.activity.JoinInActivityUseCase
+import pl.kamilszustak.justfit.ui.base.StateViewModel
 import javax.inject.Inject
 
 class ActivityDetailsViewModel @Inject constructor(
     application: Application,
-    private val getActivityById: GetActivityByIdUseCase
-) : BaseViewModel(application) {
+    private val getActivityById: GetActivityByIdUseCase,
+    private val joinInActivity: JoinInActivityUseCase
+) : StateViewModel(application) {
 
     val activityResource: ResourceDataSource<Activity> = ResourceDataSource()
     val dateText: LiveData<String> = activityResource.data.map { activity ->
@@ -37,5 +40,11 @@ class ActivityDetailsViewModel @Inject constructor(
 
     fun onRefresh() {
         activityResource.refresh()
+    }
+
+    fun onJoinInButtonClick(activityId: Long) {
+        performAction(R.string.joining_in_activity_error_message) {
+            joinInActivity(activityId)
+        }
     }
 }

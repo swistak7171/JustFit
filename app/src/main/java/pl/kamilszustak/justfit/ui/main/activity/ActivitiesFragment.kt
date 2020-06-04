@@ -2,6 +2,9 @@ package pl.kamilszustak.justfit.ui.main.activity
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -11,13 +14,16 @@ import androidx.lifecycle.observe
 import com.mikepenz.fastadapter.ClickListener
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.IAdapter
+import com.mikepenz.fastadapter.LongClickListener
 import com.mikepenz.fastadapter.adapters.ModelAdapter
+import org.jetbrains.anko.support.v4.toast
 import pl.kamilszustak.justfit.R
 import pl.kamilszustak.justfit.databinding.FragmentActivitiesBinding
 import pl.kamilszustak.justfit.domain.item.ActivityItem
 import pl.kamilszustak.justfit.domain.model.activity.Activity
 import pl.kamilszustak.justfit.ui.base.BaseFragment
 import pl.kamilszustak.justfit.util.navigateTo
+import pl.kamilszustak.justfit.util.popupMenu
 import pl.kamilszustak.justfit.util.updateModels
 import timber.log.Timber
 import javax.inject.Inject
@@ -33,6 +39,24 @@ class ActivitiesFragment : BaseFragment() {
     private val modelAdapter: ModelAdapter<Activity, ActivityItem> by lazy {
         ModelAdapter<Activity, ActivityItem> { activity ->
             ActivityItem(activity)
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_activities_fragment, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.clientActivitiesItem -> {
+                navigateToClientActivitiesFragment()
+                true
+            }
+
+            else -> {
+                super.onOptionsItemSelected(item)
+            }
         }
     }
 
@@ -57,6 +81,7 @@ class ActivitiesFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setHasOptionsMenu(true)
         initializeRecyclerView()
         setListeners()
         observeViewModel()
@@ -73,6 +98,32 @@ class ActivitiesFragment : BaseFragment() {
                         position: Int
                     ): Boolean {
                         navigateToActivityDetailsFragment(item.model.id)
+                        return true
+                    }
+                }
+
+                this.onLongClickListener = object : LongClickListener<ActivityItem> {
+                    override fun invoke(
+                        v: View,
+                        adapter: IAdapter<ActivityItem>,
+                        item: ActivityItem,
+                        position: Int
+                    ): Boolean {
+                        popupMenu(v) {
+                            this.inflate(R.menu.menu_activity)
+                            this.setOnMenuItemClickListener { menuItem ->
+                                when (menuItem.itemId) {
+                                    R.id.joinInActivityItem -> {
+                                        viewModel.onJoinInButtonClick(item.model.id)
+                                        true
+                                    }
+
+                                    else -> {
+                                        false
+                                    }
+                                }
+                            }
+                        }
                         return true
                     }
                 }
@@ -94,10 +145,19 @@ class ActivitiesFragment : BaseFragment() {
             modelAdapter.updateModels(activities)
             Timber.i(activities.toString())
         }
+
+        viewModel.actionCompletedEvent.observe(viewLifecycleOwner) {
+            toast("Dołączono do aktywności")
+        }
     }
 
     private fun navigateToActivityDetailsFragment(activityId: Long) {
         val direction = ActivitiesFragmentDirections.actionActivitiesFragmentToActivityDetailsFragment(activityId)
+        navigateTo(direction)
+    }
+
+    private fun navigateToClientActivitiesFragment() {
+        val direction = ActivitiesFragmentDirections.actionActivitiesFragmentToClientActivitiesFragment()
         navigateTo(direction)
     }
 }

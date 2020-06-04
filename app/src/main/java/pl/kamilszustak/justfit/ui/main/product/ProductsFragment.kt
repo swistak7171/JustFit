@@ -15,6 +15,7 @@ import com.mikepenz.fastadapter.ClickListener
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.IAdapter
 import com.mikepenz.fastadapter.adapters.ModelAdapter
+import org.jetbrains.anko.support.v4.toast
 import pl.kamilszustak.justfit.R
 import pl.kamilszustak.justfit.databinding.FragmentProductsBinding
 import pl.kamilszustak.justfit.domain.item.ProductItem
@@ -123,6 +124,10 @@ class ProductsFragment : BaseFragment() {
                 positiveButton(R.string.yes) { viewModel.onBuyConfirmationClicked(product.id) }
                 negativeButton(R.string.no) { it.dismiss() }
             }
+        }
+
+        viewModel.actionCompletedEvent.observe(viewLifecycleOwner) {
+            toast("Zakupiono produkt")
         }
     }
 

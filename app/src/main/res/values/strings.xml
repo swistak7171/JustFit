@@ -31,4 +31,5 @@
     <!-- ActivitiesFragment -->
     <string name="leader_name">Prowadzący: %1$s</string>
     <string name="start_time_and_end_time">%1$s - %2$s</string>
+    <string name="joining_in_activity_error_message">Wystąpił błąd podczas dołączania do aktywności</string>
 </resources>

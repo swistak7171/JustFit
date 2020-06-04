@@ -81,6 +81,10 @@ class ProfileFragment : BaseFragment() {
             navigateToClientProductsFragment()
         }
 
+        binding.clientActivitiesButton.setOnClickListener {
+            navigateToClientActivitiesFragment()
+        }
+
         binding.employeesButton.setOnClickListener {
             navigateToEmployeesFragment()
         }
@@ -95,6 +99,11 @@ class ProfileFragment : BaseFragment() {
 
     private fun navigateToClientProductsFragment() {
         val direction = ProfileFragmentDirections.actionProfileFragmentToClientProductsFragment()
+        navigateTo(direction)
+    }
+
+    private fun navigateToClientActivitiesFragment() {
+        val direction = ProfileFragmentDirections.actionProfileFragmentToClientActivitiesFragment()
         navigateTo(direction)
     }
 

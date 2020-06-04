@@ -2,6 +2,9 @@ package pl.kamilszustak.justfit.ui.main.activity.details
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -11,6 +14,7 @@ import androidx.lifecycle.observe
 import androidx.navigation.fragment.navArgs
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.adapters.ModelAdapter
+import org.jetbrains.anko.support.v4.toast
 import pl.kamilszustak.justfit.R
 import pl.kamilszustak.justfit.databinding.FragmentActivityDetailsBinding
 import pl.kamilszustak.justfit.domain.item.ActivityEquipmentItem
@@ -53,9 +57,28 @@ class ActivityDetailsFragment : BaseFragment() {
         return binding.root
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_activity, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.joinInActivityItem -> {
+                viewModel.onJoinInButtonClick(args.activityId)
+                true
+            }
+
+            else -> {
+                super.onOptionsItemSelected(item)
+            }
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setHasOptionsMenu(true)
         initializeRecyclerView()
         setListeners()
         observeViewModel()
@@ -80,6 +103,10 @@ class ActivityDetailsFragment : BaseFragment() {
         viewModel.activityResource.data.observe(viewLifecycleOwner) { activity ->
             modelAdapter.updateModels(activity.usedEquipment)
             Timber.i(activity.usedEquipment.toString())
+        }
+
+        viewModel.actionCompletedEvent.observe(viewLifecycleOwner) {
+            toast("Dołączono do aktywności")
         }
     }
 }

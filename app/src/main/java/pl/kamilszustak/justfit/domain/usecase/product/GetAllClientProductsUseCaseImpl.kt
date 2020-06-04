@@ -15,8 +15,8 @@ class GetAllClientProductsUseCaseImpl @Inject constructor(
     private val productEntityMapper: ProductEntityMapper
 ) : GetAllClientProductsUseCase {
 
-    override fun invoke(shouldFetch: Boolean): Flow<Resource<List<Product>>> =
-        productRepository.getAllBoughtByClient(shouldFetch)
+    override fun invoke(): Flow<Resource<List<Product>>> =
+        productRepository.getAllBoughtByClient()
             .map { resource ->
                 resource.mapData { products ->
                     productEntityMapper.mapAll(products)
