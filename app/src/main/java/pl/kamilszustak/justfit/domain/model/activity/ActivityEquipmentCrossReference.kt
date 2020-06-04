@@ -7,6 +7,7 @@ import pl.kamilszustak.justfit.domain.model.entity.LocalDatabaseEntity
 @Entity(
     tableName = "activity_equipment_cross_reference",
     primaryKeys = [
+        "id",
         "activity_id",
         "equipment_id"
     ]

@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "3b39eb65a8b84192c935691b235caef4",
+    "identityHash": "a3439cbc0c2dbf276ceeb433cf7c01f9",
     "entities": [
       {
         "tableName": "users",
@@ -326,7 +326,7 @@
       },
       {
         "tableName": "activity_equipment_cross_reference",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`activity_id` INTEGER NOT NULL, `equipment_id` INTEGER NOT NULL, `id` INTEGER NOT NULL, PRIMARY KEY(`activity_id`, `equipment_id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`activity_id` INTEGER NOT NULL, `equipment_id` INTEGER NOT NULL, `id` INTEGER NOT NULL, PRIMARY KEY(`id`, `activity_id`, `equipment_id`))",
         "fields": [
           {
             "fieldPath": "activityId",
@@ -349,6 +349,7 @@
         ],
         "primaryKey": {
           "columnNames": [
+            "id",
             "activity_id",
             "equipment_id"
           ],
@@ -361,7 +362,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '3b39eb65a8b84192c935691b235caef4')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a3439cbc0c2dbf276ceeb433cf7c01f9')"
     ]
   }
 }

@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import com.mikepenz.fastadapter.adapters.ModelAdapter
 import pl.kamilszustak.justfit.R
-import pl.kamilszustak.justfit.databinding.FragmentActivitiesBinding
 import pl.kamilszustak.justfit.databinding.FragmentActivityDetailsBinding
 import pl.kamilszustak.justfit.domain.item.ActivityItem
 import pl.kamilszustak.justfit.domain.model.activity.Activity
@@ -24,6 +24,7 @@ class ActivityDetailsFragment : BaseFragment() {
     }
 
     private lateinit var binding: FragmentActivityDetailsBinding
+    private val args: ActivityDetailsFragmentArgs by navArgs()
     private val modelAdapter: ModelAdapter<Activity, ActivityItem> by lazy {
         ModelAdapter<Activity, ActivityItem> { activity ->
             ActivityItem(activity)
@@ -46,5 +47,18 @@ class ActivityDetailsFragment : BaseFragment() {
         }
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setListeners()
+        viewModel.loadData(args.activityId)
+    }
+
+    private fun setListeners() {
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.onRefresh()
+        }
     }
 }

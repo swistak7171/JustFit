@@ -5,5 +5,5 @@ import pl.kamilszustak.justfit.common.data.Resource
 import pl.kamilszustak.justfit.domain.model.activity.Activity
 
 interface GetActivityByIdUseCase {
-    operator fun invoke(id: Long, shouldFetch: Boolean): Flow<Resource<Activity>>
+    operator fun invoke(id: Long, shouldFetch: Boolean = true): Flow<Resource<Activity>>
 }
