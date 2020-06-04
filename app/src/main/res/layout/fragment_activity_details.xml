@@ -17,7 +17,8 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:fillViewport="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -115,8 +116,7 @@
                     android:layout_height="match_parent"
                     android:id="@+id/equipmentRecyclerView"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    android:layout_marginTop="@dimen/default_margin"
-                    android:background="@color/colorAccent"/>
+                    android:layout_marginHorizontal="@dimen/default_margin"/>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
