@@ -9,6 +9,7 @@ import pl.kamilszustak.justfit.common.AndroidViewModelFactory
 import pl.kamilszustak.justfit.di.ViewModelKey
 import pl.kamilszustak.justfit.ui.authentication.login.LoginViewModel
 import pl.kamilszustak.justfit.ui.main.activity.ActivitiesViewModel
+import pl.kamilszustak.justfit.ui.main.activity.details.ActivityDetailsViewModel
 import pl.kamilszustak.justfit.ui.main.employee.EmployeesViewModel
 import pl.kamilszustak.justfit.ui.main.employee.details.EmployeeDetailsViewModel
 import pl.kamilszustak.justfit.ui.main.equipment.EquipmentViewModel
@@ -25,45 +26,50 @@ interface ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(LoginViewModel::class)
-    fun bindLoginViewModel(loginViewModel: LoginViewModel): ViewModel
+    fun bindLoginViewModel(viewModel: LoginViewModel): ViewModel
 
     @Binds
     @IntoMap
     @ViewModelKey(ProfileViewModel::class)
-    fun bindProfileViewModel(profileViewModel: ProfileViewModel): ViewModel
+    fun bindProfileViewModel(viewModel: ProfileViewModel): ViewModel
 
     @Binds
     @IntoMap
     @ViewModelKey(EquipmentViewModel::class)
-    fun bindEquipmentViewModel(equipmentViewModel: EquipmentViewModel): ViewModel
+    fun bindEquipmentViewModel(viewModel: EquipmentViewModel): ViewModel
 
     @Binds
     @IntoMap
     @ViewModelKey(EmployeesViewModel::class)
-    fun bindEmployeesViewModel(employeesViewModel: EmployeesViewModel): ViewModel
+    fun bindEmployeesViewModel(viewModel: EmployeesViewModel): ViewModel
 
     @Binds
     @IntoMap
     @ViewModelKey(EmployeeDetailsViewModel::class)
-    fun bindEmployeeDetailsViewModel(employeeDetailsViewModel: EmployeeDetailsViewModel): ViewModel
+    fun bindEmployeeDetailsViewModel(viewModel: EmployeeDetailsViewModel): ViewModel
 
     @Binds
     @IntoMap
     @ViewModelKey(EventsViewModel::class)
-    fun bindEventsViewModel(eventsViewModel: EventsViewModel): ViewModel
+    fun bindEventsViewModel(viewModel: EventsViewModel): ViewModel
 
     @Binds
     @IntoMap
     @ViewModelKey(ProductsViewModel::class)
-    fun bindProductsViewModel(productsViewModel: ProductsViewModel): ViewModel
+    fun bindProductsViewModel(viewModel: ProductsViewModel): ViewModel
 
     @Binds
     @IntoMap
     @ViewModelKey(ClientProductsViewModel::class)
-    fun bindClientProductsViewModel(clientProductsViewModel: ClientProductsViewModel): ViewModel
+    fun bindClientProductsViewModel(viewModel: ClientProductsViewModel): ViewModel
 
     @Binds
     @IntoMap
     @ViewModelKey(ActivitiesViewModel::class)
-    fun bindActivitesViewModel(activitiesViewModel: ActivitiesViewModel): ViewModel
+    fun bindActivitesViewModel(viewModel: ActivitiesViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ActivityDetailsViewModel::class)
+    fun bindActivityDetailsViewModel(viewModel: ActivityDetailsViewModel): ViewModel
 }

@@ -42,14 +42,14 @@ class ActivityRepository @Inject constructor(
                         equipmentDao.insertAll(equipment)
                     }
 
-                    activity.usedEquipment.forEach { equipment ->
-                        val activityEquipment = ActivityEquipmentCrossReference(
+                    val activityEquipment = activity.usedEquipment.map { equipment ->
+                        ActivityEquipmentCrossReference(
                             activityId = activity.id,
                             equipmentId = equipment.id
                         )
-
-                        activityEquipmentDao.replaceByActivityId(activityEquipment)
                     }
+
+                    activityEquipmentDao.replaceAllByActivityId(activityEquipment)
                 }
 
                 activityJsonMapper.onMapAll(result) { activities ->
@@ -71,12 +71,21 @@ class ActivityRepository @Inject constructor(
                 activityApiService.getById(id)
 
             override suspend fun saveFetchResult(result: ActivityJson) {
-                activityJsonMapper.onMap(result) { activity ->
-                    activityDao.insert(activity)
-                }
-
                 equipmentJsonMapper.onMapAll(result.usedEquipment) { equipment ->
                     equipmentDao.insertAll(equipment)
+                }
+
+                val activityEquipment = result.usedEquipment.map { equipment ->
+                    ActivityEquipmentCrossReference(
+                        activityId = result.id,
+                        equipmentId = equipment.id
+                    )
+                }
+
+                activityEquipmentDao.replaceAllByActivityId(activityEquipment)
+
+                activityJsonMapper.onMap(result) { activity ->
+                    activityDao.insert(activity)
                 }
             }
         }.asFlow()
