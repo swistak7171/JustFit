@@ -65,11 +65,17 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/overviewButton"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:text="Przegląd" />
+
+                <com.google.android.material.button.MaterialButton
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/loginButton"
-                    android:text="Zaloguj"
-                    android:layout_marginTop="@dimen/default_margin" />
+                    android:text="Zaloguj" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

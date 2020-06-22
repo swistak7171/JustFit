@@ -14,6 +14,7 @@ import pl.kamilszustak.justfit.R
 import pl.kamilszustak.justfit.databinding.FragmentLoginBinding
 import pl.kamilszustak.justfit.ui.base.BaseFragment
 import pl.kamilszustak.justfit.ui.main.MainActivity
+import pl.kamilszustak.justfit.util.navigateTo
 import javax.inject.Inject
 
 class LoginFragment : BaseFragment(R.layout.fragment_login) {
@@ -51,6 +52,10 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
     }
 
     private fun setListeners() {
+        binding.overviewButton.setOnClickListener {
+            navigateToOverviewFragment()
+        }
+
         binding.loginButton.setOnClickListener {
             viewModel.onLoginButtonClick()
         }
@@ -66,5 +71,10 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
             val message = getString(messageResource)
             view?.snackbar(message)
         }
+    }
+
+    private fun navigateToOverviewFragment() {
+        val direction = LoginFragmentDirections.actionLoginFragmentToOverviewFragment()
+        navigateTo(direction)
     }
 }

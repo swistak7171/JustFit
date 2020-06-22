@@ -9,5 +9,30 @@
         android:id="@+id/loginFragment"
         android:name="pl.kamilszustak.justfit.ui.authentication.login.LoginFragment"
         android:label="LoginFragment"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_overviewFragment"
+            app:destination="@id/overviewFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/overviewFragment"
+        android:name="pl.kamilszustak.justfit.ui.authentication.overview.OverviewFragment"
+        android:label="Przegląd"
+        tools:layout="@layout/fragment_overview" >
+        <action
+            android:id="@+id/action_overviewFragment_to_overviewPhotoFragment"
+            app:destination="@id/overviewPhotoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/overviewPhotoFragment"
+        android:name="pl.kamilszustak.justfit.ui.authentication.overview.photo.OverviewPhotoFragment"
+        android:label="OverviewPhotoFragment" >
+        <argument
+            android:name="photoResource"
+            app:argType="integer" />
+    </fragment>
 </navigation>
