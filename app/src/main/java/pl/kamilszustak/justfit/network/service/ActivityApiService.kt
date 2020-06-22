@@ -11,4 +11,7 @@ interface ActivityApiService {
 
     @GET("/getActivitiesById/{id}")
     suspend fun getById(@Path("id") id: Long): Response<ActivityJson>
+
+    @GET("/getActivitiesByDate/{date}")
+    suspend fun getAllByDate(@Path("date") date: String): Response<List<ActivityJson>>
 }

@@ -18,6 +18,9 @@ data class ActivityEntity(
     @ColumnInfo(name = "type")
     val type: String,
 
+    @ColumnInfo(name = "date")
+    val date: Date,
+
     @ColumnInfo(name = "start_date")
     val startDate: Date,
 

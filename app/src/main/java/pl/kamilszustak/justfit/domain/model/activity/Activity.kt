@@ -11,6 +11,7 @@ data class Activity(
     val name: String,
     val leaderName: String,
     val type: String,
+    val date: Date,
     val startDate: Date,
     val endDate: Date,
     val usedEquipment: List<Equipment>,

@@ -12,6 +12,7 @@ class ActivityJsonMapper @Inject constructor() : JsonModelMapper<ActivityJson, A
     override fun map(model: ActivityJson): ActivityEntity {
         val startDateString = "${model.date} ${model.startTime}"
         val endDateString = "${model.date} ${model.endTime}"
+        val date = DateFormats.europeanSimpleDateFormat.parse(model.date)
         val startDate = DateFormats.europeanDateFormat.parse(startDateString)
         val endDate = DateFormats.europeanDateFormat.parse(endDateString)
 
@@ -19,6 +20,7 @@ class ActivityJsonMapper @Inject constructor() : JsonModelMapper<ActivityJson, A
             name = model.name,
             leaderName = model.leaderName,
             type = model.type,
+            date = date,
             startDate = startDate,
             endDate = endDate,
             isCancelled = model.isCancelled
