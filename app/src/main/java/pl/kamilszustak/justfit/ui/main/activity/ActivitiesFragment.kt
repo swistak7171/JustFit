@@ -26,6 +26,7 @@ import pl.kamilszustak.justfit.util.navigateTo
 import pl.kamilszustak.justfit.util.popupMenu
 import pl.kamilszustak.justfit.util.updateModels
 import timber.log.Timber
+import java.util.Date
 import javax.inject.Inject
 
 class ActivitiesFragment : BaseFragment() {
@@ -82,9 +83,20 @@ class ActivitiesFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setHasOptionsMenu(true)
+        initializeCalendarView()
         initializeRecyclerView()
         setListeners()
         observeViewModel()
+    }
+
+    private fun initializeCalendarView() {
+        binding.calendarView.apply {
+            this.setOnDateChangeListener { view, year, month, dayOfMonth ->
+                val date = Date(year - 1900, month, dayOfMonth)
+                viewModel.onDateSelected(date)
+            }
+            this.date = Date().time
+        }
     }
 
     private fun initializeRecyclerView() {
@@ -142,8 +154,8 @@ class ActivitiesFragment : BaseFragment() {
 
     private fun observeViewModel() {
         viewModel.activitiesResource.data.observe(viewLifecycleOwner) { activities ->
-            modelAdapter.updateModels(activities)
             Timber.i(activities.toString())
+            modelAdapter.updateModels(activities)
         }
 
         viewModel.actionCompletedEvent.observe(viewLifecycleOwner) {
