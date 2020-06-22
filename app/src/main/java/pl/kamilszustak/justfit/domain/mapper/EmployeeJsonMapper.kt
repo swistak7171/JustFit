@@ -14,5 +14,7 @@ class EmployeeJsonMapper @Inject constructor() : JsonModelMapper<EmployeeJson, E
         phoneNumber = model.phoneNumber,
         specialization = model.specialization,
         workHours = model.workHours
-    )
+    ).apply {
+        this.id = model.id
+    }
 }

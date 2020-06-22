@@ -20,9 +20,9 @@ interface ClientApiService {
     @GET("/api/product")
     suspend fun getAllClientProducts(): Response<List<ClientProductJson>>
 
-    @POST("/api/exercise/")
+    @POST("/api/activity/")
     suspend fun joinInActivity(@Body requestBody: JoinInActivityRequestBody): Response<ClientActivityJson>
 
-    @GET("/api/exercise/")
+    @GET("/api/activity/")
     suspend fun getAllClientActivities(): Response<List<ClientActivityJson>>
 }

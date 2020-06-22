@@ -19,7 +19,10 @@ class GetAllClientProductsUseCaseImpl @Inject constructor(
         productRepository.getAllBoughtByClient()
             .map { resource ->
                 resource.mapData { products ->
-                    productEntityMapper.mapAll(products)
+                    products.distinct()
+                        .let {
+                            productEntityMapper.mapAll(it)
+                        }
                 }
             }
 }

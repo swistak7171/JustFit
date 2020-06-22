@@ -9,7 +9,7 @@ data class ClientActivityJson(
     @Json(name = "user")
     val userId: Long,
 
-    @Json(name = "id_exercise")
+    @Json(name = "id_activity")
     val activityId: Long,
 
     @Json(name = "active")
