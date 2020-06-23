@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_product"
+    app:startDestination="@id/productsFragment">
+
+    <fragment
+        android:id="@+id/productsFragment"
+        android:name="pl.kamilszustak.justfit.ui.main.product.ProductsFragment"
+        android:label="Produkty"
+        tools:layout="@layout/fragment_products" >
+        <action
+            android:id="@+id/action_productsFragment_to_clientProductsFragment"
+            app:destination="@id/clientProductsFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/clientProductsFragment"
+        android:name="pl.kamilszustak.justfit.ui.main.product.client.ClientProductsFragment"
+        android:label="Moje produkty"
+        tools:layout="@layout/fragment_client_products" />
+</navigation>

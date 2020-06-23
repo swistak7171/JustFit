@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_authentication"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="pl.kamilszustak.justfit.ui.authentication.login.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_overviewFragment"
+            app:destination="@id/overviewFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_loginFragment_to_contactFragment"
+            app:destination="@id/contactFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/overviewFragment"
+        android:name="pl.kamilszustak.justfit.ui.authentication.overview.OverviewFragment"
+        android:label="Przegląd"
+        tools:layout="@layout/fragment_overview" >
+        <action
+            android:id="@+id/action_overviewFragment_to_overviewPhotoFragment"
+            app:destination="@id/overviewPhotoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/overviewPhotoFragment"
+        android:name="pl.kamilszustak.justfit.ui.authentication.overview.photo.OverviewPhotoFragment"
+        android:label="OverviewPhotoFragment" >
+        <argument
+            android:name="photoResource"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/contactFragment"
+        android:name="pl.kamilszustak.justfit.ui.main.profile.contact.ContactFragment"
+        android:label="Kontakt"
+        tools:layout="@layout/fragment_contact" />
+</navigation>

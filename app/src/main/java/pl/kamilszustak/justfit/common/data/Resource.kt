@@ -1,10 +1,41 @@
 package pl.kamilszustak.justfit.common.data
 
-import pl.kamilszustak.justfit.common.data.Status.SUCCESS
 import pl.kamilszustak.justfit.common.data.Status.ERROR
 import pl.kamilszustak.justfit.common.data.Status.LOADING
+import pl.kamilszustak.justfit.common.data.Status.SUCCESS
 
-data class Resource<out T>(val status: Status, val data: T?, val message: String?) {
+data class Resource<out T>(
+    val status: Status,
+    val data: T?,
+    val message: String?
+) {
+    val isSuccess: Boolean
+        get() = (this.status == Status.SUCCESS)
+
+    val isError: Boolean
+        get() = (this.status == Status.ERROR)
+
+    val isLoading: Boolean
+        get() = (this.status == Status.LOADING)
+
+    inline fun <R> mapData(transform: (T) -> R): Resource<R> {
+        val data = this.data
+        val mappedData = if (data != null) {
+            transform(data)
+        } else {
+            data
+        }
+
+        return when {
+            this.isSuccess -> success(mappedData)
+            this.isLoading -> loading(mappedData)
+            this.isError -> error(
+                this.message ?: "Unknown Resource error",
+                mappedData
+            )
+            else -> throw IllegalStateException("Illegal Resource status: ${this.status}")
+        }
+    }
 
     companion object {
         fun <T> success(data: T?): Resource<T> {

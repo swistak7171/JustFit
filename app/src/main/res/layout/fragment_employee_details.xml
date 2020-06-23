@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="pl.kamilszustak.justfit.ui.main.employee.details.EmployeeDetailsViewModel" />
+    </data>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/swipeRefreshLayout"
+        app:refreshing="@{viewModel.employeeResource.isLoading}">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:visibleIfNotNull="@{viewModel.employeeResource.data}"
+                android:padding="@dimen/default_padding">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Imię i nazwisko"
+                    android:textColor="@color/colorAccent" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fullNameTextView"
+                    android:text="@{viewModel.employeeResource.data.fullName}"
+                    tools:text="Jan Kowalski"
+                    android:textAppearance="?textAppearanceHeadline6" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Adres email"
+                    android:textColor="@color/colorAccent"
+                    android:layout_marginTop="@dimen/default_margin" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/emailTextView"
+                    android:text="@{viewModel.employeeResource.data.email}"
+                    tools:text="jan.kowalski@gmail.com"
+                    android:textAppearance="?textAppearanceHeadline6"
+                    android:textIsSelectable="true" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Numer telefonu"
+                    android:textColor="@color/colorAccent"
+                    android:layout_marginTop="@dimen/default_margin" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/phoneNumberTextView"
+                    android:text="@{viewModel.employeeResource.data.phoneNumber}"
+                    tools:text="123456789"
+                    android:textAppearance="?textAppearanceHeadline6"
+                    android:textIsSelectable="true" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Specjalizacja"
+                    android:textColor="@color/colorAccent"
+                    android:layout_marginTop="@dimen/default_margin" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/specializationTextView"
+                    android:text="@{viewModel.employeeResource.data.specialization}"
+                    tools:text="Trening siłowy"
+                    android:textAppearance="?textAppearanceHeadline6" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Godziny pracy"
+                    android:textColor="@color/colorAccent"
+                    android:layout_marginTop="@dimen/default_margin" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/workHoursTextView"
+                    android:text="@{viewModel.employeeResource.data.workHours}"
+                    tools:text="08:00 - 16:00"
+                    android:textAppearance="?textAppearanceHeadline6" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</layout>

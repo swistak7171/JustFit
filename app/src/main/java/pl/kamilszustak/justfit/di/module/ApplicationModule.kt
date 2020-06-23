@@ -2,13 +2,13 @@ package pl.kamilszustak.justfit.di.module
 
 import android.app.Application
 import android.content.Context
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-class ApplicationModule {
-    @Provides
+abstract class ApplicationModule {
+    @Binds
     @Singleton
-    fun provideContext(application: Application): Context = application
+    abstract fun provideContext(application: Application): Context
 }

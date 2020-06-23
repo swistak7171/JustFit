@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_profile"
+    app:startDestination="@id/profileFragment">
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="pl.kamilszustak.justfit.ui.main.profile.ProfileFragment"
+        android:label="Profil klienta"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_clientProductsFragment"
+            app:destination="@id/clientProductsFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_profileFragment_to_employeesFragment"
+            app:destination="@id/employeesFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_profileFragment_to_clientActivitiesFragment"
+            app:destination="@id/clientActivitiesFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_profileFragment_to_contactFragment"
+            app:destination="@id/contactFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/clientProductsFragment"
+        android:name="pl.kamilszustak.justfit.ui.main.product.client.ClientProductsFragment"
+        android:label="Moje produkty"
+        tools:layout="@layout/fragment_client_products" />
+
+    <fragment
+        android:id="@+id/employeesFragment"
+        android:name="pl.kamilszustak.justfit.ui.main.employee.EmployeesFragment"
+        android:label="Pracownicy"
+        tools:layout="@layout/fragment_employees" >
+        <action
+            android:id="@+id/action_employeesFragment_to_employeeDetailsFragment"
+            app:destination="@id/employeeDetailsFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/employeeDetailsFragment"
+        android:name="pl.kamilszustak.justfit.ui.main.employee.details.EmployeeDetailsFragment"
+        android:label="Dane pracownika"
+        tools:layout="@layout/fragment_employee_details" >
+        <argument
+            android:name="employeeId"
+            app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/clientActivitiesFragment"
+        android:name="pl.kamilszustak.justfit.ui.main.activity.client.ClientActivitiesFragment"
+        android:label="Moje aktywności"
+        tools:layout="@layout/fragment_client_activities" >
+        <action
+            android:id="@+id/action_clientActivitiesFragment_to_activityDetailsFragment"
+            app:destination="@id/activityDetailsFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/activityDetailsFragment"
+        android:name="pl.kamilszustak.justfit.ui.main.activity.details.ActivityDetailsFragment"
+        android:label="Szczegóły aktywności"
+        tools:layout="@layout/fragment_activity_details">
+        <argument
+            android:name="activityId"
+            app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/contactFragment"
+        android:name="pl.kamilszustak.justfit.ui.main.profile.contact.ContactFragment"
+        android:label="Kontakt"
+        tools:layout="@layout/fragment_contact" />
+</navigation>

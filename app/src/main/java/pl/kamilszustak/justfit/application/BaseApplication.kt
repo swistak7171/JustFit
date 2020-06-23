@@ -4,6 +4,7 @@ import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
 import leakcanary.AppWatcher
 import pl.kamilszustak.justfit.di.component.ApplicationComponent
+import pl.kamilszustak.justfit.di.component.DaggerApplicationComponent
 import timber.log.Timber
 
 class BaseApplication : DaggerApplication() {

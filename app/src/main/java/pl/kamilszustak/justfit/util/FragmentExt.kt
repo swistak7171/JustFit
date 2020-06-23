@@ -1,5 +1,7 @@
 package pl.kamilszustak.justfit.util
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
@@ -61,4 +63,12 @@ inline fun Fragment.dialog(crossinline block: MaterialDialog.() -> Unit): Materi
         cornerRadius(16F)
         lifecycleOwner(this@dialog.viewLifecycleOwner)
     }
+}
+
+fun Fragment.dial(phoneNumber: String) {
+    val intent = Intent(Intent.ACTION_DIAL).apply {
+        this.data = Uri.parse("tel:$phoneNumber")
+    }
+
+    startActivity(intent)
 }

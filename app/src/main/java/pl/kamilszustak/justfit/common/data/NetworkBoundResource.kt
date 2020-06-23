@@ -1,8 +1,13 @@
 package pl.kamilszustak.justfit.common.data
 
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emitAll
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
 import retrofit2.HttpException
 import retrofit2.Response
+import timber.log.Timber
 
 abstract class NetworkBoundResource<ResponseType, EntityType> {
 
@@ -47,7 +52,9 @@ abstract class NetworkBoundResource<ResponseType, EntityType> {
 
     abstract suspend fun saveFetchResult(result: ResponseType)
 
-    open fun onFetchFailed(throwable: Throwable): Unit = Unit
+    open suspend fun onFetchFailed(throwable: Throwable) {
+        Timber.e(throwable)
+    }
 
     open fun shouldFetch(data: EntityType?): Boolean = true
 }

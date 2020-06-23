@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="fastadapter_equipment_item" type="id" />
+    <item name="fastadapter_employee_item" type="id" />
+    <item name="fastadapter_event_item" type="id" />
+    <item name="fastadapter_product_item" type="id" />
+    <item name="fastadapter_client_product_item" type="id" />
+    <item name="fastadapter_activity_item" type="id" />
+    <item name="fastadapter_activity_equipment_item" type="id" />
+</resources>

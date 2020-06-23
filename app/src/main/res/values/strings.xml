@@ -1,4 +1,40 @@
 <resources>
     <string name="app_name">JustFit</string>
     <string name="database_name">justfit_database</string>
+    <string name="shared_preferences_user_email">shared_preferences_user_email</string>
+    <string name="shared_preferences_user_password">shared_preferences_user_password</string>
+    <string name="shared_preferences_user_id">shared_preferences_user_id</string>
+    <string name="shared_preferences_is_user_authenticated">shared_preferences_is_user_authenticated</string>
+    <string name="empty_user_email_error_message">Nie podano adresu email</string>
+    <string name="empty_user_password_error_message">Nie podano hasła</string>
+    <string name="authentication_error_message">Wystąpił błąd podczas logowania</string>
+
+    <string name="yes">Tak</string>
+    <string name="no">Nie</string>
+
+    <!-- EquipmentItem -->
+    <string name="equipment_is_available">Dostępne</string>
+    <string name="equipment_is_not_availble">Niedostępne</string>
+
+    <!-- EquipmentFragment -->
+    <string name="set_equipment_as_unavailable_error_message">Wystąpił błąd podczas oznaczania sprzętu jako niedostępny</string>
+
+    <!-- EventsFragment -->
+    <string name="event_start_date">Start: %1$s</string>
+    <string name="event_end_date">Koniec: %1$s</string>
+
+    <!-- EventDetailsFragment -->
+    <string name="joining_event_error_message">Wystąpił błąd podczas dołączania do wydarzenia</string>
+    <string name="leaving_event_error_message">Wystąpił błąd podczas opuszczania wydarzenia</string>
+    <string name="action_completed">Akcja zakończona sukcesem</string>
+
+    <!-- ProductsFragment -->
+    <string name="buying_product_error_message">Wystąpił błąd podczas zakupu produktu</string>
+    <string name="product_buy_dialog_title">Zakup produktu</string>
+    <string name="product_buy_dialog_message">Czy na pewno chcesz zakupić %1$s (%2$.2f zł)?</string>
+
+    <!-- ActivitiesFragment -->
+    <string name="leader_name">Prowadzący: %1$s</string>
+    <string name="start_time_and_end_time">%1$s - %2$s</string>
+    <string name="joining_in_activity_error_message">Wystąpił błąd podczas dołączania do aktywności</string>
 </resources>

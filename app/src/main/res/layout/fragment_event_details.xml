@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="pl.kamilszustak.justfit.common.date.DateFormats" />
+
+        <variable
+            name="viewModel"
+            type="pl.kamilszustak.justfit.ui.main.event.details.EventDetailsViewModel" />
+    </data>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/swipeRefreshLayout"
+        app:refreshing="@{viewModel.eventResource.isLoading || viewModel.employeeResource.isLoading || viewModel.isLoading}">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="@dimen/default_padding">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nazwa"
+                    android:textColor="@color/colorAccent" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/nameTextView"
+                    android:text="@{viewModel.eventResource.data.name}"
+                    tools:text="Spotkanie rekreacyjne"
+                    android:textAppearance="?textAppearanceHeadline6" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Data rozpoczęcia"
+                    android:textColor="@color/colorAccent"
+                    android:layout_marginTop="@dimen/default_margin"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/typeTextView"
+                    android:text='@{viewModel.eventResource.data.startDate != null ? DateFormats.INSTANCE.dateFormat.format(viewModel.eventResource.data.endDate) : ""}'
+                    tools:text="2020-10-25 15:30"
+                    android:textAppearance="?textAppearanceHeadline6" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Data zakończenia"
+                    android:textColor="@color/colorAccent"
+                    android:layout_marginTop="@dimen/default_margin"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/leaderNameTextView"
+                    android:text='@{viewModel.eventResource.data.endDate != null ? DateFormats.INSTANCE.dateFormat.format(viewModel.eventResource.data.endDate) : ""}'
+                    tools:text="Jan Kowalski"
+                    android:textAppearance="?textAppearanceHeadline6" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Liczba uczestników"
+                    android:textColor="@color/colorAccent"
+                    android:layout_marginTop="@dimen/default_margin"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/dateTextView"
+                    android:text="@{viewModel.numberOfAttendees}"
+                    tools:text="15"
+                    android:textAppearance="?textAppearanceHeadline6" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Prowadzący"
+                    android:textColor="@color/colorAccent"
+                    android:layout_marginTop="@dimen/default_margin"
+                    app:visibleIfNotNull="@{viewModel.employeeResource.data}" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/timeTextView"
+                    android:text="@{viewModel.employeeResource.data.fullName}"
+                    tools:text="Jan Kowalski"
+                    android:textAppearance="?textAppearanceHeadline6"
+                    app:visibleIfNotNull="@{viewModel.employeeResource.data}" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    android:layout_marginTop="@dimen/default_margin">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/leaveButton"
+                        android:text="Opuść"
+                        android:layout_weight="1"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_marginEnd="@dimen/default_half_margin" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/joinButton"
+                        android:text="Dołącz"
+                        android:layout_weight="1"
+                        android:layout_marginStart="@dimen/default_half_margin" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</layout>
