@@ -55,6 +55,11 @@ class ActivitiesFragment : BaseFragment() {
                 true
             }
 
+            R.id.allActivitiesItem -> {
+                navigateToAllActivitiesFragment()
+                true
+            }
+
             else -> {
                 super.onOptionsItemSelected(item)
             }
@@ -170,6 +175,11 @@ class ActivitiesFragment : BaseFragment() {
 
     private fun navigateToClientActivitiesFragment() {
         val direction = ActivitiesFragmentDirections.actionActivitiesFragmentToClientActivitiesFragment()
+        navigateTo(direction)
+    }
+
+    private fun navigateToAllActivitiesFragment() {
+        val direction = ActivitiesFragmentDirections.actionActivitiesFragmentToAllActivitiesFragment()
         navigateTo(direction)
     }
 }
