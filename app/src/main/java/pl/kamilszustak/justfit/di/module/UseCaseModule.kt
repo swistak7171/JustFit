@@ -28,6 +28,8 @@ import pl.kamilszustak.justfit.domain.usecase.event.GetAllEventsUseCase
 import pl.kamilszustak.justfit.domain.usecase.event.GetAllEventsUseCaseImpl
 import pl.kamilszustak.justfit.domain.usecase.event.GetEventByIdUseCase
 import pl.kamilszustak.justfit.domain.usecase.event.GetEventByIdUseCaseImpl
+import pl.kamilszustak.justfit.domain.usecase.event.JoinEventUseCase
+import pl.kamilszustak.justfit.domain.usecase.event.JoinEventUseCaseImpl
 import pl.kamilszustak.justfit.domain.usecase.product.BuyProductUseCase
 import pl.kamilszustak.justfit.domain.usecase.product.BuyProductUseCaseImpl
 import pl.kamilszustak.justfit.domain.usecase.product.GetAllClientProductsUseCase
@@ -104,4 +106,7 @@ interface UseCaseModule {
 
     @Binds
     fun bindGetAllActivitiesByDateUseCase(useCaseImpl: GetAllActivitiesByDateUseCaseImpl): GetAllActivitiesByDateUseCase
+
+    @Binds
+    fun bindJoinEventUseCase(useCaseImpl: JoinEventUseCaseImpl): JoinEventUseCase
 }
