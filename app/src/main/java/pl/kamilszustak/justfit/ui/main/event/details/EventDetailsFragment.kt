@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.navArgs
+import org.jetbrains.anko.support.v4.toast
 import pl.kamilszustak.justfit.R
 import pl.kamilszustak.justfit.databinding.FragmentEventDetailsBinding
 import pl.kamilszustak.justfit.ui.base.BaseFragment
@@ -45,6 +47,7 @@ class EventDetailsFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setListeners()
+        observeViewModel()
         viewModel.loadData(args.eventId)
     }
 
@@ -59,6 +62,12 @@ class EventDetailsFragment : BaseFragment() {
 
         binding.leaveButton.setOnClickListener {
             viewModel.onLeaveButtonClick(args.eventId)
+        }
+    }
+
+    private fun observeViewModel() {
+        viewModel.actionCompletedEvent.observe(viewLifecycleOwner) {
+            toast(R.string.action_completed)
         }
     }
 }
