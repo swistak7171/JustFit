@@ -8,13 +8,16 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
+import com.mikepenz.fastadapter.ClickListener
 import com.mikepenz.fastadapter.FastAdapter
+import com.mikepenz.fastadapter.IAdapter
 import com.mikepenz.fastadapter.adapters.ModelAdapter
 import pl.kamilszustak.justfit.R
 import pl.kamilszustak.justfit.databinding.FragmentEventsBinding
 import pl.kamilszustak.justfit.domain.item.EventItem
 import pl.kamilszustak.justfit.domain.model.event.Event
 import pl.kamilszustak.justfit.ui.base.BaseFragment
+import pl.kamilszustak.justfit.util.navigateTo
 import pl.kamilszustak.justfit.util.updateModels
 import javax.inject.Inject
 
@@ -60,6 +63,19 @@ class EventsFragment : BaseFragment(R.layout.fragment_events) {
 
     private fun initializeRecyclerView() {
         val fastAdapter = FastAdapter.with(modelAdapter)
+            .apply {
+                this.onClickListener = object : ClickListener<EventItem> {
+                    override fun invoke(
+                        v: View?,
+                        adapter: IAdapter<EventItem>,
+                        item: EventItem,
+                        position: Int
+                    ): Boolean {
+                        navigateToEventDetailsFragment(item.model.id)
+                        return true
+                    }
+                }
+            }
 
         binding.eventsRecyclerView.apply {
             this.adapter = fastAdapter
@@ -76,5 +92,10 @@ class EventsFragment : BaseFragment(R.layout.fragment_events) {
         viewModel.eventsResource.data.observe(viewLifecycleOwner) { events ->
             modelAdapter.updateModels(events)
         }
+    }
+
+    private fun navigateToEventDetailsFragment(eventId: Long) {
+        val direction = EventsFragmentDirections.actionEventsFragmentToEventDetailsFragment(eventId)
+        navigateTo(direction)
     }
 }

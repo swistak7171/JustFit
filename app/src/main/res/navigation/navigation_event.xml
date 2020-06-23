@@ -9,5 +9,22 @@
         android:id="@+id/eventsFragment"
         android:name="pl.kamilszustak.justfit.ui.main.event.EventsFragment"
         android:label="Wydarzenia"
-        tools:layout="@layout/fragment_events" />
+        tools:layout="@layout/fragment_events" >
+        <action
+            android:id="@+id/action_eventsFragment_to_eventDetailsFragment"
+            app:destination="@id/eventDetailsFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/eventDetailsFragment"
+        android:name="pl.kamilszustak.justfit.ui.main.event.details.EventDetailsFragment"
+        android:label="Szczegóły wydarzenia"
+        tools:layout="@layout/fragment_event_details">
+        <argument
+            android:name="eventId"
+            app:argType="long" />
+    </fragment>
 </navigation>

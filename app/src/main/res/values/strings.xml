@@ -23,6 +23,11 @@
     <string name="event_start_date">Start: %1$s</string>
     <string name="event_end_date">Koniec: %1$s</string>
 
+    <!-- EventDetailsFragment -->
+    <string name="joining_event_error_message">Wystąpił błąd podczas dołączania do wydarzenia</string>
+    <string name="leaving_event_error_message">Wystąpił błąd podczas opuszczania wydarzenia</string>
+    <string name="action_completed">Akcja zakończona sukcesem</string>
+
     <!-- ProductsFragment -->
     <string name="buying_product_error_message">Wystąpił błąd podczas zakupu produktu</string>
     <string name="product_buy_dialog_title">Zakup produktu</string>

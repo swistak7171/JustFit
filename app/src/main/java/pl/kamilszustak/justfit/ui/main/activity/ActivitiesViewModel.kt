@@ -20,12 +20,6 @@ class ActivitiesViewModel @Inject constructor(
 
     val activitiesResource: ResourceDataSource<List<Activity>> = ResourceDataSource()
 
-    init {
-        activitiesResource.setFlowSource {
-            getAllActivities()
-        }
-    }
-
     fun onRefresh() {
         activitiesResource.refresh()
     }

@@ -17,6 +17,7 @@ import pl.kamilszustak.justfit.ui.main.employee.EmployeesViewModel
 import pl.kamilszustak.justfit.ui.main.employee.details.EmployeeDetailsViewModel
 import pl.kamilszustak.justfit.ui.main.equipment.EquipmentViewModel
 import pl.kamilszustak.justfit.ui.main.event.EventsViewModel
+import pl.kamilszustak.justfit.ui.main.event.details.EventDetailsViewModel
 import pl.kamilszustak.justfit.ui.main.product.ProductsViewModel
 import pl.kamilszustak.justfit.ui.main.product.client.ClientProductsViewModel
 import pl.kamilszustak.justfit.ui.main.profile.ProfileViewModel
@@ -90,4 +91,9 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(AllActivitiesViewModel::class)
     fun bindAllActivitiesViewModel(viewModel: AllActivitiesViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(EventDetailsViewModel::class)
+    fun bindEventDetailsViewModel(viewModel: EventDetailsViewModel): ViewModel
 }
