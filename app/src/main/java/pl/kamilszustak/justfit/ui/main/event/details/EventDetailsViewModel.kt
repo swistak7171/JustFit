@@ -1,6 +1,8 @@
 package pl.kamilszustak.justfit.ui.main.event.details
 
 import android.app.Application
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.map
 import pl.kamilszustak.justfit.common.livedata.ResourceDataSource
 import pl.kamilszustak.justfit.domain.model.employee.Employee
 import pl.kamilszustak.justfit.domain.model.event.Event
@@ -17,10 +19,17 @@ class EventDetailsViewModel @Inject constructor(
 
     val eventResource: ResourceDataSource<Event> = ResourceDataSource()
     val employeeResource: ResourceDataSource<Employee> = ResourceDataSource()
+    val numberOfAttendees: LiveData<String> = eventResource.result.map { resource ->
+        if (resource?.data != null) {
+            resource.data.numberOfAttendees.toString()
+        } else {
+            ""
+        }
+    }
 
     init {
         employeeResource.result.addSource(eventResource.result) { resource ->
-            if (resource != null && resource.isSuccess && resource.data != null) {
+            if (resource?.data != null) {
                 employeeResource.setFlowSource {
                     getEmployeeById(resource.data.employeeId)
                 }
@@ -32,5 +41,9 @@ class EventDetailsViewModel @Inject constructor(
         eventResource.setFlowSource {
             getEventById(eventId)
         }
+    }
+
+    fun onRefresh() {
+        eventResource.refresh()
     }
 }

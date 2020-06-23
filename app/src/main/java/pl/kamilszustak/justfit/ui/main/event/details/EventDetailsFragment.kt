@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import pl.kamilszustak.justfit.R
 import pl.kamilszustak.justfit.databinding.FragmentEventDetailsBinding
 import pl.kamilszustak.justfit.ui.base.BaseFragment
@@ -19,6 +20,7 @@ class EventDetailsFragment : BaseFragment() {
         viewModelFactory
     }
 
+    private val args: EventDetailsFragmentArgs by navArgs()
     private lateinit var binding: FragmentEventDetailsBinding
 
     override fun onCreateView(
@@ -37,5 +39,18 @@ class EventDetailsFragment : BaseFragment() {
         }
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setListeners()
+        viewModel.loadData(args.eventId)
+    }
+
+    private fun setListeners() {
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.onRefresh()
+        }
     }
 }

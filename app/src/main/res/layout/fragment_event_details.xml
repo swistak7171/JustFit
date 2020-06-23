@@ -83,7 +83,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/dateTextView"
-                    android:text="@{viewModel.eventResource.data.numberOfAttendees}"
+                    android:text="@{viewModel.numberOfAttendees}"
                     tools:text="15"
                     android:textAppearance="?textAppearanceHeadline6" />
 
@@ -99,7 +99,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/timeTextView"
-                    android:text="@{viewModel.employeeResource.data.name}"
+                    android:text="@{viewModel.employeeResource.data.fullName}"
                     tools:text="Jan Kowalski"
                     android:textAppearance="?textAppearanceHeadline6"
                     app:visibleIfNotNull="@{viewModel.employeeResource.data}" />
