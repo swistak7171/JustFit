@@ -10,6 +10,7 @@ import pl.kamilszustak.justfit.domain.model.event.Event
 import pl.kamilszustak.justfit.domain.usecase.employee.GetEmployeeByIdUseCase
 import pl.kamilszustak.justfit.domain.usecase.event.GetEventByIdUseCase
 import pl.kamilszustak.justfit.domain.usecase.event.JoinEventUseCase
+import pl.kamilszustak.justfit.domain.usecase.event.LeaveEventUseCase
 import pl.kamilszustak.justfit.ui.base.StateViewModel
 import javax.inject.Inject
 
@@ -17,7 +18,8 @@ class EventDetailsViewModel @Inject constructor(
     application: Application,
     private val getEventById: GetEventByIdUseCase,
     private val getEmployeeById: GetEmployeeByIdUseCase,
-    private val joinEvent: JoinEventUseCase
+    private val joinEvent: JoinEventUseCase,
+    private val leaveEvent: LeaveEventUseCase
 ) : StateViewModel(application) {
 
     val eventResource: ResourceDataSource<Event> = ResourceDataSource()
@@ -53,6 +55,12 @@ class EventDetailsViewModel @Inject constructor(
     fun onJoinButtonClick(eventId: Long) {
         performAction(R.string.joining_event_error_message) {
             joinEvent(eventId)
+        }
+    }
+
+    fun onLeaveButtonClick(eventId: Long) {
+        performAction(R.string.leaving_event_error_message) {
+            leaveEvent(eventId)
         }
     }
 }

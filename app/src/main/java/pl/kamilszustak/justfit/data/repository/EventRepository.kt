@@ -8,6 +8,7 @@ import pl.kamilszustak.justfit.data.database.dao.EventDao
 import pl.kamilszustak.justfit.domain.mapper.EventJsonMapper
 import pl.kamilszustak.justfit.domain.model.event.Event
 import pl.kamilszustak.justfit.domain.model.event.EventJson
+import pl.kamilszustak.justfit.network.model.JoinLeaveEventRequestBody
 import pl.kamilszustak.justfit.network.service.EventApiService
 import pl.kamilszustak.justfit.util.withIOContext
 import retrofit2.Response
@@ -58,14 +59,14 @@ class EventRepository @Inject constructor(
     }
 
     suspend fun join(eventId: Long): Result<Unit> {
-        val clientId = userDetailsRepository.getValue<Long>(UserDetailsRepository.UserDetailsKey.USER_ID)
+        val requestBody = JoinLeaveEventRequestBody(eventId)
 
         return withIOContext {
             object : NetworkCall<EventJson, Unit>() {
                 override suspend fun makeCall(): Response<EventJson> =
                     eventApiService.join(
                         clientId = clientId,
-                        eventId = eventId
+                        requestBody = requestBody
                     )
 
                 override suspend fun mapResponse(response: EventJson) = Unit
@@ -78,4 +79,29 @@ class EventRepository @Inject constructor(
             }.callForResponse()
         }
     }
+
+    suspend fun leave(eventId: Long): Result<Unit> {
+        val requestBody = JoinLeaveEventRequestBody(eventId)
+
+        return withIOContext {
+            object : NetworkCall<EventJson, Unit>() {
+                override suspend fun makeCall(): Response<EventJson> =
+                    eventApiService.leave(
+                        clientId = clientId,
+                        requestBody = requestBody
+                    )
+
+                override suspend fun mapResponse(response: EventJson) = Unit
+
+                override suspend fun saveCallResult(result: EventJson) {
+                    eventJsonMapper.onMap(result) { event ->
+                        eventDao.insert(event)
+                    }
+                }
+            }.callForResponse()
+        }
+    }
+
+    private val clientId: Long
+        get() = userDetailsRepository.getValue(UserDetailsRepository.UserDetailsKey.USER_ID)
 }

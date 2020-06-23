@@ -52,5 +52,13 @@ class EventDetailsFragment : BaseFragment() {
         binding.swipeRefreshLayout.setOnRefreshListener {
             viewModel.onRefresh()
         }
+
+        binding.joinButton.setOnClickListener {
+            viewModel.onJoinButtonClick(args.eventId)
+        }
+
+        binding.leaveButton.setOnClickListener {
+            viewModel.onLeaveButtonClick(args.eventId)
+        }
     }
 }

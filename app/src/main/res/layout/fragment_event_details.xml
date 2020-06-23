@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/swipeRefreshLayout"
-        app:refreshing="@{viewModel.eventResource.isLoading || viewModel.employeeResource.isLoading}">
+        app:refreshing="@{viewModel.eventResource.isLoading || viewModel.employeeResource.isLoading || viewModel.isLoading}">
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -103,6 +103,31 @@
                     tools:text="Jan Kowalski"
                     android:textAppearance="?textAppearanceHeadline6"
                     app:visibleIfNotNull="@{viewModel.employeeResource.data}" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    android:layout_marginTop="@dimen/default_margin">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/leaveButton"
+                        android:text="Opuść"
+                        android:layout_weight="1"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_marginEnd="@dimen/default_half_margin" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/joinButton"
+                        android:text="Dołącz"
+                        android:layout_weight="1"
+                        android:layout_marginStart="@dimen/default_half_margin" />
+                </LinearLayout>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
