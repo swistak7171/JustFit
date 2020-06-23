@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import pl.kamilszustak.justfit.di.scope.FragmentScope
 import pl.kamilszustak.justfit.ui.main.activity.ActivitiesFragment
+import pl.kamilszustak.justfit.ui.main.activity.all.AllActivitiesFragment
 import pl.kamilszustak.justfit.ui.main.activity.client.ClientActivitiesFragment
 import pl.kamilszustak.justfit.ui.main.activity.details.ActivityDetailsFragment
 import pl.kamilszustak.justfit.ui.main.employee.EmployeesFragment
@@ -60,4 +61,8 @@ interface MainActivityModule {
     @FragmentScope
     @ContributesAndroidInjector
     fun contributeClientActivitiesFragment(): ClientActivitiesFragment
+
+    @FragmentScope
+    @ContributesAndroidInjector
+    fun contributeAllActivitiesFragment(): AllActivitiesFragment
 }
