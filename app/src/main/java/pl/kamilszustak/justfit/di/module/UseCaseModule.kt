@@ -4,6 +4,8 @@ import dagger.Binds
 import dagger.Module
 import pl.kamilszustak.justfit.domain.usecase.activity.GetActivityByIdUseCase
 import pl.kamilszustak.justfit.domain.usecase.activity.GetActivityByIdUseCaseImpl
+import pl.kamilszustak.justfit.domain.usecase.activity.GetAllActivitiesByDateUseCase
+import pl.kamilszustak.justfit.domain.usecase.activity.GetAllActivitiesByDateUseCaseImpl
 import pl.kamilszustak.justfit.domain.usecase.activity.GetAllActivitiesUseCase
 import pl.kamilszustak.justfit.domain.usecase.activity.GetAllActivitiesUseCaseImpl
 import pl.kamilszustak.justfit.domain.usecase.activity.GetAllClientActivitiesUseCase
@@ -99,4 +101,7 @@ interface UseCaseModule {
 
     @Binds
     fun bindGetAllClientActivitiesUseCase(useCaseImpl: GetAllClientActivitiesUseCaseImpl): GetAllClientActivitiesUseCase
+
+    @Binds
+    fun bindGetAllActivitiesByDateUseCase(useCaseImpl: GetAllActivitiesByDateUseCaseImpl): GetAllActivitiesByDateUseCase
 }

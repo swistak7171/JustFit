@@ -6,6 +6,7 @@ import androidx.room.Transaction
 import kotlinx.coroutines.flow.Flow
 import pl.kamilszustak.justfit.domain.model.activity.ActivityEntity
 import pl.kamilszustak.justfit.domain.model.activity.ActivityWithEquipment
+import java.util.Date
 
 @Dao
 interface ActivityDao : BaseDao<ActivityEntity> {
@@ -17,12 +18,28 @@ interface ActivityDao : BaseDao<ActivityEntity> {
     @Transaction
     fun getById(id: Long): Flow<ActivityWithEquipment>
 
+    @Query("SELECT * FROM activities where date = :date")
+    fun getAllByDate(date: Date): Flow<List<ActivityWithEquipment>>
+
     @Transaction
     suspend fun replaceAll(activities: Collection<ActivityEntity>) {
         deleteAll()
         insertAll(activities)
     }
 
+    @Transaction
+    suspend fun replaceAllByDate(activities: Collection<ActivityEntity>) {
+        val date = activities.firstOrNull()?.date
+        if (date != null) {
+            deleteAllByDate(date)
+        }
+
+        insertAll(activities)
+    }
+
     @Query("DELETE FROM activities")
     suspend fun deleteAll()
+
+    @Query("DELETE FROM activities WHERE date = :date")
+    suspend fun deleteAllByDate(date: Date)
 }

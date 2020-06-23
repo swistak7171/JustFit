@@ -5,6 +5,7 @@ import kotlinx.coroutines.flow.flow
 import pl.kamilszustak.justfit.common.data.NetworkBoundResource
 import pl.kamilszustak.justfit.common.data.NetworkCall
 import pl.kamilszustak.justfit.common.data.Resource
+import pl.kamilszustak.justfit.common.date.DateFormats
 import pl.kamilszustak.justfit.data.database.dao.ActivityDao
 import pl.kamilszustak.justfit.data.database.dao.ActivityEquipmentDao
 import pl.kamilszustak.justfit.data.database.dao.EquipmentDao
@@ -18,6 +19,7 @@ import pl.kamilszustak.justfit.network.model.JoinInActivityRequestBody
 import pl.kamilszustak.justfit.network.service.ActivityApiService
 import pl.kamilszustak.justfit.network.service.ClientApiService
 import retrofit2.Response
+import java.util.Date
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -93,6 +95,42 @@ class ActivityRepository @Inject constructor(
 
                 activityJsonMapper.onMap(result) { activity ->
                     activityDao.insert(activity)
+                }
+            }
+        }.asFlow()
+    }
+
+    fun getAllByDate(date: Date, shouldFetch: Boolean): Flow<Resource<List<ActivityWithEquipment>>> {
+        return object : NetworkBoundResource<List<ActivityJson>, List<ActivityWithEquipment>>() {
+            override fun loadFromDatabase(): Flow<List<ActivityWithEquipment>> =
+                activityDao.getAllByDate(date)
+
+            override fun shouldFetch(data: List<ActivityWithEquipment>?): Boolean =
+                shouldFetch
+
+            override suspend fun fetchFromNetwork(): Response<List<ActivityJson>> {
+                val dateString = DateFormats.europeanSimpleDateFormat.format(date)
+                return activityApiService.getAllByDate(dateString)
+            }
+
+            override suspend fun saveFetchResult(result: List<ActivityJson>) {
+                result.forEach { activity ->
+                    equipmentJsonMapper.onMapAll(activity.usedEquipment) { equipment ->
+                        equipmentDao.insertAll(equipment)
+                    }
+
+                    val activityEquipment = activity.usedEquipment.map { equipment ->
+                        ActivityEquipmentCrossReference(
+                            activityId = activity.id,
+                            equipmentId = equipment.id
+                        )
+                    }
+
+                    activityEquipmentDao.replaceAllByActivityId(activityEquipment)
+                }
+
+                activityJsonMapper.onMapAll(result) { activities ->
+                    activityDao.replaceAllByDate(activities)
                 }
             }
         }.asFlow()

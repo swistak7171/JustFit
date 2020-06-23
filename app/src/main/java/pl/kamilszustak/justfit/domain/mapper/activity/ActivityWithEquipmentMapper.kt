@@ -14,6 +14,7 @@ class ActivityWithEquipmentMapper @Inject constructor() : Mapper<ActivityWithEqu
             name = model.activity.name,
             leaderName = model.activity.leaderName,
             type = model.activity.type,
+            date = model.activity.date,
             startDate = model.activity.startDate,
             endDate = model.activity.endDate,
             usedEquipment = model.usedEquipment,
