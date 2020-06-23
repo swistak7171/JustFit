@@ -56,6 +56,10 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
             navigateToOverviewFragment()
         }
 
+        binding.contactButton.setOnClickListener {
+            navigateToContactFragment()
+        }
+
         binding.loginButton.setOnClickListener {
             viewModel.onLoginButtonClick()
         }
@@ -75,6 +79,11 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
 
     private fun navigateToOverviewFragment() {
         val direction = LoginFragmentDirections.actionLoginFragmentToOverviewFragment()
+        navigateTo(direction)
+    }
+
+    private fun navigateToContactFragment() {
+        val direction = LoginFragmentDirections.actionLoginFragmentToContactFragment()
         navigateTo(direction)
     }
 }

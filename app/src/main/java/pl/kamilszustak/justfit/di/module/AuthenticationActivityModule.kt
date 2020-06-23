@@ -6,6 +6,7 @@ import pl.kamilszustak.justfit.di.scope.FragmentScope
 import pl.kamilszustak.justfit.ui.authentication.login.LoginFragment
 import pl.kamilszustak.justfit.ui.authentication.overview.OverviewFragment
 import pl.kamilszustak.justfit.ui.authentication.overview.photo.OverviewPhotoFragment
+import pl.kamilszustak.justfit.ui.main.profile.contact.ContactFragment
 
 @Module
 abstract class AuthenticationActivityModule {
@@ -20,4 +21,8 @@ abstract class AuthenticationActivityModule {
     @FragmentScope
     @ContributesAndroidInjector
     abstract fun contributeOverviewPhotoFragment(): OverviewPhotoFragment
+
+    @FragmentScope
+    @ContributesAndroidInjector
+    abstract fun contributeContactFragment(): ContactFragment
 }

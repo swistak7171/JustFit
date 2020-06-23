@@ -15,6 +15,7 @@ import pl.kamilszustak.justfit.ui.main.event.details.EventDetailsFragment
 import pl.kamilszustak.justfit.ui.main.product.ProductsFragment
 import pl.kamilszustak.justfit.ui.main.product.client.ClientProductsFragment
 import pl.kamilszustak.justfit.ui.main.profile.ProfileFragment
+import pl.kamilszustak.justfit.ui.main.profile.contact.ContactFragment
 import pl.kamilszustak.justfit.ui.main.schedule.ScheduleFragment
 
 @Module
@@ -70,4 +71,8 @@ interface MainActivityModule {
     @FragmentScope
     @ContributesAndroidInjector
     fun contributeEventDetailsFragment(): EventDetailsFragment
+    
+    @FragmentScope
+    @ContributesAndroidInjector
+    fun contributeContactFragment(): ContactFragment
 }

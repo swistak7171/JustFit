@@ -17,6 +17,13 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_right"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_loginFragment_to_contactFragment"
+            app:destination="@id/contactFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/overviewFragment"
@@ -35,4 +42,9 @@
             android:name="photoResource"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/contactFragment"
+        android:name="pl.kamilszustak.justfit.ui.main.profile.contact.ContactFragment"
+        android:label="Kontakt"
+        tools:layout="@layout/fragment_contact" />
 </navigation>
