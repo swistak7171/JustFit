@@ -24,6 +24,13 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_right"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_activitiesFragment_to_allActivitiesFragment"
+            app:destination="@id/allActivitiesFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/activityDetailsFragment"
@@ -42,6 +49,26 @@
         <action
             android:id="@+id/action_clientActivitiesFragment_to_activityDetailsFragment"
             app:destination="@id/activityDetailsFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/allActivitiesFragment"
+        android:name="pl.kamilszustak.justfit.ui.main.activity.all.AllActivitiesFragment"
+        android:label="Wszystkie aktywności"
+        tools:layout="@layout/fragment_all_activities">
+        <action
+            android:id="@+id/action_allActivitiesFragment_to_activityDetailsFragment"
+            app:destination="@id/activityDetailsFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_allActivitiesFragment_to_clientActivitiesFragment"
+            app:destination="@id/clientActivitiesFragment"
             app:enterAnim="@anim/slide_in_left"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_right"

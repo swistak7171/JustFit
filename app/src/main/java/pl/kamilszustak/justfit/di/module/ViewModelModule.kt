@@ -10,6 +10,7 @@ import pl.kamilszustak.justfit.di.ViewModelKey
 import pl.kamilszustak.justfit.ui.authentication.login.LoginViewModel
 import pl.kamilszustak.justfit.ui.authentication.overview.OverviewViewModel
 import pl.kamilszustak.justfit.ui.main.activity.ActivitiesViewModel
+import pl.kamilszustak.justfit.ui.main.activity.all.AllActivitiesViewModel
 import pl.kamilszustak.justfit.ui.main.activity.client.ClientActivitiesViewModel
 import pl.kamilszustak.justfit.ui.main.activity.details.ActivityDetailsViewModel
 import pl.kamilszustak.justfit.ui.main.employee.EmployeesViewModel
@@ -84,4 +85,9 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(ClientActivitiesViewModel::class)
     fun bindClientActivitiesViewModel(viewModel: ClientActivitiesViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(AllActivitiesViewModel::class)
+    fun bindAllActivitiesViewModel(viewModel: AllActivitiesViewModel): ViewModel
 }

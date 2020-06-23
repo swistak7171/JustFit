@@ -1,4 +1,4 @@
-package pl.kamilszustak.justfit.ui.main.activity
+package pl.kamilszustak.justfit.ui.main.activity.all
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -18,7 +18,7 @@ import com.mikepenz.fastadapter.LongClickListener
 import com.mikepenz.fastadapter.adapters.ModelAdapter
 import org.jetbrains.anko.support.v4.toast
 import pl.kamilszustak.justfit.R
-import pl.kamilszustak.justfit.databinding.FragmentActivitiesBinding
+import pl.kamilszustak.justfit.databinding.FragmentAllActivitiesBinding
 import pl.kamilszustak.justfit.domain.item.ActivityItem
 import pl.kamilszustak.justfit.domain.model.activity.Activity
 import pl.kamilszustak.justfit.ui.base.BaseFragment
@@ -26,17 +26,13 @@ import pl.kamilszustak.justfit.util.navigateTo
 import pl.kamilszustak.justfit.util.popupMenu
 import pl.kamilszustak.justfit.util.updateModels
 import timber.log.Timber
-import java.util.Date
 import javax.inject.Inject
 
-class ActivitiesFragment : BaseFragment() {
+class AllActivitiesFragment : BaseFragment() {
     @Inject
     protected lateinit var viewModelFactory: ViewModelProvider.AndroidViewModelFactory
-    private val viewModel: ActivitiesViewModel by viewModels {
-        viewModelFactory
-    }
-
-    private lateinit var binding: FragmentActivitiesBinding
+    private val viewModel: AllActivitiesViewModel by viewModels { viewModelFactory }
+    private lateinit var binding: FragmentAllActivitiesBinding
     private val modelAdapter: ModelAdapter<Activity, ActivityItem> by lazy {
         ModelAdapter<Activity, ActivityItem> { activity ->
             ActivityItem(activity)
@@ -55,11 +51,6 @@ class ActivitiesFragment : BaseFragment() {
                 true
             }
 
-            R.id.allActivitiesItem -> {
-                navigateToAllActivitiesFragment()
-                true
-            }
-
             else -> {
                 super.onOptionsItemSelected(item)
             }
@@ -71,13 +62,13 @@ class ActivitiesFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate<FragmentActivitiesBinding>(
+        binding = DataBindingUtil.inflate<FragmentAllActivitiesBinding>(
             inflater,
-            R.layout.fragment_activities,
+            R.layout.fragment_all_activities,
             container,
             false
         ).apply {
-            this.viewModel = this@ActivitiesFragment.viewModel
+            this.viewModel = this@AllActivitiesFragment.viewModel
             this.lifecycleOwner = viewLifecycleOwner
         }
 
@@ -88,20 +79,9 @@ class ActivitiesFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setHasOptionsMenu(true)
-        initializeCalendarView()
         initializeRecyclerView()
         setListeners()
         observeViewModel()
-    }
-
-    private fun initializeCalendarView() {
-        binding.calendarView.apply {
-            this.setOnDateChangeListener { view, year, month, dayOfMonth ->
-                val date = Date(year - 1900, month, dayOfMonth)
-                viewModel.onDateSelected(date)
-            }
-            this.date = Date().time
-        }
     }
 
     private fun initializeRecyclerView() {
@@ -169,17 +149,12 @@ class ActivitiesFragment : BaseFragment() {
     }
 
     private fun navigateToActivityDetailsFragment(activityId: Long) {
-        val direction = ActivitiesFragmentDirections.actionActivitiesFragmentToActivityDetailsFragment(activityId)
+        val direction = AllActivitiesFragmentDirections.actionAllActivitiesFragmentToActivityDetailsFragment(activityId)
         navigateTo(direction)
     }
 
     private fun navigateToClientActivitiesFragment() {
-        val direction = ActivitiesFragmentDirections.actionActivitiesFragmentToClientActivitiesFragment()
-        navigateTo(direction)
-    }
-
-    private fun navigateToAllActivitiesFragment() {
-        val direction = ActivitiesFragmentDirections.actionActivitiesFragmentToAllActivitiesFragment()
+        val direction = AllActivitiesFragmentDirections.actionAllActivitiesFragmentToClientActivitiesFragment()
         navigateTo(direction)
     }
 }

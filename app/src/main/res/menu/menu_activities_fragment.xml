@@ -6,4 +6,9 @@
         android:id="@+id/clientActivitiesItem"
         android:title="Moje aktywności"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/allActivitiesItem"
+        android:title="Wszystkie aktywności"
+        app:showAsAction="never" />
 </menu>
