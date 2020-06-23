@@ -27,6 +27,19 @@ interface ActivityDao : BaseDao<ActivityEntity> {
         insertAll(activities)
     }
 
+    @Transaction
+    suspend fun replaceAllByDate(activities: Collection<ActivityEntity>) {
+        val date = activities.firstOrNull()?.date
+        if (date != null) {
+            deleteAllByDate(date)
+        }
+
+        insertAll(activities)
+    }
+
     @Query("DELETE FROM activities")
     suspend fun deleteAll()
+
+    @Query("DELETE FROM activities WHERE date = :date")
+    suspend fun deleteAllByDate(date: Date)
 }
